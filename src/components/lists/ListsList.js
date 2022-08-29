@@ -28,7 +28,7 @@ const ListsList = () => {
   useEffect(() => {
     axios.get('http://localhost:8000/lists/all')
       .then(res => setLists(res.data))
-      // console.log(lists)
+      // console.log(...lists)
     },[lists])
 
     function generate(element) {
@@ -40,14 +40,27 @@ const ListsList = () => {
     }
 
       // const [dense, setDense] = (false);
-      // const [secondary, setSecondary] = useState(false);
+      const [secondary, setSecondary] = useState(false);
 
   return (
     <> 
-      <h2>All of your lists:</h2>
-      <Grid item xs={12} md={6}>
+      <h2>All of your lists:
+
+      {/* {lists.map((List) => (
+          <ListsListing key={lists._id} id={lists._id} name={lists.name} 
+          lists={lists}/>
+          ))} */}
+      </h2>
+ {/* <listViewer list={list} show={modalShow} onHide={() => setModalShow(false)} deletelist={deletelist}/> */}
+      
+
+      <Grid item xs={12} md={2}>
           <List>
-            {generate(
+          {lists.map((list, i) => (
+          <ListsListing key={i} id={list._id} name={list.name} details={list.details}
+          lists={lists}/>
+          ))}
+            {/* {generate(
               <ListItem
                 secondaryAction={
                   <IconButton edge="end" aria-label="delete">
@@ -60,15 +73,22 @@ const ListsList = () => {
                     <FolderIcon />
                   </Avatar>
                 </ListItemAvatar>
+                {lists.map((list, i) => (
                 <ListItemText
-                  primary="Single-line item"
-                />
-                {lists.map((List) => (
-          <ListsListing key={lists._id} id={lists._id} listName={lists.listName} 
-          list={lists}/>
-        ))}
-              </ListItem>
-            )}
+                    primary={list.name}
+                    secondary={list.details}
+                  />
+                  ))}
+                <ListItemText />
+                 
+                  <div >
+        
+                    {/* <ListsListing list={list} lists={lists} key={i} /> */}
+                  {/* </div>    
+                */}
+        
+              {/* </ListItem> */}
+            
           </List>
       </Grid>
     </>
