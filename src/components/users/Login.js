@@ -1,4 +1,4 @@
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
 import TextField from '@mui/material/TextField';
@@ -7,12 +7,13 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
+// import { useContext} from 'react';
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../Home'
+// import { UserContext } from '../Home'
 import axios from 'axios';
 
 // import LoginForm from "./LoginForm";
@@ -22,58 +23,56 @@ const Login = () => {
 
     const navigate = useNavigate()
     const [error, setError] = useState(null)
-    const { currentUser, setCurrentUser } = useContext(UserContext)
+    // const { currentUser, setCurrentUser } = useContext(UserContext)
 
     const initialState = { email: '',  password: '' }
 
     const [formState, setFormState] = useState(initialState);
 
 
-    // const [user, setUser] = useState({
-    //     email: '',
-    //     password: ''
-    // })
+    const [user, setUser] = useState({
+        email: '',
+        password: ''
+    })
 
-    // const handleChange = (event) =>{
-    //     const {name, value} = event.target
-    //     setUser({
-    //     ...user,//spread operator 
-    //     [name]:value
-    //     })
-    //     }
     const handleChange = (event) => {
-    //     // setCurrentUser({
-    //     //     key: event.target.classList[0],
-    //     //     value: event.target.value 
-    //     // })
+        // setCurrentUser({
+        //     key: event.target.classList[0],
+        //     value: event.target.value 
+        // })
         setFormState({...formState, [event.target.id]: event.target.value})
-        setCurrentUser({...currentUser, [event.target.id]: event.target.value})
+
+        setUser({...user, [event.target.id]: event.target.value})
     }
 
 
     function handleSubmit (event) {
         event.preventDefault()
         if (formState.email !== '' && formState.password !== ''){
-            axios.post('http://localhost:8000/users/signin', currentUser)
+            axios.post('http://localhost:8000/users/signin', formState)
             .then(res => {
-                setCurrentUser(res.data.user)
-                // window.localStorage.setItem('token', res.data.token)
-                // window.localStorage.setItem('id', res.data.id)
-                    // window.localstorage?
-                // navigate('/lists')
+                // console.log(res.data.token)
+                // console.log(res.data.email)
+                // console.log(formState.password)
+            
+                window.localStorage.setItem('token', res.data.token)
+                window.localStorage.setItem("Email", formState.email)
             })
-            // .then(() => {
-            //     navigate('/users/signup')
-            // })
+            .then(() => {
+                setFormState(initialState)
+                // console.log(currentUser)
+                navigate('/lists')
+            })
             .catch(err => {
                 setError("Provided email or password is incorrect.")
             })
         } 
     }
-    useEffect(() => {
-        setCurrentUser({ key: 'email', value: formState.email})
-        formState.token && navigate('/')
-    }, [formState.token])
+ 
+    // useEffect(() => {
+    //     setCurrentUser({ key: 'email', value: formState.email})
+    //     formState.token && navigate('/lists')
+    // }, [formState.token])
 
     return (
 
@@ -130,9 +129,7 @@ const Login = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-           
-        >
+            sx={{ mt: 3, mb: 2 }}>
             Sign In
         </Button>
         <Grid container>
