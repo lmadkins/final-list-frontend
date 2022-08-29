@@ -23,7 +23,7 @@ return (
     <UserContext.Provider value={{'currentUser': currentUser, 'setCurrentUser': setCurrentUser}}>
 
     <Navbar />
-
+{/* if signed in, show <ListsHome /> */}
 
     <Routes>
         <Route path = '/' element={<Home />} />
