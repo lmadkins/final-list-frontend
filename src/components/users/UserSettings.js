@@ -1,4 +1,4 @@
-import { UpdateDisabled } from "@mui/icons-material";
+// import { UpdateDisabled } from "@mui/icons-material";
 
 // STATE
 // context of logged in user 
@@ -7,3 +7,8 @@ import { UpdateDisabled } from "@mui/icons-material";
 // Updated, set updated
 // username, setusername
 
+const UserSettings = () => {
+
+}
+
+export default UserSettings;
