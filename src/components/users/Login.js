@@ -1,17 +1,21 @@
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
 
-// use navigate - use navigate
-// to navigate after signup
-
-// use effect dispatchUser, when token changes, navigate to /
-// handle change
-// dispatch
-// handle submit
+import TextField from '@mui/material/TextField';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../Home'
 import axios from 'axios';
 
-import LoginForm from "./LoginForm";
+// import LoginForm from "./LoginForm";
 
 
 const Login = () => {
@@ -24,50 +28,128 @@ const Login = () => {
 
     const [formState, setFormState] = useState(initialState);
 
-    // useEffect(() => {
-    //     setCurrentUser({ key: 'email', value: currentUser.email})
-    //     currentUser.token && navigate('/')
-    // }, [currentUser.token, setCurrentUser])
 
+    // const [user, setUser] = useState({
+    //     email: '',
+    //     password: ''
+    // })
 
+    // const handleChange = (event) =>{
+    //     const {name, value} = event.target
+    //     setUser({
+    //     ...user,//spread operator 
+    //     [name]:value
+    //     })
+    //     }
     const handleChange = (event) => {
-        // setCurrentUser({
-        //     key: event.target.classList[0],
-        //     value: event.target.value 
-        // })
+    //     // setCurrentUser({
+    //     //     key: event.target.classList[0],
+    //     //     value: event.target.value 
+    //     // })
         setFormState({...formState, [event.target.id]: event.target.value})
-        // setCurrentUser({...currentUser, [event.target.id]: event.target.value})
+        setCurrentUser({...currentUser, [event.target.id]: event.target.value})
     }
+
 
     function handleSubmit (event) {
         event.preventDefault()
         if (formState.email !== '' && formState.password !== ''){
-            axios.post('http://localhost8000/users/login', setCurrentUser)
+            axios.post('http://localhost:8000/users/signin', currentUser)
             .then(res => {
-                localStorage.setItem('token', res.data.token)
-                    localStorage.setItem('id', res.data.id)
+                setCurrentUser(res.data.user)
+                // window.localStorage.setItem('token', res.data.token)
+                // window.localStorage.setItem('id', res.data.id)
                     // window.localstorage?
+                // navigate('/lists')
             })
-            .then(() => {
-                console.log('submitted')
-                navigate('/lists')
-            })
+            // .then(() => {
+            //     navigate('/users/signup')
+            // })
             .catch(err => {
                 setError("Provided email or password is incorrect.")
             })
         } 
     }
+    useEffect(() => {
+        setCurrentUser({ key: 'email', value: formState.email})
+        formState.token && navigate('/')
+    }, [formState.token])
 
     return (
-    <>
 
-        <LoginForm 
-        onChange= {handleChange}
-        onSubmit = {handleSubmit}
-        // loginInfo = { loginInfo }
-        formState = {formState}
+    <Container component="main" maxWidth="xs" >
+    <Box
+        sx={{
+        marginTop: 8,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        }}
+    >
+        {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <LockOutlinedIcon />
+        </Avatar> */}
+        <Typography component="h1" variant="h5">
+        Welcome back to Final List <br></br>
+        {/* Please sign in below */}
+        </Typography>
+        <Box component="form"   noValidate sx={{ mt: 1 }}
+        onSubmit={handleSubmit}
+        >    
+        <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            htmlFor = 'email'
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            value={formState.email}
+            onChange={handleChange}
         />
-    </>
+        <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            htmlFor = 'password'
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={formState.password}
+            onChange={handleChange}
+        />
+        {/* <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+        /> */}
+        <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+           
+        >
+            Sign In
+        </Button>
+        <Grid container>
+            {/* <Grid item xs>
+            <Link href="#" variant="body2">
+                Forgot password?
+            </Link>
+            </Grid> */}
+            <Grid item>
+            <Link href="/users/signup" variant="body2">
+                {"Don't have an account yet? Sign Up"}
+            </Link>
+            </Grid>
+        </Grid>
+        </Box>
+    </Box>
+    </Container>
     )
 }
 

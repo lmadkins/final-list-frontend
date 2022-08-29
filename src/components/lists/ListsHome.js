@@ -10,7 +10,7 @@ const ListsHome = () => {
 
     return (
     <>
-      <ListsList />
+      {/* <ListsList /> */}
       <CreateListForm/>
     </>
     )
