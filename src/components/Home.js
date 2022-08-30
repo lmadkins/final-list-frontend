@@ -5,8 +5,7 @@ import Signup from './users/Signup';
 import Login from './users/Login';
 import UserSettings from './users/UserSettings'
 import ListsHome from './lists/ListsHome'
-import ItemsList from './items/ItemsList'
-import ListsList from './lists/ListsList'
+
 import { createContext, useState } from 'react';
 
 export const UserContext = createContext()
@@ -32,10 +31,10 @@ return (
         <Route path = '/users/signup' element={<Signup />} />
         <Route path='/users/signin' element= {<Login />} />
         <Route path = '/users/:id' element={<UserSettings />} />
-        <Route path = '/lists/all' element={<ListsList/>} />
+   
         {/* <Route path = '/lists/new' element={<NewList/>} /> */}
         <Route path = '/lists' element={<ListsHome/>} />
-        <Route path = '/lists/items/:listid' element={<ItemsList/>} />
+        
         {/* <Route path="/*" element={<Navigate to="/"/>}/> */}
         {/* ^ handle mis-typed urls 
 

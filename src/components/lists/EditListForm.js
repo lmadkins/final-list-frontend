@@ -6,11 +6,10 @@
 // List central, with access to the list of lists, and list create link
 const EditListForm = () => {
 
-  // const { currentUser, setCurrentUser } = useContext(UserContext)
-
+ 
     return (
     <>
-      <p>Edit form</p>
+      {/* <p>Edit form</p> */}
   
     </>
     )
