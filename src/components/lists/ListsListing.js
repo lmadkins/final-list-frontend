@@ -21,7 +21,7 @@ export const ActiveListContext = createContext()
 
 // component for each individual list in the Lists List
 const ListsListing = ({ name, id, details, lists, list}) => {
-
+  let { listId } = useParams()
   // SET STATE FOR CONTEXT
   // const [activeList, setActiveList] = useState()
 
@@ -44,7 +44,7 @@ const ListsListing = ({ name, id, details, lists, list}) => {
   const handleClick = (event) => {
     setActiveListId(event.target.id)
     // console.log(activeListId)
-    navigate(`items/${id}`)
+    navigate(`items/${listId}`)
   }
 
     // const [dense, setDense] = (false);
@@ -56,8 +56,8 @@ const ListsListing = ({ name, id, details, lists, list}) => {
   <ActiveListContext.Provider value={{
     'activeListId':  activeListId, 'setActiveListId': setActiveListId}}>
   <Routes>
-        <Route path = '/lists/items/:listId' element={<ItemsList/>} />
-    </Routes>
+        <Route path = '/lists/items/:id' element={<ItemsList/>} />
+   </Routes>
   </ActiveListContext.Provider>
     {/* <p>{list.name}</p> */}
     {generate(
@@ -67,7 +67,7 @@ const ListsListing = ({ name, id, details, lists, list}) => {
               <ListItemButton
                 onClick={handleClick}
                 id={id}
-                // listId={listId}
+                listId={listId}
 
               >
                 <ListItemAvatar>
@@ -85,7 +85,7 @@ const ListsListing = ({ name, id, details, lists, list}) => {
                 <ListItemText />
             
                   <div >
-                  <Link to= '/lists/items/:id'> <IconButton edge="end" aria-label="edit">
+                  <Link to= '/lists/items/:listId'> <IconButton edge="end" aria-label="edit">
                       <EditIcon />
                       <EditListForm 
                         // id={listId}

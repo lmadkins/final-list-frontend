@@ -74,9 +74,9 @@ useEffect(() => {
     <>
     
        {/* <Route path = '/:id' element={<ListsListing/>} />  <Routes> */}
-      <Routes>
+      {/* <Routes>
         <Route path = '/lists/items/:id' element={<ItemsList/>} />
-        </Routes> 
+        </Routes>  */}
 
       <h2>Welcome to Final List, here are your lists:</h2>
 
