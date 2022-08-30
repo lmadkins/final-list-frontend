@@ -12,9 +12,12 @@ import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
-// import Typography from '@mui/material/Typography';
+import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
+// import FormGroup from '@mui/material/FormGroup';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
 
 import ListsListing from "./ListsListing";
 // import { UserContext } from '../Home'
@@ -32,7 +35,7 @@ const ListsList = () => {
     },[lists])
 
     function generate(element) {
-      return [0, 1, 2].map((value) =>
+      return [0].map((value) =>
         React.cloneElement(element, {
           key: value,
         }),
@@ -52,10 +55,39 @@ const ListsList = () => {
           ))} */}
       </h2>
  {/* <listViewer list={list} show={modalShow} onHide={() => setModalShow(false)} deletelist={deletelist}/> */}
-      
+ {/* <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={dense}
+              onChange={(event) => setDense(event.target.checked)}
+            />
+          }
+          label="Enable dense"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={secondary}
+              onChange={(event) => setSecondary(event.target.checked)}
+            />
+          }
+          label="Enable secondary text"
+        />
+      </FormGroup> */}
 
       <Grid item xs={12} md={2}>
-          <List>
+          <List
+              sx={{
+                width: '100%',
+                maxWidth: 500,
+                bgcolor: 'background.paper',
+                position: 'relative',
+                overflow: 'auto',
+                maxHeight: 500,
+                '& ul': { padding: 0 },
+              }}
+          >
           {lists.map((list, i) => (
           <ListsListing key={i} id={list._id} name={list.name} details={list.details}
           lists={lists}/>

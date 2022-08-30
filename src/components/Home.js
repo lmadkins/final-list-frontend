@@ -5,7 +5,7 @@ import Signup from './users/Signup';
 import Login from './users/Login';
 import UserSettings from './users/UserSettings'
 import ListsHome from './lists/ListsHome'
-// import NewList from './lists/CreateListForm'
+import ItemsList from './items/ItemsList'
 import ListsList from './lists/ListsList'
 import { createContext, useState } from 'react';
 
@@ -35,13 +35,14 @@ return (
         <Route path = '/lists/all' element={<ListsList/>} />
         {/* <Route path = '/lists/new' element={<NewList/>} /> */}
         <Route path = '/lists' element={<ListsHome/>} />
+        <Route path = '/lists/items/:listid' element={<ItemsList/>} />
         {/* <Route path="/*" element={<Navigate to="/"/>}/> */}
         {/* ^ handle mis-typed urls 
 
 
 //         <Route path = '/lists/:id' element={<EditList/>} />
         
-//         <Route path = '/lists/items/:listid' element={<ItemList/>} />
+        
 //         <Route path = '/lists/items/:listId/:id' element={<Item/>} />
 //         // <Route path = '/lists/items/:listId' element={<NewItem/>} />
 //         // <Route path = '/lists/items/:listId/:id' element={<EditItem/>} />*/}

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate} from "react-router-dom";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-// import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
@@ -13,11 +15,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 // component for each individual list in the Lists List
 const ListsListing = ({ name, id, details, lists, list}) => {
   function generate(element) {
-    return [0, 1, 2].map((value) =>
+    return [0].map((value) =>
       React.cloneElement(element, {
         key: value,
       }),
     );
+  }
+
+  const navigate = useNavigate()
+  const handleClick = (event) => {
+    navigate(`items/${event.target.id}`)
   }
 
     // const [dense, setDense] = (false);
@@ -29,8 +36,9 @@ const ListsListing = ({ name, id, details, lists, list}) => {
     {/* <p>{list.name}</p> */}
     {generate(
     
-              <ListItem
-            
+              <ListItemButton
+                onClick={handleClick}
+                id={id}
                 secondaryAction={
                   <IconButton edge="end" aria-label="delete">
                     <DeleteIcon />
@@ -42,6 +50,7 @@ const ListsListing = ({ name, id, details, lists, list}) => {
                     <FolderIcon />
                   </Avatar>
                 </ListItemAvatar>
+                {/* Link to using id */}
                 <ListItemText
                 //  key={i}
                     primary={name}
@@ -54,9 +63,10 @@ const ListsListing = ({ name, id, details, lists, list}) => {
         
                     {/* <ListsListing list={list} lists={lists} key={i} /> */}
                   </div>    
-              </ListItem>
-            )}
+              </ListItemButton>
               
+            )}
+              <Divider />
   </>
   )
 }
