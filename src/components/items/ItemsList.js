@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import {useContext} from 'react';
-import { ActiveListContext } from '../lists/ListsListing'
+import { ActiveListContext } from '../lists/ListsList'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';

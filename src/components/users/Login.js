@@ -1,8 +1,9 @@
-// import Avatar from '@mui/material/Avatar';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
 import TextField from '@mui/material/TextField';
 // import FormControlLabel from '@mui/material/FormControlLabel';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 // import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -85,9 +86,9 @@ const Login = () => {
         alignItems: 'center',
         }}
     >
-        {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-        <LockOutlinedIcon />
-        </Avatar> */}
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <FactCheckIcon />
+        </Avatar>
         <Typography component="h1" variant="h5">
         Welcome back to Final List <br></br>
         {/* Please sign in below */}
@@ -129,6 +130,7 @@ const Login = () => {
             type="submit"
             fullWidth
             variant="contained"
+            color="secondary"
             sx={{ mt: 3, mb: 2 }}>
             Sign In
         </Button>

@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
@@ -92,7 +93,7 @@ const Signup = () => {
         }}
         >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <FactCheckIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
             Sign up
@@ -158,6 +159,7 @@ const Signup = () => {
             type="submit"
             fullWidth
             variant="contained"
+            color="secondary"
             sx={{ mt: 3, mb: 2 }}
             onClick={handleSubmit}
             >

@@ -14,8 +14,6 @@ import Button from '@mui/material/Button';
 
 // form to create a new list
 
-// ADD error handling
-// https://mui.com/material-ui/react-text-field/
 
 
 const CreateListForm = ({handleChange, handleSubmit, createList, setCreateList, formState}) => {

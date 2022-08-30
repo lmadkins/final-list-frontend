@@ -1,70 +1,108 @@
-import React, { useEffect, useState } from 'react';
-// import {useContext} from 'react';
-import axios from 'axios';
-// import * as React from 'react';
-// import { styled } from '@mui/material/styles';
-// import Box from '@mui/material/Box';
-
-import ListItem from '@mui/material/ListItem';
+import React, { useEffect, useState, createContext } from 'react';
+import { Link, useParams, Route, Routes, useNavigate } from 'react-router-dom'
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
+import EditIcon from '@mui/icons-material/Edit';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-// import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-
-import Typography from '@mui/material/Typography';
-import FolderIcon from '@mui/icons-material/Folder';
+// import Grid from '@mui/material/Grid';
+import EditListForm from './EditListForm'
+import ItemsList from '../items/ItemsList';
+// import Typography from '@mui/material/Typography';
+// import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
-// import FormGroup from '@mui/material/FormGroup';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
+import GradingIcon from '@mui/icons-material/Grading';
 
-import ListsListing from "./ListsListing";
-// import {useContext} from 'react';
-// import { UserContext } from '../Home'
+export const ActiveListContext = createContext()
 
-// Component for the list of a user's Lists
-const ListsList = () => {
-  // const { currentUser, setCurrentUser } = useContext(UserContext)
-  // console.log(currentUser.email)
-  
-      // const [dense, setDense] = (false);
-      // const [secondary, setSecondary] = useState(false);
+// component for each individual list in the Lists List
+const ListsListing = ({ name, id, details, lists, list}) => {
+  let { listId } = useParams()
+  // SET STATE FOR CONTEXT
+  // const [activeList, setActiveList] = useState()
 
+
+  function generate(element) {
+    return [0].map((value) =>
+      React.cloneElement(element, {
+        key: value,
+      }),
+    );
+  }
+  // const ItemIdContext = createContext()
+  const [activeList, setActiveList] = useState({
+    listId: '',
+    listName: '',
+    listDetails: '',
+    listType: '',
+  })
+ // const { currentUser, setCurrentUser } = useContext(UserContext)
+
+  const navigate = useNavigate()
+
+  const handleClick = (event) => {
+    setActiveList(event.target.id)
+    console.log(activeList)
+    navigate(`items/${id}`)
+  }
+
+    // const [dense, setDense] = (false);
+    const [secondary, setSecondary] = useState(false);
+
+  // console.log(name)
   return (
-    <> 
-      <h2>All of your lists:
+  <>
+  <ActiveListContext.Provider value={{
+    'activeList':  activeList, 'setActiveList': setActiveList}}>
+    <Routes>
+        <Route path = '/lists/items/:id' element={<ItemsList/>} />
+    </Routes>
+  </ActiveListContext.Provider>
+    {/* <p>{list.name}</p> */}
+    {generate(
+            <div
+            
+                >
+              <ListItemButton
+                onClick={handleClick}
+                id={id}
+                listId={listId}
 
-      {/* {lists.map((List) => (
-          <ListsListing key={lists._id} id={lists._id} name={lists.name} 
-          lists={lists}/>
-          ))} */}
-      </h2>
- {/* <listViewer list={list} show={modalShow} onHide={() => setModalShow(false)} deletelist={deletelist}/> */}
- {/* <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={dense}
-              onChange={(event) => setDense(event.target.checked)}
-            />
-          }
-          label="Enable dense"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={secondary}
-              onChange={(event) => setSecondary(event.target.checked)}
-            />
-          }
-          label="Enable secondary text"
-        />
-      </FormGroup> */}
-
-     
-    </>
+              >
+                <ListItemAvatar>
+                  <Avatar>
+                    <GradingIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                {/* Link to using id */}
+                <ListItemText
+                //  key={i}
+                    primary={name}
+                    secondary={details}
+                  />
+                
+                <ListItemText />
+            
+                  <div >
+                  <Link to= '/lists/items/:listId'> <IconButton edge="end" aria-label="edit">
+                      <EditIcon />
+                      <EditListForm 
+                        // id={listId}
+                        />
+                  </IconButton></Link>
+              
+                    {/* <ListsListing list={list} lists={lists} key={i} /> */}
+                  </div>    
+              </ListItemButton>
+              </div>
+            )}
+              <Divider />
+  </>
   )
 }
 
-export default ListsList;
+export default ListsListing;

@@ -1,3 +1,4 @@
+// import Link from '@mui/material/Link';
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -14,11 +15,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Switch from '@mui/material/Switch';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 
 // import Settings from '@mui/icons-material/Settings';
 // import Logout from '@mui/icons-material/Logout';
+
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 import { UserContext } from './Home'
 
@@ -48,66 +50,33 @@ const Navbar = () => {
     <>
     <Box sx={{ flexGrow: 1 }}>
 
-    <AppBar position="static">
         <Toolbar>
-        <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-        >
-            <MenuIcon />
-        </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Final List
         </Typography>
-        <Typography sx={{ minWidth: 100 }}><Link to= '/lists'> My Lists</Link></Typography>
+        {/* <Link href="/home" underline="hover">
+        My Lists
+        </Link> */}
+       
 
         {currentUser === '' &&
         <>
-        <Typography sx={{ minWidth: 100 }}><Link to='/users/signup'>Get Started</Link></Typography>
-        <Typography sx={{ minWidth: 100 }}><Link to='/users/login'>Login</Link></Typography>
-
+        {/* <Link href="/home" underline="hover">
+        My Lists<Link to='/users/signup'>Get Started</Link>
+        <Link to='/users/login'>Login</Link>
+        </Link> */}
+        
         </>
     }
         {auth && (
             <div>
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-            >
-                <AccountCircle />
-            </IconButton>
-            <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}>
-                    <MenuItem onClick={handleClose}>
-                        <Link to= '/users/:id'> Settings</Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose} >
-                        <Link to= '/' onClick={handleLogout}> Logout</Link>
-                    </MenuItem>
-            </Menu>
+            {/* <Link to= '/users/:id'> Settings</Link>
+            <Link to= '/' onClick={handleLogout}> Logout</Link> */}
+            
             </div>
         )}
         </Toolbar>
-        </AppBar>
+
     </Box>
     </>
     )
