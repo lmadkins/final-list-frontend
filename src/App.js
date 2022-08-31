@@ -7,15 +7,16 @@ import Dashboard from './components/lists/Dashboard';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+// import Box from '@mui/material/Box';
+// import Container from '@mui/material/Container';
 import HomeIcon from '@mui/icons-material/Home';
-import Navbar from './components/Navbar'
+// import Navbar from './components/Navbar'
 import Signup from './components/users/Signup';
-import Login from './components/users/Login';
-// import UserSettings from '.components/users/UserSettings'
+import Signin from './components/users/Signin';
+import UserSettings from './components/users/UserSettings'
 // import ListsHome from './lists/ListsHome'
-
+import ItemsList from './components/items/ItemsList';
+import Dashboard2 from './components/lists/Dashboard2';
 
 
 export const UserContext = createContext()
@@ -44,65 +45,39 @@ function App() {
 
   return (
     <>
+    <UserContext.Provider value={{'currentUser': currentUser, 'setCurrentUser': setCurrentUser}}>
+    
+    <nav>
+      {/* set this up later to conditionaly render based on current user logged in or not */}
       <Stack
       direction={{ xs: 'column', sm: 'row' }}
-      spacing={{ xs: 1, sm: 2, md: 4 }}
-    >
-      <IconButton aria-label="delete" color="secondary" size="large">
-      <HomeIcon fontSize="inherit" />
-    </IconButton><IconButton aria-label="delete" color="secondary" size="large">
-      <HomeIcon fontSize="inherit" />
-    </IconButton><IconButton aria-label="delete" color="secondary" size="large">
-      <HomeIcon fontSize="inherit" />
-    </IconButton>
-    </Stack>
-    
-    {/* <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-    <Link to= '/'> <HomeIcon fontSize="large" /></Link>   Final List
-      </Typography> */}
+      spacing={{ xs: 1, sm: 2, md: 4 }}>
+        <IconButton aria-label="home" color="secondary" size="large">
+            <Link to= '/'> <HomeIcon fontSize="large" /></Link>
+        </IconButton>
+        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+          <Link to= '/'> Final List </Link>   
+      </Typography>
+        <Link to='/lists'>Dash</Link>
+        <Link to='/dash2'>Dash2</Link>
+        <Link to='/users/signup'>Get Started</Link>
+        <Link to='/users/signin'>Login</Link>
+        <Link to='/users/settings'>User Settings</Link>
+        <Link to='/'>Logout</Link>
+      </Stack>
+    </nav>
 
-    <UserContext.Provider value={{'currentUser': currentUser, 'setCurrentUser': setCurrentUser}}>
           {/* if signed in, show <ListsHome /> */}
     {/* <Navbar /> */}
     <Routes>
-        <Route path = '/*' element={<Dashboard />} />
+    <Route path = '/dash2' element={<Dashboard2 />} />
+        <Route path = '/lists' element={<Dashboard />} />
         <Route path = '/users/signup' element={<Signup />} />
-        <Route path='/users/signin' element= {<Login />} />
-        {/* <Route path = '/users/settings' element={<UserSettings />} /> */}
-        {/* <Route path = '/lists/new' element={<NewList/>} /> */}
-        {/* <Route path = '/lists' element={<Dashboard/>} /> */}
-        
-        {/* <Route path="/*" element={<Navigate to="/"/>}/> */}
-        {/* ^ handle mis-typed urls */}
-
-</Routes>
+        <Route path='/users/signin' element= {<Signin />} />
+        <Route path='/users/settings' element= {<UserSettings />} />
+        <Route path = '/lists/items/:id' element={<ItemsList />} />
+    </Routes>
     </UserContext.Provider>
-    {/* NAVBAR */}
-    {/* <UserContext.Provider value={{'currentUser': currentUser, 'setCurrentUser': setCurrentUser}}> */}
-    {/* <Home />      */}
-    {/* <Route path = '/' element={<Home />} /> */}
-    {/* <Navbar />
-    <Login />
-    <Signup /> */}
-{/* if signed in, show <ListsHome /> */}
-{/* 
-    <Routes>
-        <Route path = '/home' element={<Home />} />
-        <Route path = '/users/signup' element={<Signup />} />
-        <Route path='/users/login' element= {<Login />} />
-        <Route path = '/users/:id' element={<UserSettings />} /> */}
-        {/* <Route path="/*" element={<Navigate to="/"/>}/> */}
-        {/* ^ handle mis-typed urls */}
-
-        {/* <Route path = '/lists/new' element={<NewList/>} />
-        <Route path = '/lists/:id' element={<EditList/>} />
-        <Route path = '/lists' element={<ListsList/>} />
-        <Route path = '/lists/items/:listid' element={<ItemList/>} />
-        <Route path = '/lists/items/:listId/:id' element={<Item/>} />
-        // <Route path = '/lists/items/:listId' element={<NewItem/>} />
-        // <Route path = '/lists/items/:listId/:id' element={<EditItem/>} /> */}
-    {/* </Routes>
-    </UserContext.Provider> */}
     </> 
   );
 }

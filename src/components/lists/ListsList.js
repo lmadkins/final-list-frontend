@@ -1,7 +1,8 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link, useParams, Route, Routes, useNavigate } from 'react-router-dom'
 // import List from '@mui/material/List';
 // import ListItem from '@mui/material/ListItem';
+import { ActiveListContext } from '../lists/Dashboard'
 import EditIcon from '@mui/icons-material/Edit';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -11,19 +12,19 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 // import Grid from '@mui/material/Grid';
 import EditListForm from './EditListForm'
-import ItemsList from '../items/ItemsList';
+
 // import Typography from '@mui/material/Typography';
 // import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GradingIcon from '@mui/icons-material/Grading';
 
-export const ActiveListContext = createContext()
+// export const ActiveListContext = createContext()
 
 // component for each individual list in the Lists List
 const ListsListing = ({ name, id, details, lists, list}) => {
-  let { listId } = useParams()
+  // let { id } = useParams()
   // SET STATE FOR CONTEXT
-  // const [activeList, setActiveList] = useState()
+  const [activeList, setActiveList] = useState()
 
 
   function generate(element) {
@@ -34,20 +35,18 @@ const ListsListing = ({ name, id, details, lists, list}) => {
     );
   }
   // const ItemIdContext = createContext()
-  const [activeList, setActiveList] = useState({
-    listId: '',
-    listName: '',
-    listDetails: '',
-    listType: '',
-  })
- // const { currentUser, setCurrentUser } = useContext(UserContext)
+  const [paramsId, setParamsId] = useState()
+//  const { activeList, setActiveList } = useContext(ActiveListContext)
 
   const navigate = useNavigate()
 
   const handleClick = (event) => {
     setActiveList(event.target.id)
-    console.log(activeList)
-    navigate(`items/${id}`)
+    setParamsId(event.target.id)
+    console.log(paramsId)
+
+    // navigate(`/items/${id}`)
+    // navigate(`items/${id}`)
   }
 
     // const [dense, setDense] = (false);
@@ -56,12 +55,7 @@ const ListsListing = ({ name, id, details, lists, list}) => {
   // console.log(name)
   return (
   <>
-  <ActiveListContext.Provider value={{
-    'activeList':  activeList, 'setActiveList': setActiveList}}>
-    <Routes>
-        <Route path = '/lists/items/:id' element={<ItemsList/>} />
-    </Routes>
-  </ActiveListContext.Provider>
+  
     {/* <p>{list.name}</p> */}
     {generate(
             <div
@@ -70,7 +64,7 @@ const ListsListing = ({ name, id, details, lists, list}) => {
               <ListItemButton
                 onClick={handleClick}
                 id={id}
-                listId={listId}
+                // listId={listId}
 
               >
                 <ListItemAvatar>
@@ -88,12 +82,12 @@ const ListsListing = ({ name, id, details, lists, list}) => {
                 <ListItemText />
             
                   <div >
-                  <Link to= '/lists/items/:listId'> <IconButton edge="end" aria-label="edit">
+                  {/* <Link to= '/lists/items/:id'> <IconButton edge="end" aria-label="edit">
                       <EditIcon />
                       <EditListForm 
-                        // id={listId}
+                        // id={id}
                         />
-                  </IconButton></Link>
+                  </IconButton></Link> */}
               
                     {/* <ListsListing list={list} lists={lists} key={i} /> */}
                   </div>    

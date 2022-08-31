@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 // import ListsList from './ListsList'
-import CreateListForm from '../trash/CreateListForm'
+// import CreateListForm from '../trash/CreateListForm'
 // import * as React from 'react';
+
+import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -14,8 +16,29 @@ import Button from '@mui/material/Button';
 // https://mui.com/material-ui/react-text-field/
 
 
-const CreateList = ({createList, setCreateList, handleCreateChange, handleCreateSubmit}) => {
-//   const initialState = { name: '',  description: '' }
+const CreateListForm = () => {
+
+     // FOR LIST CREATE FORM
+     
+     // console.log(lists)
+       // const [formState, setFormState] = useState(initialState);
+      const initialCreateState = { name: '',  details: '' }
+      const [createList, setCreateList] = useState(initialCreateState);
+   
+      const handleCreateChange = (event) => {
+        setCreateList({...createList, [event.target.id]: event.target.value})
+      }
+         // setLists({...lists, [event.target.id]: event.target.value})
+     
+    function handleCreateSubmit (event) {
+      event.preventDefault()
+       // if (createList.name !== '' && createList.details !== '')
+          axios.post('http://localhost:8000/lists', createList)
+          .then(res => {
+
+          })
+    }  
+  //   const initialState = { name: '',  description: '' }
 // // console.log(lists)
 //   const [formState, setFormState] = useState(initialState);
 
@@ -55,18 +78,18 @@ const CreateList = ({createList, setCreateList, handleCreateChange, handleCreate
 // https://mui.com/material-ui/react-text-field/
 
     return (
-    <>
-          <Box
+ 
+    <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        '& .MuiTextField-root': { s:1, width: '30ch' },
       }}
       noValidate
       autoComplete="off" 
       onSubmit={handleCreateSubmit}
       // onChange={handleChange}
       >
-      
+    <Stack spacing={2}>
       <TextField 
         id="name" 
         label="List Name" 
@@ -76,21 +99,24 @@ const CreateList = ({createList, setCreateList, handleCreateChange, handleCreate
         value={createList.name}
         />
         <TextField
-          id="description"
+          id="details"
           label="List Description"
           placeholder="Description"
           multiline
           // required='true'
-          value={createList.description}
+          value={createList.details}
           onChange={handleCreateChange}
           />
           <Button variant="contained"
-    onClick={handleCreateSubmit}
-    >Create List</Button>
-    </Box>
+          onClick={handleCreateSubmit}
+      >Create List</Button>
+        {/* <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item> */}
+      </Stack>
+      </Box>
 
-    </>
     )
 }
 
-export default CreateList;
+export default CreateListForm;
