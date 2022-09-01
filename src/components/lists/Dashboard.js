@@ -1,42 +1,64 @@
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-import axios from 'axios';
-import List from '@mui/material/List';
-// import Grid from '@mui/material/Grid';
-
-// import Box from '@mui/material/Box';
+import { Routes, Route, useNavigate, } from 'react-router-dom'
+import React, { useContext, useEffect, useState, createContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
+import { ActiveListContext } from '../../contexts/ActiveListContext';
+import { styled } from '@mui/material/styles';
+import axios from 'axios'
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import ListsListing from './ListsList'
+// list of lists
+import ListsListing from './ListsListing'
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
 
-import React, {  createContext , useState, useEffect } from 'react';
-import CreateListForm from './CreateList'
-import ItemsList from '../items/ItemsList';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import GradingIcon from '@mui/icons-material/Grading';
+import IconButton from '@mui/material/IconButton';
+import Divider from '@mui/material/Divider';
+import Avatar from '@mui/material/Avatar';
 
-// export const ActiveListContext = createContext()
+import ItemsList
+ from '../items/ItemsList';
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 
 const Dashboard = () => {
-  const navigate = useNavigate()
+  const [activeList, setActiveList] = useState()
+// const [ currentUser, setCurrentUser ] = useContext(UserContext)
+// const  {activeList, setActiveList} = useContext(ActiveListContext)
+// const listContext = useContext(ActiveListContext);
+// const listContext = useContext(ActiveListContext);
+// const [activeList, setActiveList] = useState()
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+  // CREATE LIST FORM 
+  const initialCreateState = { name: '',  description: '' }
+  const [createList, setCreateList] = useState(initialCreateState);
 
-    // SET STATE FOR CONTEXT
-    const [activeList, setActiveList] = useState()
+  const handleCreateChange = (event) => {
+    setCreateList({...createList, [event.target.id]: event.target.value})
+  }
+  function handleCreateSubmit (event) {
+    event.preventDefault()
+     // if (createList.name !== '' && createList.details !== '')
+        axios.post('http://localhost:8000/lists', createList)
+        .then(res => {
+        })
+  }  
 
-
-    const [listId, setListId] = useState([])
-
-// FOR RENDERING LISTS LIST
+  // FOR RENDERING LISTS LIST
 const [lists, setLists] = useState([])
   
 useEffect(() => {
@@ -45,33 +67,58 @@ useEffect(() => {
   // console.log(lists)
 },[])
 
-    // function generate(element) {
-    //   return [0].map((value) =>
-    //     React.cloneElement(element, {
-    //       key: value,
-    //     }),
-    //   );
-    // }
-
-    const handleClick = (event) => {
-      setListId(event.target.id)
-      console.log(listId)
-    navigate(`items/${listId}`)
-    }
 
 
   return (
     <>
-    
-    <h2>Welcome to Final List, here are your lists:</h2>
-    {/* <ActiveListContext.Provider value={{
-    'activeList':  activeList, 'setActiveList': setActiveList}}> */}
-   
-    <Box>
-      <Grid container spacing={2}>
-        <Grid xs={4}>
+    <Box sx={{ flexGrow: 1 }}>
+    <Grid container spacing={3}>
+      <Grid item xs>
+
+        {/* CREATE A NEW LIST */}
+        <Item>   
+          <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { s:1, width: '30ch' },
+          }}
+          noValidate
+          autoComplete="off" 
+          onSubmit={handleCreateSubmit}
+          // onChange={handleChange}
+          >
+    <Stack spacing={2}>
+      <TextField 
+        id="name" 
+        label="List Name" 
+        variant="outlined" 
+        // required='true'
+        onChange={handleCreateChange}
+        value={createList.name}
+        />
+        <TextField
+          id="description"
+          label="List Description"
+          placeholder="Description"
+          multiline
+          // required='true'
+          value={createList.description}
+          onChange={handleCreateChange}
+          />
+          <Button variant="contained"
+          onClick={handleCreateSubmit}
+      >Create List</Button>
+        {/* <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item> */}
+      </Stack>
+      </Box></Item>
+      </Grid>
+      <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
+        <Grid item xs={6}>
+        {/* LISTS LIST (all the user's lists) */}
+        <h2>Welcome to Final List, here are your lists:</h2>
           <Item>
-          <Paper>
             <List
                 sx={{
                   width: '100%',
@@ -83,44 +130,38 @@ useEffect(() => {
                   '& ul': { padding: 0 },
                 }}
                 >
-              {lists.map((list, i) => (
+                  {lists.map((list, i) => (
                 
-              <ListsListing 
-                key={i} 
-                id={list._id} 
-                name={list.name} 
-                details={list.details}
-                lists={lists}
-              // listId={listId}
-              />
-              ))}
-              
-            </List>
-            </Paper>
+                <ListsListing 
+                  key={i} 
+                  id={list._id} 
+                  name={list.name} 
+                  details={list.details}
+                  lists={lists}
+
+                // listId={listId}
+                  // activeList = {activeList}
+                  // setActiveList = {setActiveList}
+                />
+                ))}
+                </List>
           </Item>
-        </Grid>
-        <Grid xs={7}>
-          <Item>
-            <ItemsList />
-          </Item>
-          </Grid>
-          <Grid xs={3}>
-          <Item>
-            <CreateListForm
-              // createList={createList}
-              // setCreateList={setCreateList} 
-              // handleCreateChange={handleCreateChange} 
-              // handleCreateSubmit={handleCreateSubmit}
-              />
-          </Item>
-          </Grid>
       </Grid>
-    </Box>
-      
-   
-    {/* </ActiveListContext.Provider> */}
-    </> 
-  );
+
+      <Grid item xs>
+        <Item>xs</Item>
+      </Grid>
+
+
+    </ActiveListContext.Provider>
+
+
+
+
+    </Grid>
+  </Box>
+  </>
+  )
 };
 
 export default Dashboard;
