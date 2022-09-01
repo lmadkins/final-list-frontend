@@ -5,7 +5,7 @@ import { Link, useParams, Route, Routes, useNavigate } from 'react-router-dom'
 import { ActiveListContext } from '../../contexts/ActiveListContext';
 import { UserContext } from '../../contexts/UserContext';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+
 import GradingIcon from '@mui/icons-material/Grading';
 import IconButton from '@mui/material/IconButton';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -40,7 +40,7 @@ const ListsListing = ({ name, id, details,lists, list}) => {
   // const ItemIdContext = createContext()
   // const [paramsId, setParamsId] = useState()
 
-  const navigate = useNavigate()
+
 
   const handleClick = (event) => {
     // setActiveList(this.id)
@@ -58,14 +58,14 @@ const ListsListing = ({ name, id, details,lists, list}) => {
   //             setAlbum(res.data))
   // }, [NotListedLocationOutlined])
 
-  // button to delete the list
-  const handleDelete = () => {
-    axios.delete(`http://localhost:8000/lists/:id`)
-        .then(res => {
-    // put some message here to display that it's been deleted?
-            navigate('/albums');
-        })	
-  };
+  // // button to delete the list
+  // const handleDelete = () => {
+  //   axios.delete(`http://localhost:8000/lists/:id`)
+  //       .then(res => {
+  //   // put some message here to display that it's been deleted?
+  //           navigate('/lists');
+  //       })	
+  // };
 
   const handleListClick = (event) => {
     console.log(event.target.id)
@@ -86,19 +86,17 @@ const ListsListing = ({ name, id, details,lists, list}) => {
           </ListItemAvatar>
         <ListItemText primary={name} secondary={details} />
         <ListItemText />
-      
-        <div>
-          <IconButton edge="end" aria-label="edit"  id={id}>
-            <EditIcon />
-              <EditListForm id={id}/>
-          </IconButton>
-          <IconButton edge="end" aria-label="delete"  id={id}>
-              <DeleteIcon id={id}/>  
-          </IconButton>
-          </div>    
         </ListItemButton>
-      </div>
+        </div>
     )}
+    <span>
+      <IconButton edge="end" aria-label="edit"  id={id}>
+        <EditIcon />
+          <EditListForm id={id}/>
+        </IconButton>
+          <DeleteList  id={id}/>
+          </span>    
+    
     <Divider />
   </>
   )

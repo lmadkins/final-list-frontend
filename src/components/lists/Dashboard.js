@@ -65,7 +65,7 @@ useEffect(() => {
   axios.get(`http://localhost:8000/lists/`)
   .then(res => setLists(res.data))
   // console.log(lists)
-},[])
+},[activeList])
 
 
 
