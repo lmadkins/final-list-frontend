@@ -42,6 +42,8 @@ const Dashboard = () => {
 // const listContext = useContext(ActiveListContext);
 // const listContext = useContext(ActiveListContext);
 // const [activeList, setActiveList] = useState()
+const navigate = useNavigate()
+const [reload, setReload] = useState(false)
 
   // CREATE LIST FORM 
   const initialCreateState = { name: '',  description: '' }
@@ -50,24 +52,35 @@ const Dashboard = () => {
   const handleCreateChange = (event) => {
     setCreateList({...createList, [event.target.id]: event.target.value})
   }
-  function handleCreateSubmit (event) {
+const handleCreateSubmit = (event) => {
     event.preventDefault()
      // if (createList.name !== '' && createList.details !== '')
-        axios.post('http://localhost:8000/lists', createList)
+        axios.post('http://localhost:8000/lists/new', createList)
         .then(res => {
+          setCreateList(initialCreateState)
+          navigate('/lists')
         })
   }  
-
+  // useEffect(() => {
+  //   if(createList){
+  //     setReload(true)
+  //   }
+  // },[reload])
+  
   // FOR RENDERING LISTS LIST
 const [lists, setLists] = useState([])
   
 useEffect(() => {
   axios.get(`http://localhost:8000/lists/`)
   .then(res => setLists(res.data))
-  // console.log(lists)
-},[activeList])
+  // console.log(createList)
+},[createList, activeList])
 
-
+// const handleClick = (event) => {
+//   setActiveList(event.target.id)
+//   console.log(activeList)
+//   // setCreateList({...createList, [event.target.id]: event.target.value})
+// }
 
   return (
     <>
@@ -85,7 +98,7 @@ useEffect(() => {
           noValidate
           autoComplete="off" 
           onSubmit={handleCreateSubmit}
-          // onChange={handleChange}
+          o
           >
     <Stack spacing={2}>
       <TextField 
@@ -138,6 +151,8 @@ useEffect(() => {
                   name={list.name} 
                   details={list.details}
                   lists={lists}
+                  // onClick={handleClick}
+                  // deleted= {deleted}
 
                 // listId={listId}
                   // activeList = {activeList}

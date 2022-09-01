@@ -4,7 +4,7 @@ import { Link, useParams, Route, Routes, useNavigate } from 'react-router-dom'
 // import ListItem from '@mui/material/ListItem';
 import { ActiveListContext } from '../../contexts/ActiveListContext';
 import { UserContext } from '../../contexts/UserContext';
-import EditIcon from '@mui/icons-material/Edit';
+
 
 import GradingIcon from '@mui/icons-material/Grading';
 import IconButton from '@mui/material/IconButton';
@@ -15,7 +15,7 @@ import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import axios from 'axios';
 // import Grid from '@mui/material/Grid';
-import EditListForm from './EditListForm'
+import EditList from './EditList'
 import DeleteList from './DeleteList';
 // import Typography from '@mui/material/Typography';
 // import FolderIcon from '@mui/icons-material/Folder';
@@ -24,12 +24,14 @@ import DeleteList from './DeleteList';
 // export const ActiveListContext = createContext()
 
 // component for each individual list in the Lists List
-const ListsListing = ({ name, id, details,lists, list}) => {
+
+const ListsListing = ({ name, id, details, handleClick, lists, list}) => {
   // const { currentUser, setCurrentUser } = useContext(UserContext)
   const { activeList, setActiveList } = useContext(ActiveListContext)
   // const [activeList, setActiveList] = useState()
 // console.log(id)
 
+const navigate = useNavigate()
   function generate(element) {
     return [0].map((value) =>
       React.cloneElement(element, {
@@ -42,13 +44,13 @@ const ListsListing = ({ name, id, details,lists, list}) => {
 
 
 
-  const handleClick = (event) => {
-    // setActiveList(this.id)
+  // const handleClick = (event) => {
+  //   // setActiveList(this.id)
  
-    // console.log(event.target.id)
-    // setParamsId(event.target.id)
-    // console.log(paramsId)
-  }
+  //   // console.log(event.target.id)
+  //   // setParamsId(event.target.id)
+  //   // console.log(paramsId)
+  // }
     // navigate(`/items/${id}`)
     // navigate(`items/${id}`)
 
@@ -68,7 +70,7 @@ const ListsListing = ({ name, id, details,lists, list}) => {
   // };
 
   const handleListClick = (event) => {
-    console.log(event.target.id)
+    // console.log(event.target.id)
     setActiveList(event.target.id)
     // console.log(activeList)
     // setParamsId(event.target.id)
@@ -79,25 +81,29 @@ const ListsListing = ({ name, id, details,lists, list}) => {
   return (
   <>
     {generate(
-      <div onClick={handleListClick} id={id}>
+      <>
+      <span onClick={handleListClick} id={id}>
         <ListItemButton  id={id}>
-          <ListItemAvatar>
+          <ListItemAvatar onClick={handleClick}>
             <Avatar> <GradingIcon /> </Avatar>
           </ListItemAvatar>
         <ListItemText primary={name} secondary={details} />
         <ListItemText />
-        </ListItemButton>
-        </div>
-    )}
-    <span>
-      <IconButton edge="end" aria-label="edit"  id={id}>
-        <EditIcon />
-          <EditListForm id={id}/>
+        
+        <IconButton edge="end" aria-label="edit"  id={id}>
+            <EditList id={id} name={name}/>
         </IconButton>
-          <DeleteList  id={id}/>
+        <IconButton edge="end" aria-label="delete"  id={id}>
+          <DeleteList  id={id} name={name}/>  
+        </IconButton>
+            
+        </ListItemButton>
           </span>    
+      
+      <Divider />
+      </>
+    )}
     
-    <Divider />
   </>
   )
 }
