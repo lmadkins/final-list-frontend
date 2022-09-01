@@ -14,7 +14,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
 // list of lists
 import ListsListing from './ListsListing'
-import ListPanel from './ListPanel';
+import ListItems from '../items/ListItems';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -27,8 +27,8 @@ import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 
-import ItemsList
- from '../items/FocusList';
+// import ItemsList from '../items/FocusList';
+ 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -46,7 +46,7 @@ const Dashboard = () => {
 // const listContext = useContext(ActiveListContext);
 // const [activeList, setActiveList] = useState()
 const navigate = useNavigate()
-const [reload, setReload] = useState(false)
+// const [reload, setReload] = useState(false)
 
   // CREATE LIST FORM 
   const initialCreateState = { name: '',  description: '' }
@@ -84,6 +84,12 @@ useEffect(() => {
 //   console.log(activeList)
 //   // setCreateList({...createList, [event.target.id]: event.target.value})
 // }
+const [items, setItems] = useState()
+useEffect(() => {
+  axios.get(`http://localhost:8000/lists/items/${activeList}`)
+  .then(res => setItems(res.data))
+  console.log(items.items)
+}, [activeList])
 
   return (
     <>
@@ -158,8 +164,9 @@ useEffect(() => {
                     // deleted= {deleted}
 
                   // listId={listId}
-                    // activeList = {activeList}
-                    // setActiveList = {setActiveList}
+                    activeList = {activeList}
+                    setActiveList = {setActiveList}
+                    // parentData={handleListSelect}
                   />
                 ))}
                 </List>
@@ -168,10 +175,22 @@ useEffect(() => {
 
       <Grid item xs>
         <Item>
-          <ListPanel />
+       
+        <ListItems 
+       
+        items={items}
+        activeList = {activeList}
+        setActiveList = {setActiveList}
+      />
         </Item>
       </Grid>
-
+      {/* // id={items.id} 
+        // name={items.name} 
+        // details={items.details} */}
+ {/* {items.map((items) => (
+        <ListItems  key={items._id} 
+        items={items}/>
+      // ))} */}
 
     </ActiveListContext.Provider>
 

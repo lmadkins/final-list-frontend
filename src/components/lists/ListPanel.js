@@ -5,10 +5,10 @@ import { ActiveListContext } from '../../contexts/ActiveListContext';
 import ListItems from '../items/ListItems';
 
 const ListPanel = () => {
-
+  const [items, setItems] = useState()
     const { activeList, setActiveList } = useContext(ActiveListContext)
   // const listName = activeList.name
-  const [items, setItems] = useState()
+
  console.log(activeList)
 
 
@@ -23,12 +23,12 @@ const ListPanel = () => {
   return (
     <>
     {/* {items} */}
-    <ListItems 
+    {/* <ListItems 
         // id={items.id} 
         // name={items.name} 
         // details={items.details}
         items={items}
-      />
+      /> */}
   </>
 
   )

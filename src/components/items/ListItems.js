@@ -5,13 +5,16 @@ import axios from 'axios';
 import { ActiveListContext } from '../../contexts/ActiveListContext';
 import { UserContext } from '../../contexts/UserContext';
 
-const ListItems = ({items}) => {
-  const { activeList, setActiveList } = useContext(ActiveListContext)
-  console.log(items)
+const ListItems = ({items, activeList, activeListContext}) => {
+  // const { activeList, setActiveList } = useContext(ActiveListContext)
+  // console.log(items)
   return (
   <>
+  <h2>Hi from list items</h2>
   <h2>{items.name}</h2>
   <h3>{items.details}</h3>
+  {/* <h5>{items.items[0]}</h5> */}
+
 
   </>
   )

@@ -15,7 +15,7 @@ import Signup from './components/users/Signup';
 import Signin from './components/users/Signin';
 import UserSettings from './components/users/UserSettings'
 // import ListsHome from './lists/ListsHome'
-// import ItemsList from './components/items/ItemsList';
+import ListItems from './components/items/ListItems';
 import Dashboard from './components/lists/Dashboard';
 
 
@@ -79,7 +79,7 @@ function App() {
         <Route path = '/users/signup' element={<Signup />} />
         <Route path='/users/signin' element= {<Signin />} />
         <Route path='/users/settings' element= {<UserSettings />} />
-        {/* <Route path = '/lists/items/:id' element={<ListPanel />} /> */}
+        <Route path = '/lists/items/:id' element={<ListItems />} />
     </Routes>
     {/* </UserContext.Provider> */}
     </> 

@@ -25,7 +25,7 @@ import DeleteList from './DeleteList';
 
 // component for each individual list in the Lists List
 
-const ListsListing = ({ name, id, details, handleClick, lists, list}) => {
+const ListsListing = ({ props, name, id, details, handleClick, lists, list}) => {
   // const { currentUser, setCurrentUser } = useContext(UserContext)
   const { activeList, setActiveList } = useContext(ActiveListContext)
   // const [activeList, setActiveList] = useState()
@@ -39,36 +39,45 @@ const navigate = useNavigate()
       }),
     );
   }
-  
   const handleListClick = (event) => {
     // console.log(event.target.id)
     setActiveList(event.target.id)
+    // props.parentData(activeList)
     console.log(activeList)
-    // setParamsId(event.target.id)
-    // console.log(paramsId)
+    // navigate(`/lists`)
+    
   }
+
 
 
   return (
   <>
     {generate(
       <>
-      {/* <ul>
+      <ul>
         <li onClick={handleListClick} id={id}>{name}</li>
-      </ul> */}
-      <span onClick={handleListClick}  id={id}>
+      </ul>
+      <span 
+      onClick={handleListClick}
+        id={id}>
         <ListItemButton  id={id}>
-          <ListItemAvatar onClick={handleClick}>
+          <ListItemAvatar 
+          onClick={handleListClick}
+          >
             <Avatar> <GradingIcon /> </Avatar>
           </ListItemAvatar>
-        <ListItemText primary={name} secondary={details} />
+        <ListItemText primary={name} secondary={details} 
+        onClick={handleListClick}
+        />
         <ListItemText />
         
 
             
         </ListItemButton>
           </span>    
-          <IconButton edge="end" aria-label="edit"  id={id}>
+          <IconButton edge="end" aria-label="edit"  id={id} 
+          onClick={handleListClick}
+          >
             <EditList id={id} name={name}/>
         </IconButton>
         <IconButton edge="end" aria-label="delete"  id={id}>
