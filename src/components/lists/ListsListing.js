@@ -31,7 +31,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list}) => 
   // const [activeList, setActiveList] = useState()
 // console.log(id)
 
-const navigate = useNavigate()
+// const navigate = useNavigate()
   function generate(element) {
     return [0].map((value) =>
       React.cloneElement(element, {
@@ -40,12 +40,10 @@ const navigate = useNavigate()
     );
   }
   const handleListClick = (event) => {
-    // console.log(event.target.id)
-    setActiveList(event.target.id)
-    // props.parentData(activeList)
-    console.log(activeList)
-    // navigate(`/lists`)
     
+    setActiveList(event.target.id)
+    // console.log(activeList)
+
   }
 
 

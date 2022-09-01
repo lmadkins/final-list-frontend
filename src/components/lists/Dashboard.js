@@ -39,7 +39,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 const Dashboard = () => {
+
   const [items, setItems] = useState()
+
 
   const [activeList, setActiveList] = useState()
 // const [ currentUser, setCurrentUser ] = useContext(UserContext)
@@ -91,17 +93,90 @@ useEffect(() => {
   axios.get(`http://localhost:8000/lists/items/${activeList}`)
   .then(res => setItems(res.data))
   console.log(items)
+  
 }, [activeList])
+//   // itemsArr = {items.items}
+  // const [itemsArr, setItemsArr] = useState([])
+
+  useEffect(() => {
+    // setItemsArr(activeList.items)
+    // console.log(items.items[0])
+  }, [])
 
   return (
     <>
     <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={3}>
+      
+      <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
+        <Grid item xs={6}>
+        {/* LISTS LIST (all the user's lists) */}
+        <h2>Welcome to Final List, here are your lists:</h2>
+          <Item>
+            <List
+                sx={{
+                  width: '100%',
+                  maxWidth: 450,
+                  bgcolor: 'background.paper',
+                  position: 'relative',
+                  overflow: 'auto',
+                  maxHeight: 500,
+                  '& ul': { padding: 0 },
+                }}>
+                {lists.map((list, i) => (
+                  <ListsListing 
+                    key={i} 
+                    id={list._id} 
+                    name={list.name} 
+                    details={list.details}
+                    lists={lists}
+                    // onClick={handleClick}
+                    activeList = {activeList}
+                    setActiveList = {setActiveList}
+                  />))}
+                </List>
+          </Item>
+      </Grid>
       <Grid item xs>
+        <Item>
+          {/* {items.name}
+          {items.details} */}
+ {/* {itemsArr.map((item, i) => (
+    
+      <p key={i}>
+      {item.name}
+        <br></br>
+      {item.details}
+        <br></br>
+      Priority: 
+      {item.priority}
+      </p>
 
-        {/* CREATE A NEW LIST */}
-        <Item>   
-          <Box
+      ))} */}
+          <ListItems 
+          items={items}
+          itemsArr={items.items}
+          activeList = {activeList}
+          setActiveList = {setActiveList}
+        />
+        </Item>
+      </Grid>
+      {/* // id={items.id} 
+        // name={items.name} 
+        // details={items.details} */}
+ {/* {items.map((items) => (
+        <ListItems  key={items._id} 
+        items={items}/>
+     ))} */}
+
+    </ActiveListContext.Provider>
+
+
+    <Grid item xs>
+
+    {/* CREATE A NEW LIST */}
+    <Item>   
+        <Box
           component="form"
           sx={{
             '& .MuiTextField-root': { s:1, width: '30ch' },
@@ -111,8 +186,8 @@ useEffect(() => {
           onSubmit={handleCreateSubmit}
           o
           >
-    <Stack spacing={2}>
-      <TextField 
+        <Stack spacing={2}>
+        <TextField 
         id="name" 
         label="List Name" 
         variant="outlined" 
@@ -131,72 +206,14 @@ useEffect(() => {
           />
           <Button variant="contained"
           onClick={handleCreateSubmit}
-      >Create List</Button>
+        >Create List</Button>
         {/* <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item> */}
-      </Stack>
-      </Box></Item>
-      </Grid>
-      <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
-        <Grid item xs={6}>
-        {/* LISTS LIST (all the user's lists) */}
-        <h2>Welcome to Final List, here are your lists:</h2>
-          <Item>
-            <List
-                sx={{
-                  width: '100%',
-                  maxWidth: 450,
-                  bgcolor: 'background.paper',
-                  position: 'relative',
-                  overflow: 'auto',
-                  maxHeight: 500,
-                  '& ul': { padding: 0 },
-                }}
-                >
-                {lists.map((list, i) => (
-                
-                  <ListsListing 
-                    key={i} 
-                    id={list._id} 
-                    name={list.name} 
-                    details={list.details}
-                    lists={lists}
-                    // onClick={handleClick}
-                    // deleted= {deleted}
-
-                  // listId={listId}
-                    activeList = {activeList}
-                    setActiveList = {setActiveList}
-                    // parentData={handleListSelect}
-                  />
-                ))}
-                </List>
-          </Item>
-      </Grid>
-
-      <Grid item xs>
-        <Item>
-       
-        <ListItems 
-        items={items}
-        activeList = {activeList}
-        setActiveList = {setActiveList}
-      />
-        </Item>
-      </Grid>
-      {/* // id={items.id} 
-        // name={items.name} 
-        // details={items.details} */}
- {/* {items.map((items) => (
-        <Items  key={items._id} 
-        items={items}/>
-      // ))} */}
-
-    </ActiveListContext.Provider>
-
-
-
+        </Stack>
+        </Box>
+      </Item>
+    </Grid>
 
     </Grid>
   </Box>

@@ -5,10 +5,11 @@ import axios from 'axios';
 import { ActiveListContext } from '../../contexts/ActiveListContext';
 import { UserContext } from '../../contexts/UserContext';
 import Item from './Item';
+import CreateItem from './CreateItem';
 
-const ListItems = ({ items, setItems, activeList, activeListContext}) => {
+const ListItems = ({ items, setItems, itemsArr, activeList, activeListContext}) => {
   // const { activeList, setActiveList } = useContext(ActiveListContext)
-  console.log(activeList)
+  console.log(itemsArr)
 
 // const [items, setItems] = useState()
 
@@ -20,15 +21,35 @@ const ListItems = ({ items, setItems, activeList, activeListContext}) => {
 
   return (
   <>
-  <h2>Hi from list items</h2>
+  <h2>Add an item: </h2>
+  <CreateItem 
+  activeList={activeList}
+  />
   <h2>{items.name}</h2>
   <h3>{items.details}</h3>
   {/* 
    */}
+
+    {/* {items.map((item, i) => (
+    
+      <p key={i}>
+      {item.name}
+        <br></br>
+      {item.details}
+        <br></br>
+      Priority: 
+      {item.priority}
+      </p>
+
+      ))} */}
+
     <Item 
-    items={items}
-    itemsArr={items.items}
-    />
+     activeList={activeList}
+     itemsArr={items.items}
+     />
+    {/* // items={items}
+    // itemsArr={items.items} */}
+   
  {/* {itemsArr.map((items) => (
         <Item  key={items._id} 
         items={items}/>
