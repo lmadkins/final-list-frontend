@@ -41,16 +41,11 @@ const Dashboard = () => {
   // Setting state for ActiveList context
   const [activeList, setActiveList] = useState()
 
-// State for the items in a given list:
-  const [items, setItems] = useState()
-
   const navigate = useNavigate()
 
 // Reload for actions to do a new get request to refresh lists after a change. Imported into ListsListing, EditList, DeleteList, CreateList
   const [reloadLists, setReloadLists] = useState(false)
 
-  // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
-  const [reloadItems, setReloadItems] = useState(false)
 
   // CREATE LIST FORM 
   const initialCreateState = { name: '',  description: '' }
@@ -72,25 +67,21 @@ const Dashboard = () => {
   
     // FOR RENDERING LISTS LIST
   const [lists, setLists] = useState([])
-    
+  const handleClick = (event) => {
+    setActiveList(event.target.id)
+    console.log(`Handleclick in Dashboard: New active list is: ${activeList}`)
+  }
 
+
+// Reload lists list
   useEffect(() => {
     axios.get(`http://localhost:8000/lists/`)
     .then(res => setLists(res.data))
     // console.log(createList)
   },[reloadLists, createList])
 
-  // const handleClick = (event) => {
-  //   setActiveList(event.target.id)
-  //   console.log(`Handleclick in Dashboard: New active list is: ${activeList}`)
-  // }
 
-// useEffect(() => {
-//   axios.get(`http://localhost:8000/lists/items/${activeList}`)
-//   .then(res => setItems(res.data))
-//   console.log(items)
-  
-// }, [items])
+
 
 
   return (
@@ -131,16 +122,18 @@ const Dashboard = () => {
             </ActiveListContext.Provider>
           </Item>
         </Grid>
+
+
       <Grid item xs={6}>
         <Item>
         {/* Each item in the selected list, plus links to edit and delete */}
           <ListItems 
           // items={items}
           // itemsArr={items.items}
+          // setItems={setItems}
           activeList = {activeList}
           setActiveList = {setActiveList}
-          reloadItems={reloadItems} 
-          setReloadItems={setReloadItems}
+
         />
         </Item>
       </Grid>

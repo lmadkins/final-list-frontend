@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import { Chip } from '@mui/material';
 
 import Button from '@mui/material/Button';
 

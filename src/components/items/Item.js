@@ -1,18 +1,25 @@
-
+import react, { useEffect } from 'react'
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
-
+import axios from "axios";
 import IconButton from '@mui/material/IconButton';
 import ListItemButton from '@mui/material/ListItemButton';
+import { Chip } from '@mui/material';
 // returning one specific item from the ItemsList
-const Item = ({items, itemsArr,  activeList, setActiveList, reloadItems, setReloadItems, handleItemClick, selectedItem, setSelectedItem}) => {
+const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItems, setReloadItems, handleItemClick, selectedItem, setSelectedItem}) => {
 
- 
+  useEffect(() => {
+    axios.get(`http://localhost:8000/lists/items/${activeList}`)
+    .then(res => setItems(res.data))
+    // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
+    // setReloadItems(true)
+  },  [reloadItems])
+
   // const { activeList, setActiveList } = useContext(ActiveListContext)
   // console.log(itemsArr)
   return (
     <div>
-    {/* {itemsArr.map((item, i) => (
+    {itemsArr.map((item, i) => (
   
       <p key={i}>
       {item.name}
@@ -20,8 +27,12 @@ const Item = ({items, itemsArr,  activeList, setActiveList, reloadItems, setRelo
       {item.details}
         <br></br>
       Priority: 
-      {item.priority}
-      
+ {item.priority === 'high' && 
+      <Chip color="error" label='High' />}
+      {item.priority === 'medium' && 
+      <Chip color="warning" label='Medium' />}
+     {item.priority === 'low' && 
+      <Chip color="info" label='Low' />}
 
       <EditItem 
       id={item._id}
@@ -30,7 +41,7 @@ const Item = ({items, itemsArr,  activeList, setActiveList, reloadItems, setRelo
       setReloadItems={setReloadItems}
       handleItemClick={handleItemClick}
       selectedItem={selectedItem}
-      setSelectedItem(setSelectedItem)
+      setSelectedItem={setSelectedItem}
         />
       <DeleteItem 
       id={item._id}
@@ -39,18 +50,18 @@ const Item = ({items, itemsArr,  activeList, setActiveList, reloadItems, setRelo
         setReloadItems={setReloadItems}
         handleItemClick={handleItemClick}
       selectedItem={selectedItem}
-      setSelectedItem(setSelectedItem)
+      setSelectedItem={setSelectedItem}
         />
         </p>
-      // { item.where ? (<p>>Get it at: {item.where}):null }
+    
       
-      ))} */}
+      ))}
   </div>
   )
 }
 
 export default Item;
-
+  // { item.where ? (<p>>Get it at: {item.where}):null }
 
 //   const event = new Date(item.createdAt)
 
