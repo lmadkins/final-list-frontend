@@ -15,7 +15,7 @@ import ListsListing from './ListsListing'
 // import { UserContext } from '../../App';
 import React, { useState, useEffect } from 'react';
 import CreateListForm from './CreateList'
-import ItemsList from '../items/ItemsList';
+import ItemsList from '../items/FocusList';
 
 // export const ActiveListContext = createContext()
 

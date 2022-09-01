@@ -39,10 +39,54 @@ const navigate = useNavigate()
       }),
     );
   }
-  // const ItemIdContext = createContext()
+  
+  const handleListClick = (event) => {
+    // console.log(event.target.id)
+    setActiveList(event.target.id)
+    console.log(activeList)
+    // setParamsId(event.target.id)
+    // console.log(paramsId)
+  }
+
+
+  return (
+  <>
+    {generate(
+      <>
+      {/* <ul>
+        <li onClick={handleListClick} id={id}>{name}</li>
+      </ul> */}
+      <span onClick={handleListClick}  id={id}>
+        <ListItemButton  id={id}>
+          <ListItemAvatar onClick={handleClick}>
+            <Avatar> <GradingIcon /> </Avatar>
+          </ListItemAvatar>
+        <ListItemText primary={name} secondary={details} />
+        <ListItemText />
+        
+
+            
+        </ListItemButton>
+          </span>    
+          <IconButton edge="end" aria-label="edit"  id={id}>
+            <EditList id={id} name={name}/>
+        </IconButton>
+        <IconButton edge="end" aria-label="delete"  id={id}>
+          <DeleteList  id={id} name={name}/>  
+        </IconButton> 
+      
+      <Divider />
+      </>
+    )}
+    
+  </>
+  )
+}
+
+export default ListsListing;
+
+// const ItemIdContext = createContext()
   // const [paramsId, setParamsId] = useState()
-
-
 
   // const handleClick = (event) => {
   //   // setActiveList(this.id)
@@ -68,44 +112,3 @@ const navigate = useNavigate()
   //           navigate('/lists');
   //       })	
   // };
-
-  const handleListClick = (event) => {
-    // console.log(event.target.id)
-    setActiveList(event.target.id)
-    // console.log(activeList)
-    // setParamsId(event.target.id)
-    // console.log(paramsId)
-  }
-
-
-  return (
-  <>
-    {generate(
-      <>
-      <span onClick={handleListClick} id={id}>
-        <ListItemButton  id={id}>
-          <ListItemAvatar onClick={handleClick}>
-            <Avatar> <GradingIcon /> </Avatar>
-          </ListItemAvatar>
-        <ListItemText primary={name} secondary={details} />
-        <ListItemText />
-        
-        <IconButton edge="end" aria-label="edit"  id={id}>
-            <EditList id={id} name={name}/>
-        </IconButton>
-        <IconButton edge="end" aria-label="delete"  id={id}>
-          <DeleteList  id={id} name={name}/>  
-        </IconButton>
-            
-        </ListItemButton>
-          </span>    
-      
-      <Divider />
-      </>
-    )}
-    
-  </>
-  )
-}
-
-export default ListsListing;

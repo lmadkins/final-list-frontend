@@ -22,7 +22,7 @@ import Typography from '@mui/material/Typography';
 
 // returning one specific list and its items
 // localhost:3000/lists/items/:id (listId)
-const ItemsList = () => {
+const FocusList = () => {
     let { id } = useParams()
     // const listContext = useContext(ActiveListContext);
     const [activeList, setActiveList] = useState([])
@@ -142,7 +142,7 @@ const [checked, setChecked] = React.useState([]);
 
   return (
   <>
-  <h2>Hi from ItemsList</h2>
+  <h2>Hi from FocusList</h2>
   <Grid container spacing={2} justifyContent="center" alignItems="center">
       <Grid item>{customList(left)}</Grid>
       <Grid item>
@@ -223,4 +223,4 @@ const [checked, setChecked] = React.useState([]);
   )
 }
 
-export default ItemsList;
+export default FocusList;

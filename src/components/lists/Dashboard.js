@@ -3,7 +3,9 @@ import React, { useContext, useEffect, useState, createContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { ActiveListContext } from '../../contexts/ActiveListContext';
 import { styled } from '@mui/material/styles';
+
 import axios from 'axios'
+
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -12,6 +14,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
 // list of lists
 import ListsListing from './ListsListing'
+import ListPanel from './ListPanel';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -25,7 +28,7 @@ import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 
 import ItemsList
- from '../items/ItemsList';
+ from '../items/FocusList';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -143,28 +146,30 @@ useEffect(() => {
                   '& ul': { padding: 0 },
                 }}
                 >
-                  {lists.map((list, i) => (
+                {lists.map((list, i) => (
                 
-                <ListsListing 
-                  key={i} 
-                  id={list._id} 
-                  name={list.name} 
-                  details={list.details}
-                  lists={lists}
-                  // onClick={handleClick}
-                  // deleted= {deleted}
+                  <ListsListing 
+                    key={i} 
+                    id={list._id} 
+                    name={list.name} 
+                    details={list.details}
+                    lists={lists}
+                    // onClick={handleClick}
+                    // deleted= {deleted}
 
-                // listId={listId}
-                  // activeList = {activeList}
-                  // setActiveList = {setActiveList}
-                />
+                  // listId={listId}
+                    // activeList = {activeList}
+                    // setActiveList = {setActiveList}
+                  />
                 ))}
                 </List>
           </Item>
       </Grid>
 
       <Grid item xs>
-        <Item>xs</Item>
+        <Item>
+          <ListPanel />
+        </Item>
       </Grid>
 
 
