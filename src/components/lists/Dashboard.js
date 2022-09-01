@@ -39,6 +39,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 const Dashboard = () => {
+  const [items, setItems] = useState()
+
   const [activeList, setActiveList] = useState()
 // const [ currentUser, setCurrentUser ] = useContext(UserContext)
 // const  {activeList, setActiveList} = useContext(ActiveListContext)
@@ -79,16 +81,16 @@ useEffect(() => {
   // console.log(createList)
 },[createList, activeList])
 
-// const handleClick = (event) => {
-//   setActiveList(event.target.id)
-//   console.log(activeList)
-//   // setCreateList({...createList, [event.target.id]: event.target.value})
-// }
-const [items, setItems] = useState()
+const handleClick = (event) => {
+  setActiveList(event.target.id)
+  // console.log(activeList)
+  // setCreateList({...createList, [event.target.id]: event.target.value})
+}
+
 useEffect(() => {
   axios.get(`http://localhost:8000/lists/items/${activeList}`)
   .then(res => setItems(res.data))
-  console.log(items.items)
+  console.log(items)
 }, [activeList])
 
   return (
@@ -177,7 +179,6 @@ useEffect(() => {
         <Item>
        
         <ListItems 
-       
         items={items}
         activeList = {activeList}
         setActiveList = {setActiveList}
@@ -188,7 +189,7 @@ useEffect(() => {
         // name={items.name} 
         // details={items.details} */}
  {/* {items.map((items) => (
-        <ListItems  key={items._id} 
+        <Items  key={items._id} 
         items={items}/>
       // ))} */}
 
