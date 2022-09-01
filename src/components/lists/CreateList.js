@@ -16,7 +16,7 @@ import Button from '@mui/material/Button';
 // https://mui.com/material-ui/react-text-field/
 
 
-const CreateListForm = () => {
+const CreateListForm = ({ reloadLists, setReloadLists}) => {
 
      // FOR LIST CREATE FORM
      

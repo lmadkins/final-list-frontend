@@ -37,20 +37,20 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
 const Dashboard = () => {
+  // Setting state for ActiveList context
+  const [activeList, setActiveList] = useState()
 
+// State for the items in a given list:
   const [items, setItems] = useState()
 
+  const navigate = useNavigate()
 
-  const [activeList, setActiveList] = useState()
-// const [ currentUser, setCurrentUser ] = useContext(UserContext)
-// const  {activeList, setActiveList} = useContext(ActiveListContext)
-// const listContext = useContext(ActiveListContext);
-// const listContext = useContext(ActiveListContext);
-// const [activeList, setActiveList] = useState()
-const navigate = useNavigate()
-// const [reload, setReload] = useState(false)
+// Reload for actions to do a new get request to refresh lists after a change. Imported into ListsListing, EditList, DeleteList, CreateList
+  const [reloadLists, setReloadLists] = useState(false)
+
+  // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
+  const [reloadItems, setReloadItems] = useState(false)
 
   // CREATE LIST FORM 
   const initialCreateState = { name: '',  description: '' }
@@ -59,54 +59,50 @@ const navigate = useNavigate()
   const handleCreateChange = (event) => {
     setCreateList({...createList, [event.target.id]: event.target.value})
   }
-const handleCreateSubmit = (event) => {
-    event.preventDefault()
-     // if (createList.name !== '' && createList.details !== '')
-        axios.post('http://localhost:8000/lists/new', createList)
-        .then(res => {
-          setCreateList(initialCreateState)
-          navigate('/lists')
-        })
-  }  
-  // useEffect(() => {
-  //   if(createList){
-  //     setReload(true)
-  //   }
-  // },[reload])
+  const handleCreateSubmit = (event) => {
+      event.preventDefault()
+      // if (createList.name !== '' && createList.details !== '')
+          axios.post('http://localhost:8000/lists/new', createList)
+          .then(res => {
+            setCreateList(initialCreateState)
+            // navigate('/lists')
+            setReloadLists(true)
+          })
+    }  
   
-  // FOR RENDERING LISTS LIST
-const [lists, setLists] = useState([])
+    // FOR RENDERING LISTS LIST
+  const [lists, setLists] = useState([])
+    
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/lists/`)
+    .then(res => setLists(res.data))
+    // console.log(createList)
+  },[reloadLists, createList])
+
+  // const handleClick = (event) => {
+  //   setActiveList(event.target.id)
+  //   console.log(`Handleclick in Dashboard: New active list is: ${activeList}`)
+  // }
+
+// useEffect(() => {
+//   axios.get(`http://localhost:8000/lists/items/${activeList}`)
+//   .then(res => setItems(res.data))
+//   console.log(items)
   
-useEffect(() => {
-  axios.get(`http://localhost:8000/lists/`)
-  .then(res => setLists(res.data))
-  // console.log(createList)
-},[createList, activeList])
-
-const handleClick = (event) => {
-  setActiveList(event.target.id)
-
-}
-
-useEffect(() => {
-  axios.get(`http://localhost:8000/lists/items/${activeList}`)
-  .then(res => setItems(res.data))
-  console.log(items)
-  
-}, [activeList])
+// }, [items])
 
 
   return (
     <>
     <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={3}>
-      
-
         <Grid item xs={6}>
         {/* LISTS LIST (all the user's lists) */}
         <h2>Welcome to Final List, here are your lists:</h2>
           <Item>
-  <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
+          <ActiveListContext.Provider 
+          value={{ activeList, setActiveList }}>  
             <List
                 sx={{
                   width: '100%',
@@ -115,8 +111,8 @@ useEffect(() => {
                   position: 'relative',
                   overflow: 'auto',
                   maxHeight: 500,
-                  '& ul': { padding: 0 },
-                }}>
+                  '& ul': { padding: 0 },}}>
+                {/* Listing of each individual list, and the icon links to edit and delete  */}
                 {lists.map((list, i) => (
                   <ListsListing 
                     key={i} 
@@ -127,41 +123,40 @@ useEffect(() => {
                     // onClick={handleClick}
                     activeList = {activeList}
                     setActiveList = {setActiveList}
+                    reloadLists={reloadLists}
+                    setReloadLists={setReloadLists}
                   />))}
               
-                </List>
-                </ActiveListContext.Provider>
+              </List>
+            </ActiveListContext.Provider>
           </Item>
-      </Grid>
-      <Grid item xs>
+        </Grid>
+      <Grid item xs={6}>
         <Item>
-
+        {/* Each item in the selected list, plus links to edit and delete */}
           <ListItems 
-          items={items}
-          itemsArr={items.items}
+          // items={items}
+          // itemsArr={items.items}
           activeList = {activeList}
           setActiveList = {setActiveList}
+          reloadItems={reloadItems} 
+          setReloadItems={setReloadItems}
         />
         </Item>
       </Grid>
 
-
-
-
-
-    <Grid item xs>
-  <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
+    <Grid item xs={3}>
+    <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
     {/* CREATE A NEW LIST */}
-    <Item>   
+      <Item>   
         <Box
           component="form"
           sx={{
-            '& .MuiTextField-root': { s:1, width: '30ch' },
-          }}
+            '& .MuiTextField-root': { s:1, width: '30ch' },}}
           noValidate
           autoComplete="off" 
           onSubmit={handleCreateSubmit}
-          o
+          // o
           >
         <Stack spacing={2}>
         <TextField 
@@ -184,13 +179,10 @@ useEffect(() => {
           <Button variant="contained"
           onClick={handleCreateSubmit}
         >Create List</Button>
-        {/* <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item> */}
         </Stack>
         </Box>
       </Item>
-             </ActiveListContext.Provider>
+      </ActiveListContext.Provider>
     </Grid>
 
     </Grid>
@@ -201,6 +193,11 @@ useEffect(() => {
 
 export default Dashboard;
 
+// const [ currentUser, setCurrentUser ] = useContext(UserContext)
+// const  {activeList, setActiveList} = useContext(ActiveListContext)
+// const listContext = useContext(ActiveListContext);
+// const listContext = useContext(ActiveListContext);
+// const [activeList, setActiveList] = useState()
       {/* // id={items.id} 
         // name={items.name} 
         // details={items.details} */}

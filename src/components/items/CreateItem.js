@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 // https://mui.com/material-ui/react-text-field/
 
 
-const CreateItem = ({activeList}) => {
+const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
 
      // FOR ITEM CREATE FORM
 
@@ -36,6 +36,7 @@ const CreateItem = ({activeList}) => {
           axios.post(`http://localhost:8000/lists/items/${activeList}`, createItem)
           .then(res => {
             console.log('created')
+            setReloadItems(true)
           })
     }  
 

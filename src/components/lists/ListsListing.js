@@ -25,7 +25,7 @@ import DeleteList from './DeleteList';
 
 // component for each individual list in the Lists List
 
-const ListsListing = ({ props, name, id, details, handleClick, lists, list}) => {
+const ListsListing = ({ props, name, id, details, handleClick, lists, list, reloadLists, setReloadLists}) => {
   // const { currentUser, setCurrentUser } = useContext(UserContext)
   const { activeList, setActiveList } = useContext(ActiveListContext)
   // const [activeList, setActiveList] = useState()
@@ -42,7 +42,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list}) => 
   const handleListClick = (event) => {
     
     setActiveList(event.target.id)
-    // console.log(activeList)
+    console.log(`Handleclick in ListsListing: New active list is: ${activeList}`)
 
   }
 
@@ -52,9 +52,11 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list}) => 
   <>
     {generate(
       <>
+      {/* For texting, since ListItems are being glitchy */}
       <ul>
         <li onClick={handleListClick} id={id}>{name}</li>
       </ul>
+      {/*  */}
       <span 
       onClick={handleListClick}
         id={id}>
@@ -67,11 +69,10 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list}) => 
         <ListItemText primary={name} secondary={details} 
         onClick={handleListClick}
         />
-        <ListItemText />
-        
-
-            
+        <ListItemText />   
         </ListItemButton>
+
+        {/* Edit and Delete list controls */}
           </span>    
           <IconButton edge="end" aria-label="edit"  id={id} 
           onClick={handleListClick}
@@ -85,10 +86,9 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list}) => 
       <Divider />
       </>
     )}
-    
   </>
   )
-}
+};
 
 export default ListsListing;
 

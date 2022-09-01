@@ -1,11 +1,19 @@
-import ItemEach from "./ItemEach";
+
+import DeleteItem from "./DeleteItem";
+import EditItem from "./EditItem";
+
+import IconButton from '@mui/material/IconButton';
+import ListItemButton from '@mui/material/ListItemButton';
 // returning one specific item from the ItemsList
-const Item = ({items, itemsArr,  activeList}) => {
-  console.log(itemsArr)
+const Item = ({items, itemsArr,  activeList, setActiveList, reloadItems, setReloadItems, handleItemClick, selectedItem, setSelectedItem}) => {
+
+ 
+  // const { activeList, setActiveList } = useContext(ActiveListContext)
+  // console.log(itemsArr)
   return (
-  <>
-    {itemsArr.map((item, i) => (
-    
+    <div>
+    {/* {itemsArr.map((item, i) => (
+  
       <p key={i}>
       {item.name}
         <br></br>
@@ -13,10 +21,31 @@ const Item = ({items, itemsArr,  activeList}) => {
         <br></br>
       Priority: 
       {item.priority}
-      </p>
+      
 
-      ))}
-  </>
+      <EditItem 
+      id={item._id}
+      listId={activeList}
+      reloadItems={reloadItems} 
+      setReloadItems={setReloadItems}
+      handleItemClick={handleItemClick}
+      selectedItem={selectedItem}
+      setSelectedItem(setSelectedItem)
+        />
+      <DeleteItem 
+      id={item._id}
+      listId={activeList}
+        reloadItems={reloadItems} 
+        setReloadItems={setReloadItems}
+        handleItemClick={handleItemClick}
+      selectedItem={selectedItem}
+      setSelectedItem(setSelectedItem)
+        />
+        </p>
+      // { item.where ? (<p>>Get it at: {item.where}):null }
+      
+      ))} */}
+  </div>
   )
 }
 

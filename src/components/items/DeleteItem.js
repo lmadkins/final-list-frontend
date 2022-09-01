@@ -11,35 +11,39 @@ import Typography from '@mui/material/Typography';
 
 import Button from '@mui/material/Button';
 
-const DeleteList = ({id, name,  reloadLists, setReloadLists}) => {
-  
-  const { activeList, setActiveList } = useContext(ActiveListContext)
+// DELETE (destroy)
+//  /lists/items/:listId/:id
+const DeleteItem = ({listId, setActiveList, id,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem }) => {
+  // console.log(id)
+  // const { activeList, setActiveList } = useContext(ActiveListContext)
+// const [deleted, setDeleted] = useState(false)
+// const [reload, setReload] = useState(false)
 
 const navigate = useNavigate()
-  const handleListDelete = () => {
-    axios.delete(`http://localhost:8000/lists/${id}`)
+
+  const handleItemDelete = () => {
+    axios.delete(`http://localhost:8000/${listId}/${id}`)
         .then(res => {
           // navigate('/lists')
-          setReloadLists(true)
-          setActiveList(null)
-          // setDeleted(true)
-          axios.get(`http://localhost:8000/lists/`)
+           // setSelectedItem(null)
+          setReloadItems(true)
+
         })	
 };
 
 
 // Delete popover
-const [anchorEl, setAnchorEl] = useState(null);
-const handleDeleteClick = (event) => {
-  setAnchorEl(event.currentTarget);
+// const [anchorEl, setAnchorEl] = useState(null);
+// const handleDeleteClick = (event) => {
+//   setAnchorEl(event.currentTarget);
   // setActiveList(event.target.id)
   // console.log(activeList)
-};
-const handleDeleteClose = () => {
-  setAnchorEl(null);
-};
-const open = Boolean(anchorEl);
-const popoverId = open ? 'simple-popover' : undefined;
+// };
+// const handleDeleteClose = () => {
+//   setAnchorEl(null);
+// };
+// const open = Boolean(anchorEl);
+// const popoverId = open ? 'simple-popover' : undefined;
 // const [lists, setLists] = useState([])
 // useEffect(() => {
 //   axios.get(`http://localhost:8000/lists/`)
@@ -50,7 +54,7 @@ const popoverId = open ? 'simple-popover' : undefined;
   return (
   <>  
    {/* // put some message here to display that it's been deleted */}
-   <Popover
+   {/* <Popover
         id={popoverId}
         open={open}
         anchorEl={anchorEl}
@@ -62,19 +66,21 @@ const popoverId = open ? 'simple-popover' : undefined;
       >
         <Typography sx={{ p: 4 }}>Delete {name}<p></p>
           {/* <Stack direction="row" spacing={2}> */}
-            <Button 
+            {/* <Button 
             variant="outlined" 
             startIcon={<DeleteIcon />}
             // onClick={handleDelete}
             >
-            </Button>
-          </Typography>
-      </Popover>
-      <IconButton edge="end" aria-label="delete list"  id={id}  onClick={handleListDelete}>
+            </Button> */}
+          {/* </Typography> 
+      </Popover> */}
+      <IconButton edge="end" aria-label="delete item"  id={id}  onClick={handleItemDelete}>
               <DeleteIcon/>  
           </IconButton>
   </>
   )
 }
 
-export default DeleteList;
+export default DeleteItem;
+
+// http://localhost:8000/630d463c81cab02c45de6864/631111e4882d288113642cc3
