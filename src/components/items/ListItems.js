@@ -27,8 +27,10 @@ const ListItems = ({ items, setItems, itemsArr, activeList, activeListContext}) 
   />
   <h2>{items.name}</h2>
   <h3>{items.details}</h3>
-  {/* 
-   */}
+    <Item 
+    activeList={activeList}
+    itemsArr={items.items}
+    />
 
     {/* {items.map((item, i) => (
     
@@ -43,10 +45,7 @@ const ListItems = ({ items, setItems, itemsArr, activeList, activeListContext}) 
 
       ))} */}
 
-    <Item 
-     activeList={activeList}
-     itemsArr={items.items}
-     />
+
     {/* // items={items}
     // itemsArr={items.items} */}
    

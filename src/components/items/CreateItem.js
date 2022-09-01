@@ -20,7 +20,7 @@ import Button from '@mui/material/Button';
 const CreateItem = ({activeList}) => {
 
      // FOR ITEM CREATE FORM
-// console.log(activeList)
+
       const initialCreateState = { name: '',  details: '', priority: '', }
       const [createItem, setCreateItem] = useState(initialCreateState);
    
@@ -28,7 +28,8 @@ const CreateItem = ({activeList}) => {
         setCreateItem({...createItem, [event.target.id]: event.target.value})
       }
          // setItems({...Items, [event.target.id]: event.target.value})
-     
+
+    // console.log(activeList)
     function handleCreateSubmit (event) {
       event.preventDefault()
        // if (createItem.name !== '' && createItem.details !== '')
@@ -61,7 +62,7 @@ const CreateItem = ({activeList}) => {
         variant="outlined" 
         // required='true'
         onChange={handleCreateChange}
-        // value={createItem.name}
+        value={createItem.name}
         />
         <TextField
           id="details"
@@ -69,9 +70,17 @@ const CreateItem = ({activeList}) => {
           placeholder="Description"
           multiline
           // required='true'
-          // value={createItem.details}
+          value={createItem.details}
           onChange={handleCreateChange}
           />
+          <TextField 
+        id="priority" 
+        label="Item Priority" 
+        variant="outlined" 
+        // required='true'
+        onChange={handleCreateChange}
+        value={createItem.priority}
+        />
           <Button variant="contained"
           onClick={handleCreateSubmit}
       >Create Item</Button>

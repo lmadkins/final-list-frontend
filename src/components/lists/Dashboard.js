@@ -85,8 +85,7 @@ useEffect(() => {
 
 const handleClick = (event) => {
   setActiveList(event.target.id)
-  // console.log(activeList)
-  // setCreateList({...createList, [event.target.id]: event.target.value})
+
 }
 
 useEffect(() => {
@@ -95,24 +94,19 @@ useEffect(() => {
   console.log(items)
   
 }, [activeList])
-//   // itemsArr = {items.items}
-  // const [itemsArr, setItemsArr] = useState([])
 
-  useEffect(() => {
-    // setItemsArr(activeList.items)
-    // console.log(items.items[0])
-  }, [])
 
   return (
     <>
     <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={3}>
       
-      <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
+
         <Grid item xs={6}>
         {/* LISTS LIST (all the user's lists) */}
         <h2>Welcome to Final List, here are your lists:</h2>
           <Item>
+  <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
             <List
                 sx={{
                   width: '100%',
@@ -134,25 +128,14 @@ useEffect(() => {
                     activeList = {activeList}
                     setActiveList = {setActiveList}
                   />))}
+              
                 </List>
+                </ActiveListContext.Provider>
           </Item>
       </Grid>
       <Grid item xs>
         <Item>
-          {/* {items.name}
-          {items.details} */}
- {/* {itemsArr.map((item, i) => (
-    
-      <p key={i}>
-      {item.name}
-        <br></br>
-      {item.details}
-        <br></br>
-      Priority: 
-      {item.priority}
-      </p>
 
-      ))} */}
           <ListItems 
           items={items}
           itemsArr={items.items}
@@ -161,19 +144,13 @@ useEffect(() => {
         />
         </Item>
       </Grid>
-      {/* // id={items.id} 
-        // name={items.name} 
-        // details={items.details} */}
- {/* {items.map((items) => (
-        <ListItems  key={items._id} 
-        items={items}/>
-     ))} */}
 
-    </ActiveListContext.Provider>
+
+
 
 
     <Grid item xs>
-
+  <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
     {/* CREATE A NEW LIST */}
     <Item>   
         <Box
@@ -213,6 +190,7 @@ useEffect(() => {
         </Stack>
         </Box>
       </Item>
+             </ActiveListContext.Provider>
     </Grid>
 
     </Grid>
@@ -222,3 +200,35 @@ useEffect(() => {
 };
 
 export default Dashboard;
+
+      {/* // id={items.id} 
+        // name={items.name} 
+        // details={items.details} */}
+ {/* {items.map((items) => (
+        <ListItems  key={items._id} 
+        items={items}/>
+     ))} */}
+
+
+               {/* {items.name}
+          {items.details} */}
+ {/* {itemsArr.map((item, i) => (
+    
+      <p key={i}>
+      {item.name}
+        <br></br>
+      {item.details}
+        <br></br>
+      Priority: 
+      {item.priority}
+      </p>
+
+      ))} */}
+
+
+  // useEffect(() => {
+  //   // setItemsArr(activeList.items)
+  //   // console.log(items.items[0])
+  // }, [])
+  // console.log(activeList)
+  // setCreateList({...createList, [event.target.id]: event.target.value})
