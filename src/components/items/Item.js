@@ -101,8 +101,8 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
     //   </Editable> */}
     {itemsArr.map((item, i) => (
   <ListItem
-  key={i}
-    // key={value}
+  
+    key={i}
     secondaryAction={
       // <IconButton edge="end" aria-label="comments">
       //   {/* <CommentIcon /> */}
@@ -118,42 +118,41 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
         {item.priority === 'low' && 
           <Chip color="info" label='Low' />
         }
-
-      <IconButton edge="end" aria-label="Edit Item" onClick={handleClickOpen}   >
-      <EditIcon/> 
-      <EditItem 
-      id={item._id}
-      listId={activeList}
-      reloadItems={reloadItems} 
-      setReloadItems={setReloadItems}
-      handleItemClick={handleItemClick}
-      selectedItem={selectedItem}
-      setSelectedItem={setSelectedItem}
-      open={open}
-      handleClickOpen={handleClickOpen}
-      handleClose={handleClose}
-      /> 
-    </IconButton>
-   <IconButton edge="end" aria-label="Delete Item"
-    // onClick={handleClickOpen}   
-    >
-    <DeleteItem 
-    id={item._id}
-    listId={activeList}
-    reloadItems={reloadItems} 
-    setReloadItems={setReloadItems}
-    handleItemClick={handleItemClick}
-    selectedItem={selectedItem}
-    setSelectedItem={setSelectedItem}
-    />
-    </IconButton>
+      <IconButton edge="end" aria-label="Edit Item" onClick={handleClickOpen}>
+        <EditIcon/> 
+        <EditItem 
+          id={item._id}
+          listId={activeList}
+          reloadItems={reloadItems} 
+          setReloadItems={setReloadItems}
+          handleItemClick={handleItemClick}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          open={open}
+          handleClickOpen={handleClickOpen}
+          handleClose={handleClose}
+          /> 
+      </IconButton>
+      <IconButton edge="end" aria-label="Delete Item"
+      // onClick={handleClickOpen}   
+        >
+        <DeleteItem 
+        id={item._id}
+        listId={activeList}
+        reloadItems={reloadItems} 
+        setReloadItems={setReloadItems}
+        handleItemClick={handleItemClick}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        />
+      </IconButton>
     </>
     }
     disablePadding
   >
-    <ListItemButton role={undefined} 
+    <ListItemButton dense role={undefined} 
     // onClick={handleToggle(value)} 
-    dense>
+    >
       <ListItemIcon>
         <Checkbox
           edge="start"

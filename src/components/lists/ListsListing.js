@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 // import { Link, useParams, Route, Routes, useNavigate } from 'react-router-dom'
-// import List from '@mui/material/List';
-// import ListItem from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import { ActiveListContext } from '../../contexts/ActiveListContext';
 import { UserContext } from '../../contexts/UserContext';
 
@@ -18,7 +18,7 @@ import axios from 'axios';
 import EditList from './EditList'
 import DeleteList from './DeleteList';
 // import Typography from '@mui/material/Typography';
-// import FolderIcon from '@mui/icons-material/Folder';
+import FolderIcon from '@mui/icons-material/Folder';
 import EditIcon from '@mui/icons-material/Edit';
 // import IconButton from '@mui/material/IconButton';
 // Editable from Chakra:
@@ -34,7 +34,7 @@ import EditIcon from '@mui/icons-material/Edit';
 // import { Flex, Spacer } from '@chakra-ui/react'
 // import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CloseIcon from '@mui/icons-material/Close';
-// import DoneIcon from '@mui/icons-material/Done';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -61,6 +61,9 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
       }),
     );
   }
+  const [dense, setDense] = React.useState(false);
+  const [secondary, setSecondary] = React.useState(false);
+
   const handleListClick = (event) => {
     setListSelected(true)
     setActiveList(event.target.id)
@@ -96,44 +99,48 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
 
   return (
   <>
-  
     {generate(
       <>
-    
-      <ul>
-        <li onClick={handleListClick} id={id}>{name}</li>
-      </ul>
-      {/*  */}
-      <span 
-      onClick={handleListClick}
-        id={id}>
-        <ListItemButton  id={id}>
-          <ListItemAvatar 
-          onClick={handleListClick}
-          >
-            <Avatar> <GradingIcon /> </Avatar>
-          </ListItemAvatar>
-        <ListItemText primary={name} secondary={details} 
-        onClick={handleListClick}
-        />
-        <ListItemText />   
-        </ListItemButton>
+        <List dense={dense}
+          id={id}
+          onClick={handleListClick}>
+            {generate(
+              <ListItem
+                onClick={handleListClick}
+                secondaryAction={
+                  <>
+                    <IconButton edge="end" aria-label="edit"  id={id} 
+                      onClick={handleClickOpen}
+                      open={open} onClose={handleClose}
+                      >
+                      <EditIcon/>  
+                      <EditList id={id} name={name}/>
+                    </IconButton>
+                    <IconButton edge="end" aria-label="delete" id={id}>
+                      <DeleteList  id={id} name={name}/>  
+                    </IconButton> 
+                  </>
+                }>
+                <ListItemButton  id={id}
+                onClick={handleListClick}>
+                <ListItemAvatar>
+                  <Avatar>
+                  <GradingIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={name}
+                  secondary={details}
+                />
+                </ListItemButton>
+              </ListItem>
+            )}
+        </List>
+      
 
-        {/* Edit and Delete list controls */}
-          </span>     
-        
-  
-          <IconButton edge="end" aria-label="edit"  id={id} 
-          // onClick={handleListClick}
-          onClick={handleClickOpen}
-          open={open} onClose={handleClose}
-          >
-            <EditIcon/>  
-            <EditList id={id} name={name}/>
-        </IconButton>
-        <IconButton edge="end" aria-label="delete"  id={id}>
+        {/* <IconButton edge="end" aria-label="delete"  id={id}>
           <DeleteList  id={id} name={name}/>  
-        </IconButton> 
+        </IconButton>  */}
       
       <Divider />
       <Dialog open={open} onClose={handleClose}
@@ -183,20 +190,19 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
           />
           <p></p>
           <TextField
-            
             id="outlined-basic"
             label="Description"
             margin="dense"
             fullWidth
+            variant="outlined"
+            value={initialFormState.details}
             // multiline
             // rows={2}
             // type="text"
-            variant="outlined"
             // fullWidth
             // defaultValue="New List Description"
-            value={initialFormState.details}
             // onChange={handleListChange}
-        />
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

@@ -36,25 +36,22 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
       const handleCreateChange = (event) => {
         setCreateItem({...createItem, [event.target.id]: event.target.value})
       }
-         // setItems({...Items, [event.target.id]: event.target.value})
 
-    // console.log(activeList)
     function handleCreateSubmit (event) {
       event.preventDefault()
        // if (createItem.name !== '' && createItem.details !== '')
           axios.post(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`, createItem)
           .then(res => {
-            console.log('created')
+            setCreateItem(initialCreateState)
             setReloadItems(true)
           })
     }  
-
 
   // ADD error handling
 // https://mui.com/material-ui/react-text-field/
 
     return (
- 
+
     <Box
       component="form"
       onSubmit={handleCreateSubmit}
@@ -63,8 +60,6 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
       }}
       noValidate
       autoComplete="off" 
-     
-      // onChange={handleChange}
       >
     {/* <Stack spacing={2}> */}
       <TextField 
@@ -77,8 +72,8 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
         />
         <TextField
           id="details"
-          label="Description the item"
-          placeholder="Description"
+          label="Describe the item"
+          placeholder="Details"
           multiline
           // required='true'
           value={createItem.details}

@@ -128,10 +128,6 @@ const ListItems = () => {
         noValidate
         autoComplete="off" 
         onSubmit={handleCreateSubmit}
-        // sx={{
-        //   height: 500,
-        //   flexGrow: 1,
-        //   minWidth: 500,}}
         >
         <IconButton
           aria-label="close"
