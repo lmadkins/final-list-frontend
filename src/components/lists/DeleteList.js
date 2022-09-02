@@ -34,14 +34,13 @@ const DeleteList = ({id, name,  reloadLists, setReloadLists}) => {
     {/* <Stack direction="row" spacing={2}> */}
         {/* <Typography sx={{ p: 4 }}>Delete {name}<p></p>
 
-             <Button 
+            <Button 
             variant="outlined" 
             startIcon={<DeleteIcon />}
             onClick={handleListDelete}
             >
             </Button>
           </Typography> */}
-   
       <IconButton edge="end" aria-label="delete list"  id={id}  onClick={handleListDelete}>
               <DeleteIcon/>  
           </IconButton>
