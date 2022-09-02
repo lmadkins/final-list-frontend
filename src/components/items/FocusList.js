@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 
-import {useContext} from 'react';
-import { ActiveListContext } from '../lists/DashboardOld'
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+// import {useContext} from 'react';
+// import { ActiveListContext } from '../lists/DashboardOld'
+// import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 // import Stack from '@mui/material/Stack';
@@ -23,11 +23,11 @@ import Typography from '@mui/material/Typography';
 // returning one specific list and its items
 // localhost:3000/lists/items/:id (listId)
 const FocusList = () => {
-    let { id } = useParams()
+    // let { id } = useParams()
     // const listContext = useContext(ActiveListContext);
-    const [activeList, setActiveList] = useState([])
+    // const [activeList, setActiveList] = useState([])
     // console.log(id)
-      const [items, setItems] = useState([])
+      // const [items, setItems] = useState([])
 
 // Delete popover
   const [anchorEl, setAnchorEl] = useState(null);

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // import ListsList from './ListsList'
@@ -15,15 +15,15 @@ const DeleteList = ({id, name,  reloadLists, setReloadLists}) => {
   
   const { activeList, setActiveList } = useContext(ActiveListContext)
 
-const navigate = useNavigate()
+// const navigate = useNavigate()
   const handleListDelete = () => {
-    axios.delete(`http://localhost:8000/lists/${id}`)
+    axios.delete(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`)
         .then(res => {
           // navigate('/lists')
           // setReloadLists(true)
           setActiveList(false)
           // setDeleted(true)
-          axios.get(`http://localhost:8000/lists/`)
+          axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/`)
         })	
 };
 

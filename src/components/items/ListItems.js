@@ -3,13 +3,13 @@
 import React, { useContext, useEffect, useState} from 'react'
 import axios from 'axios';
 import { ActiveListContext } from '../../contexts/ActiveListContext';
-import { UserContext } from '../../contexts/UserContext';
+// import { UserContext } from '../../contexts/UserContext';
 import Item from './Item';
-import CreateItem from './CreateItem';
+// import CreateItem from './CreateItem';
 import Button from '@mui/material/Button';
 // import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 // import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+// import Stack from '@mui/material/Stack';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
@@ -19,7 +19,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+// import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 const ListItems = () => {
   // {activeList, activeListContext}
   const { activeList, setActiveList, listSelected, setListSelected } = useContext(ActiveListContext)
@@ -35,7 +35,7 @@ const ListItems = () => {
   //     console.log(items)
   // }
   useEffect(() => {
-      axios.get(`http://localhost:8000/lists/items/${activeList}`)
+      axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
       .then(res => setItems(res.data))
       console.log(items)
   }, [activeList])
@@ -76,14 +76,14 @@ const ListItems = () => {
  function handleCreateSubmit (event) {
    event.preventDefault()
     // if (createItem.name !== '' && createItem.details !== '')
-       axios.post(`http://localhost:8000/lists/items/${activeList}`, createItem)
+       axios.post(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`, createItem)
        .then(res => {
          console.log('created')
          setReloadItems(true)
        })
  }  
  useEffect(() => {
-  axios.get(`http://localhost:8000/lists/items/${activeList}`)
+  axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
   .then(res => setItems(res.data))
   // console.log(items)
 }, [reloadItems])

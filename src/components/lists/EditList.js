@@ -4,13 +4,13 @@ import axios from 'axios'
 // import ListsList from './ListsList'
 // import CreateListForm from './CreateListForm'
 import { ActiveListContext } from '../../contexts/ActiveListContext';
-import EditIcon from '@mui/icons-material/Edit';
-import IconButton from '@mui/material/IconButton';
+// import EditIcon from '@mui/icons-material/Edit';
+// import IconButton from '@mui/material/IconButton';
 
 const EditList = ({id, name,  reloadLists, setReloadLists}) => {
-  const [reload, setReload] = useState(false)
+  // const [reload, setReload] = useState(false)
   const { activeList, setActiveList } = useContext(ActiveListContext)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [listChanges, setListChanges] = useState({
     name: '',
     details: ''
@@ -23,7 +23,7 @@ const EditList = ({id, name,  reloadLists, setReloadLists}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`http://localhost:8000/lists/${id}`, listChanges)
+      axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, listChanges)
       .then(() => {
         setReloadLists(true)
       })

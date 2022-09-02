@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -55,7 +55,7 @@ const Signup = () => {
         event.preventDefault()
         // if (newUser.email !== '' && newUser.password !== ''){
             formState.password === formState.confirmPassword &&
-            axios.post('http://localhost:8000/users/signup', formState)
+            axios.post('https://radiant-sierra-50882.herokuapp.com/users/signup', formState)
             .then(res => {
                     // save token to local storage
                     // window.localStorage.setItem("Token", res.data.token)

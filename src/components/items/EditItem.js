@@ -4,7 +4,7 @@ import axios from 'axios'
 // import ListsList from './ListsList'
 // import CreateListForm from './CreateListForm'
 import { ActiveListContext } from '../../contexts/ActiveListContext';
-import EditIcon from '@mui/icons-material/Edit';
+// import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
@@ -18,9 +18,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 //  /lists/items/:listId/:id
 
 const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, open, handleClose, handleClickOpen}) => {
-  const [reload, setReload] = useState(false)
-  const { activeList, setActiveList } = useContext(ActiveListContext)
-  const navigate = useNavigate()
+  // const [reload, setReload] = useState(false)
+  // const { activeList, setActiveList } = useContext(ActiveListContext)
+  // const navigate = useNavigate()
 
   const initialFormState = { name: '',  details: '', priority: '', }
 
@@ -33,7 +33,7 @@ const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, sel
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`http://localhost:8000/lists/${id}`, itemChanges)
+      axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, itemChanges)
       .then(() => {
         setReloadItems(true)
       })

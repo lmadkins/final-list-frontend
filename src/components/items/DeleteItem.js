@@ -1,16 +1,16 @@
-import { useContext, useEffect, useState } from 'react'
+// import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // import ListsList from './ListsList'
 // import CreateListForm from './CreateListForm'
-import { ActiveListContext } from '../../contexts/ActiveListContext';
+// import { ActiveListContext } from '../../contexts/ActiveListContext';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import { Chip } from '@mui/material';
+// import Popover from '@mui/material/Popover';
+// import Typography from '@mui/material/Typography';
+// import { Chip } from '@mui/material';
 
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 
 // DELETE (destroy)
 //  /lists/items/:listId/:id
@@ -24,7 +24,7 @@ const navigate = useNavigate()
 
 
 const handleItemDelete = () => {
-  axios.delete(`http://localhost:8000/list/items/${listId}/${props.id}`)
+  axios.delete(`https://radiant-sierra-50882.herokuapp.com/list/items/${listId}/${props.id}`)
       .then(res => {
         // navigate('/lists')
          // setSelectedItem(null)

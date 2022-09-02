@@ -3,7 +3,7 @@ import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import axios from "axios";
 // import IconButton from '@mui/material/IconButton';
-import ListItemButton from '@mui/material/ListItemButton';
+// import ListItemButton from '@mui/material/ListItemButton';
 import Checkbox from '@mui/material/Checkbox';
 import { Chip } from '@mui/material';
 // import { MdSettings } from 'react-icons/md'
@@ -55,7 +55,7 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
 
   useEffect(() => {
     activeList !== 'undefined' && 
-    axios.get(`http://localhost:8000/lists/items/${activeList}`)
+    axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
     .then(res => setItems(res.data))
     // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
     // setReloadItems(true)

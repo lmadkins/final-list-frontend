@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import {  useState } from 'react'
 import axios from 'axios'
 // import ListsList from './ListsList'
 // import CreateListForm from '../trash/CreateListForm'
@@ -33,7 +33,7 @@ const CreateListForm = ({ reloadLists, setReloadLists}) => {
     function handleCreateSubmit (event) {
       event.preventDefault()
        // if (createList.name !== '' && createList.details !== '')
-          axios.post('http://localhost:8000/lists', createList)
+          axios.post('https://radiant-sierra-50882.herokuapp.com/lists', createList)
           .then(res => {
 
           })

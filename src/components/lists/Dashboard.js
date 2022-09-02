@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 
 import axios from 'axios'
 
-import Stack from '@mui/material/Stack';
+// import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -65,7 +65,7 @@ const [listSelected, setListSelected] = useState(false)
   const handleCreateSubmit = (event) => {
       event.preventDefault()
       // if (createList.name !== '' && createList.details !== '')
-          axios.post('http://localhost:8000/lists/new', createList)
+          axios.post('https://radiant-sierra-50882.herokuapp.com/lists/new', createList)
           .then(res => {
             setCreateList(initialCreateState)
             // navigate('/lists')
@@ -84,7 +84,7 @@ const [listSelected, setListSelected] = useState(false)
 
 // Reload lists list
   useEffect(() => {
-    axios.get(`http://localhost:8000/lists/`)
+    axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/`)
     .then(res => setLists(res.data))
     // console.log(createList)
   },[reloadLists, createList])
