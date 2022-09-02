@@ -40,10 +40,8 @@ const Dashboard = () => {
   const [activeList, setActiveList] = useState(false)
   const [listSelected, setListSelected] = useState(false)
   
-
 // Reload for actions to do a new get request to refresh lists after a change. Imported into ListsListing, EditList, DeleteList, CreateList
   const [reloadLists, setReloadLists] = useState(false)
-
 
   // CREATE LIST FORM 
   const initialCreateState = { name: '',  details: '' }
@@ -85,8 +83,6 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => { setOpen(true); };
   const handleClose = () => { setOpen(false); };
-
-
 
 
   return (

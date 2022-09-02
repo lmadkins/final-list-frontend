@@ -33,7 +33,9 @@ const ListItems = () => {
   const [selectedItem, setSelectedItem] = useState()
 // State for the items in a given list:
   const [items, setItems] = useState(false)
-
+  // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
+  const [reloadItems, setReloadItems] = useState(false)
+  
   useEffect(() => {
     axios.get(`https://localhost:8000/lists/items/${activeList}`)
       // axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
@@ -42,8 +44,7 @@ const ListItems = () => {
   }, [activeList, reloadItems])
   // [activeList, selectedItem, listSelectedreloadItems]
 
-  // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
-  const [reloadItems, setReloadItems] = useState(false)
+
 
 
   // useEffect(() => {

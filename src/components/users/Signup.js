@@ -32,7 +32,7 @@ const Signup = () => {
         displayname: '',
         email: '',
         password: '',
-        confirmPassword: '',
+        // confirmPassword: '',
     }
 
     const [formState, setFormState] = useState(initialState);
@@ -141,17 +141,18 @@ const Signup = () => {
                 />
             </Grid>
             <Grid item xs={12}>
-                <TextField
+                {/* <TextField
                 required
                 fullWidth
                 name="confirmPassword"
-                label="ConfirmPassword"
+                label="Confirm Password"
                 type="password"
                 id="confirm Password"
-                autoComplete="new-password"
-                value={formState.confirmPassword}
+                // autoComplete="new-password"
+                value={formState.password}
+                // value={formState.confirmPassword}
                 onChange={handleChange}
-                />
+                /> */}
             </Grid>
             </Grid>
             <Button

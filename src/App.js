@@ -54,7 +54,7 @@ function App() {
       { isUserLoggedIn ? (  */}
       <>
         <Breadcrumbs aria-label="breadcrumb">
-           <Typography color="text.primary">
+          <Typography color="text.primary">
           <IconButton aria-label="home" color="secondary" >
             <Link to= '/'
             sx={{ display: 'flex', alignItems: 'center' }}
@@ -89,12 +89,14 @@ function App() {
           <Route path = '/lists' element={<Dashboard />} />
           <Route path = '/lists/items/:id' element={<ListItems />} />
           <Route path='/users/settings' element= {<UserSettings />} />
-      </Routes>
-      {/* ) : ( */}
-      <Routes>
-        <Route path = '/users/signup' element={<Signup />} />
+          <Route path = '/users/signup' element={<Signup />} />
         <Route path='/users/signin' element= {<Signin />} />
       </Routes>
+      {/* ) : ( */}
+      {/* <Routes>
+        <Route path = '/users/signup' element={<Signup />} />
+        <Route path='/users/signin' element= {<Signin />} />
+      </Routes> */}
       {/* )
     } */}
 
