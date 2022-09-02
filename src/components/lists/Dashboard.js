@@ -175,7 +175,6 @@ const Dashboard = () => {
 
       <Grid item xs={6}>
         <Item>
-       
         {/* Each item in the selected list, plus links to edit and delete */}
           <ListItems 
           // items={items}
@@ -183,13 +182,10 @@ const Dashboard = () => {
           // setItems={setItems}
           // activeList = {activeList}
           // setActiveList = {setActiveList}
-
         />
   
         </Item>
       </Grid>
-
-     
 
     {/* <Grid item xs={3}>
 
