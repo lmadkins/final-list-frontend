@@ -31,17 +31,17 @@ const DeleteList = ({id, name,  reloadLists, setReloadLists}) => {
   return (
   <>  
    {/* // put some message here to display that it's been deleted */}
+    {/* <Stack direction="row" spacing={2}> */}
+        {/* <Typography sx={{ p: 4 }}>Delete {name}<p></p>
 
-        <Typography sx={{ p: 4 }}>Delete {name}<p></p>
-          {/* <Stack direction="row" spacing={2}> */}
-            <Button 
+             <Button 
             variant="outlined" 
             startIcon={<DeleteIcon />}
-            // onClick={handleDelete}
+            onClick={handleListDelete}
             >
             </Button>
-          </Typography>
-  
+          </Typography> */}
+   
       <IconButton edge="end" aria-label="delete list"  id={id}  onClick={handleListDelete}>
               <DeleteIcon/>  
           </IconButton>
