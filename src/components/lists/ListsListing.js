@@ -35,7 +35,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 // component for each individual list in the Lists List
 
-const ListsListing = ({ props, name, id, details, handleClick, lists, list, reloadLists, setReloadLists}) => {
+const ListsListing = ({ props, name, id, details, handleClick, lists, list, deleted, setDeleted, reloadLists, setReloadLists}) => {
   // const { currentUser, setCurrentUser } = useContext(UserContext)
   const { activeList, setActiveList, listSelected, setListSelected } = useContext(ActiveListContext)
   // const [activeList, setActiveList] = useState()
@@ -64,7 +64,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
 
   const handleListChange = (event) => {
     setListChanges({ ...listChanges, [event.target.id]: event.target.value });
-    console.log(event.target.value)
+    // console.log(event.target.value)
   }
 
   const handleSubmit = (event) => {
@@ -102,7 +102,11 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
                       <EditList id={id} name={name}/>
                     </IconButton>
                     <IconButton edge="end" aria-label="delete" id={id}>
-                      <DeleteList  id={id} name={name}/>  
+                      <DeleteList  
+                        id={id} name={name}
+                        deleted={deleted}
+                        setDeleted={setDeleted}
+                      />  
                     </IconButton> 
                   </>
                 }>

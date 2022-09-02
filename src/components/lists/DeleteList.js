@@ -12,9 +12,11 @@ import Typography from '@mui/material/Typography';
 
 import Button from '@mui/material/Button';
 
-const DeleteList = ({id, name,  reloadLists, setReloadLists}) => {
+const DeleteList = ({id, name, setDeleted}) => {
   
   const { activeList, setActiveList } = useContext(ActiveListContext)
+
+
 
 // const navigate = useNavigate()
   const handleListDelete = () => {
@@ -23,8 +25,8 @@ const DeleteList = ({id, name,  reloadLists, setReloadLists}) => {
           // navigate('/lists')
           // setReloadLists(true)
           setActiveList(false)
-          // setDeleted(true)
-          axios.get(`https://final-list.herokuapp.com/lists/`)
+          setDeleted(true)
+          axios.get(`https://final-list.herokuapp.com/lists`)
         })	
 };
 

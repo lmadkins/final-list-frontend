@@ -7,21 +7,26 @@ import IconButton from '@mui/material/IconButton';
 
 // DELETE (destroy)
 //  /lists/items/:listId/:id
-const DeleteItem = (props, {listId, setActiveList, id,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem }) => {
+const DeleteItem = (props, {listId, activeList, setActiveList, itemId,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, deleted, setDeleted }) => {
 
+// console.log(listId)
+// console.log(id)
+// console.log(props.listId)
+// console.log(props.id)
   const handleItemDelete = () => {
-    axios.delete(`https://final-list.herokuapp.com/list/items/${listId}/${props.id}`)
+    axios.delete(`https://final-list.herokuapp.com/list/items/${props.listId}/${props.itemId}`)
         .then(res => {
           // navigate('/lists')
           // setSelectedItem(null)
-          setReloadItems(true)
+          setDeleted(true)
         })	
     };
 
+    
   return (
   <>  
     <IconButton edge="end" aria-label="delete item"  
-    id={id}  onClick={handleItemDelete}>
+    itemId={itemId} listId={listId} onClick={handleItemDelete}>
       <DeleteIcon/>  
     </IconButton>
   </>

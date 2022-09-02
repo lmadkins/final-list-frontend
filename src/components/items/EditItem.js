@@ -17,10 +17,16 @@ import DialogTitle from '@mui/material/DialogTitle';
 // PATCH (update)
 //  /lists/items/:listId/:id
 
-const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, open, handleClose, handleClickOpen}) => {
+const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, openEdit, setOpenEdit, handleClose, handleCloseEdit, handleClickOpenEdit}) => {
+  // , openEdit, setOpenEdit, handleCloseEdit, handleClickOpenEdit, handleEditSubmit
   // const [reload, setReload] = useState(false)
   // const { activeList, setActiveList } = useContext(ActiveListContext)
   // const navigate = useNavigate()
+    // Edit modal controls    
+    // const [openEdit, setOpenEdit] = useState(false);
+    // const handleClickOpenEdit = () => { setOpenEdit(true); };
+    // const handleCloseEdit = () => { setOpenEdit(false); };
+    
 
   const initialFormState = { name: '',  details: '', priority: '', }
 
@@ -29,13 +35,15 @@ const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, sel
   const handleItemChange = (event) => {
     setItemChanges({ ...itemChanges, [event.target.id]: event.target.value });
     // console.log(event.target.value)
+    
   }
 
-  const handleSubmit = (event) => {
+  const handleEditSubmit = (event) => {
     event.preventDefault();
       axios.patch(`https://final-list.herokuapp.com/lists/${id}`, itemChanges)
       .then(() => {
         setReloadItems(true)
+        setOpenEdit(false)
       })
     }
 
@@ -43,13 +51,13 @@ const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, sel
   <>  
    {/* // put some message here to display that it's been deleted */}
           
-          <Dialog open={open} onClose={handleClose}
-        component="form"
-      //  sx={{
-      //    '& .MuiTextField-root': { s:1, width: '30ch' },}}
+      <Dialog open={openEdit} onClose={handleClose}
+        // component="form"
+        // sx={{
+        // '& .MuiTextField-root': { s:1, width: '30ch' },}}
         noValidate
         autoComplete="off" 
-        onSubmit={handleSubmit}
+        onSubmit={handleEditSubmit}
         >
       <IconButton
           aria-label="close"
@@ -68,10 +76,7 @@ const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, sel
         <DialogContent
         onChange={handleItemChange}
         >
-          <DialogContentText>
-            {/* To subscribe to this website, please enter your email address here. We
-            will send updates occasionally. */}
-          </DialogContentText>
+
           <br></br>
           <TextField
             // autoFocus
@@ -106,8 +111,8 @@ const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, sel
         />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit}>Save Changes</Button>
+          <Button onClick={handleCloseEdit}>Cancel</Button>
+          <Button onClick={handleEditSubmit}>Save Changes</Button>
         </DialogActions>
       </Dialog>
 

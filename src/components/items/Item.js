@@ -21,6 +21,7 @@ import Stack from '@mui/material/Stack';
 // returning one specific item from the ItemsList
 const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItems, setReloadItems, handleItemClick, selectedItem, setSelectedItem}) => {
 
+  const [deleted, setDeleted] = useState(false);
   const checkboxLabel = { inputProps: { 'aria-label': 'Item checkbox' } };
   
   useEffect(() => {
@@ -29,14 +30,14 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
     .then(res => setItems(res.data))
     // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
     // setReloadItems(true)
-  },  [selectedItem, reloadItems])
+  },  [selectedItem, reloadItems, deleted])
+
+    // Create modal controls    
+    const [openEdit, setOpenEdit] = useState(false);
+    const handleClickOpenEdit = () => { setOpenEdit(true); };
+    const handleCloseEdit = () => { setOpenEdit(false); };
 
 
-  // Edit modal controls    
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => { setOpen(true); };
-  const handleClose = () => { setOpen(false); };
-  
 // Checkbox controls
 const [checked, setChecked] = React.useState([0]);
 
@@ -52,12 +53,17 @@ const handleToggle = (value) => () => {
   setChecked(newChecked);
 }
 
+const [open, setOpen] = useState(false);
+const handleClickOpen = () => { setOpen(true); };
+const handleClose = () => { setOpen(false); };
+
   return (
     <>
   {itemsArr.map((item, i) => (
     <ListItem
     key={i}
-  
+    itemId={item._id}
+    // listId={activeList}
     secondaryAction={
       // <IconButton edge="end" aria-label="comments">
       //   {/* <CommentIcon /> */}
@@ -74,9 +80,10 @@ const handleToggle = (value) => () => {
           <Chip color="info" label='Low' />
         }
 
-<IconButton edge="end" aria-label="Edit Item" onClick={handleClickOpen}>
+  <IconButton edge="end" aria-label="Edit Item" onClick={handleClickOpenEdit}>
         <EditIcon/> 
         <EditItem 
+          setOpenEdit={setOpenEdit}
           id={item._id}
           listId={activeList}
           reloadItems={reloadItems} 
@@ -84,22 +91,24 @@ const handleToggle = (value) => () => {
           handleItemClick={handleItemClick}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
-          open={open}
-          handleClickOpen={handleClickOpen}
-          handleClose={handleClose}
+          openEdit={openEdit}
+          handleClickOpen={handleClickOpenEdit}
+          handleClose={handleCloseEdit}
           /> 
       </IconButton>
       <IconButton edge="end" aria-label="Delete Item"
       // onClick={handleClickOpen}   
         >
         <DeleteItem 
-        id={item._id}
+        itemId={item._id}
         listId={activeList}
         reloadItems={reloadItems} 
         setReloadItems={setReloadItems}
         handleItemClick={handleItemClick}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
+        deleted={deleted}
+        setDeleted={setDeleted}
         />
       </IconButton>
     </>
