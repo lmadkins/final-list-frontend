@@ -29,22 +29,17 @@ import DialogTitle from '@mui/material/DialogTitle';
 const ListItems = () => {
   // {activeList, activeListContext}
   const { activeList, setActiveList, listSelected, setListSelected } = useContext(ActiveListContext)
-  // const [items, setItems] = useState()
+
   const [selectedItem, setSelectedItem] = useState()
 // State for the items in a given list:
   const [items, setItems] = useState(false)
-  // console.log(items.items)
-  // Reload items list
-  // if (activeList !== 'undefined') {
-  //     axios.get(`http://localhost:8000/lists/items/${activeList}`)
-  //     .then(res => setItems(res.data))
-  //     console.log(items)
-  // }
+
   useEffect(() => {
-      axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
+    axios.get(`https://localhost:8000/lists/items/${activeList}`)
+      // axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
       .then(res => setItems(res.data))
-      console.log(items)
-  }, [activeList])
+      // console.log(items)
+  }, [activeList, reloadItems])
   // [activeList, selectedItem, listSelectedreloadItems]
 
   // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
@@ -60,7 +55,7 @@ const ListItems = () => {
 
 
     const handleItemClick = (event) => {
-      console.log(event.target.id)
+      // console.log(event.target.id)
       setSelectedItem(event.target.id)
     }
 
@@ -69,30 +64,25 @@ const ListItems = () => {
   const handleClickOpen = () => { setOpen(true); };
   const handleClose = () => { setOpen(false); };
   
-   // FOR ITEM CREATE FORM
-   const initialCreateState = { name: '',  details: '', priority: '', }
-   const [createItem, setCreateItem] = useState(initialCreateState);
+  // FOR ITEM CREATE FORM
+  const initialCreateState = { name: '',  details: '', priority: '', }
+  const [createItem, setCreateItem] = useState(initialCreateState);
 
-   const handleCreateChange = (event) => {
-     setCreateItem({...createItem, [event.target.id]: event.target.value})
-   }
+  const handleCreateChange = (event) => {
+    setCreateItem({...createItem, [event.target.id]: event.target.value})
+  }
       // setItems({...Items, [event.target.id]: event.target.value})
 
- // console.log(activeList)
- function handleCreateSubmit (event) {
-   event.preventDefault()
+  function handleCreateSubmit (event) {
+    event.preventDefault()
     // if (createItem.name !== '' && createItem.details !== '')
-       axios.post(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`, createItem)
-       .then(res => {
-         console.log('created')
-         setReloadItems(true)
-       })
- }  
- useEffect(() => {
-  axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
-  .then(res => setItems(res.data))
-  // console.log(items)
-}, [reloadItems])
+      axios.post(`https://localhost:8000/lists/items/${activeList}`, createItem)
+      //  axios.post(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`, createItem)
+      .then(res => {
+        console.log('created')
+        setReloadItems(true)
+      })
+  }  
 
   
 

@@ -3,39 +3,22 @@
 // import Home from './components/Home';
 import { Routes, Route, Link} from 'react-router-dom'
 import { useContext, useState } from 'react';
+import { UserContext } from './contexts/UserContext';
+// import { createContext, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import HomeIcon from '@mui/icons-material/Home';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import LogoutIcon from '@mui/icons-material/Logout';
-// import Box from '@mui/material/Box';
-// import Container from '@mui/material/Container';
-// import HomeIcon from '@mui/icons-material/Home';
-// import Navbar from './components/Navbar'
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Signup from './components/users/Signup';
 import Signin from './components/users/Signin';
 import UserSettings from './components/users/UserSettings'
-// import ListsHome from './lists/ListsHome'
 import ListItems from './components/items/ListItems';
 import Dashboard from './components/lists/Dashboard';
 
-import { UserContext } from './contexts/UserContext';
-// import Navbar from './components/Navbar'
-// import Signup from './components/users/Signup';
-// import Login from './components/users/Login';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import MUILink from '@mui/material/Link';
-// import UserSettings from './components/users/UserSettings'
-// import { createContext, useState } from 'react';
 
-// export const UserContext = createContext()
-// const UserContext = createContext()
-
-// import Signup from './components/users/Signup'
-// import Login from './components/users/Login'
-// import UserSettings from './components/users/UserSettings'
-// import './App.css';
 
 function App() {
 

@@ -1,4 +1,4 @@
-import { useNavigate, } from 'react-router-dom'
+// import { useNavigate, } from 'react-router-dom'
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { ActiveListContext } from '../../contexts/ActiveListContext';
@@ -38,8 +38,8 @@ const Item = styled(Paper)(({ theme }) => ({
 const Dashboard = () => {
   // Setting state for ActiveList context
   const [activeList, setActiveList] = useState(false)
-const [listSelected, setListSelected] = useState(false)
-  const navigate = useNavigate()
+  const [listSelected, setListSelected] = useState(false)
+  
 
 // Reload for actions to do a new get request to refresh lists after a change. Imported into ListsListing, EditList, DeleteList, CreateList
   const [reloadLists, setReloadLists] = useState(false)
@@ -55,7 +55,8 @@ const [listSelected, setListSelected] = useState(false)
   const handleCreateSubmit = (event) => {
       event.preventDefault()
       // if (createList.name !== '' && createList.details !== '')
-          axios.post('https://radiant-sierra-50882.herokuapp.com/lists/new', createList)
+        axios.post('https://localhost:8000/lists/new', createList)
+          // axios.post('https://radiant-sierra-50882.herokuapp.com/lists/new', createList)
           .then(res => {
             setCreateList(initialCreateState)
             // navigate('/lists')
@@ -68,13 +69,14 @@ const [listSelected, setListSelected] = useState(false)
   const handleClick = (event) => {
     listSelected(true)
     setActiveList(event.target.id)
-    console.log(`Handleclick in Dashboard: New active list is: ${activeList}`)
+    // console.log(`Handleclick in Dashboard: New active list is: ${activeList}`)
   }
 
 
 // Reload lists list
   useEffect(() => {
-    axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/`)
+    axios.get(`https://localhost:8000/lists/`)
+    // axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/`)
     .then(res => setLists(res.data))
     // console.log(createList)
   },[reloadLists, createList])

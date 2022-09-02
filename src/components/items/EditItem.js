@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // import ListsList from './ListsList'
 // import CreateListForm from './CreateListForm'
@@ -18,9 +18,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 //  /lists/items/:listId/:id
 
 const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, open, handleClose, handleClickOpen}) => {
-  // const [reload, setReload] = useState(false)
-  // const { activeList, setActiveList } = useContext(ActiveListContext)
-  // const navigate = useNavigate()
 
   const initialFormState = { name: '',  details: '', priority: '', }
 
@@ -33,7 +30,8 @@ const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, sel
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, itemChanges)
+      // axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, itemChanges)
+      axios.patch(`https://localhost:8000/lists/${id}`, itemChanges)
       .then(() => {
         setReloadItems(true)
       })

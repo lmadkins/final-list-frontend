@@ -25,19 +25,18 @@ const Signup = () => {
 
     const navigate = useNavigate()
     // const [error, setError] = useState(null)
+        // const { currentUser, setCurrentUser } = useContext(UserContext)
+    // const [newUser, setNewUser] = useState(initialState)
+
     const initialState = {
         displayname: '',
         email: '',
         password: '',
         confirmPassword: '',
     }
-    // const { currentUser, setCurrentUser } = useContext(UserContext)
 
-    // const [newUser, setNewUser] = useState(initialState)
     const [formState, setFormState] = useState(initialState);
 
-    // const [loginInfo, setLoginInfo] = useState({ email: '',  password: '' })
-    // const [signup]
     // useEffect(() => {
     //     setCurrentUser({ key: 'email', value: loginInfo.email})
     //     currentUser.token && navigate('/')
@@ -56,7 +55,8 @@ const Signup = () => {
         event.preventDefault()
         // if (newUser.email !== '' && newUser.password !== ''){
             formState.password === formState.confirmPassword &&
-            axios.post('https://radiant-sierra-50882.herokuapp.com/users/signup', formState)
+            axios.post('https://localhost:8000/users/signup', formState)
+            // axios.post('https://radiant-sierra-50882.herokuapp.com/users/signup', formState)
             .then(res => {
                     // save token to local storage
                     // window.localStorage.setItem("Token", res.data.token)
@@ -84,7 +84,6 @@ const Signup = () => {
     return (
     <>
         <Container component="main" maxWidth="xs">
-
         <Box
         sx={{
             marginTop: 8,
@@ -101,8 +100,7 @@ const Signup = () => {
         </Typography>
 
                 {/* add  onSubmit={handleSubmit} to Box */}
-        <Box component="form" noValidate  sx={{ mt: 3 }}
-        >
+        <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
             <Grid item xs={12}>
                 <TextField

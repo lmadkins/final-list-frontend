@@ -18,23 +18,10 @@ import axios from 'axios';
 import EditList from './EditList'
 import DeleteList from './DeleteList';
 // import Typography from '@mui/material/Typography';
-import FolderIcon from '@mui/icons-material/Folder';
+// import FolderIcon from '@mui/icons-material/Folder';
 import EditIcon from '@mui/icons-material/Edit';
-// import IconButton from '@mui/material/IconButton';
-// Editable from Chakra:
-// import { EditablePreview, Box, useColorModeValue, Input, useDisclosure, useEditableControls, ButtonGroup, SlideFade, Editable, Tooltip, EditableTextarea, EditableInput } from "@chakra-ui/react";
-// import {
-//   Editable,
-//   EditableInput,
-//   EditableTextarea,
-//   EditablePreview,
-// } from '@chakra-ui/react'
-// import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-// import { Icon } from '@chakra-ui/react'
-// import { Flex, Spacer } from '@chakra-ui/react'
-// import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CloseIcon from '@mui/icons-material/Close';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -67,7 +54,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
   const handleListClick = (event) => {
     setListSelected(true)
     setActiveList(event.target.id)
-    console.log(`Handleclick in ListsListing: New active list is: ${activeList}`)
+    // console.log(`Handleclick in ListsListing: New active list is: ${activeList}`)
   }
 
   // Edit state and edit modal
@@ -80,12 +67,13 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
 
   const handleListChange = (event) => {
     setListChanges({ ...listChanges, [event.target.id]: event.target.value });
-    console.log(event.target.value)
+    // console.log(event.target.value)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, listChanges)
+      axios.patch(`https://localhost:8000/lists/${id}`, listChanges)
+      // axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, listChanges)
       .then(() => {
         setReloadLists(true)
         handleClose()

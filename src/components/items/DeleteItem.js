@@ -20,20 +20,17 @@ const DeleteItem = (props, {listId, setActiveList, id,  reloadItems, setReloadIt
 // const [deleted, setDeleted] = useState(false)
 // const [reload, setReload] = useState(false)
 
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
-
-const handleItemDelete = () => {
-  axios.delete(`https://radiant-sierra-50882.herokuapp.com/list/items/${listId}/${props.id}`)
-      .then(res => {
+  axios.delete(`https://localhost:8000/list/items/${listId}/${props.id}`)
+  // axios.delete(`https://radiant-sierra-50882.herokuapp.com/list/items/${listId}/${props.id}`)
+  .then(res => {
         // navigate('/lists')
          // setSelectedItem(null)
         setReloadItems(true)
 
       })	
-};
-// http://localhost:8000/list/items/63113dd0882d2881136436da
-// http://localhost:8000/list/items/6311116c882d288113642ca0
+
 // Delete popover
 // const [anchorEl, setAnchorEl] = useState(null);
 // const handleDeleteClick = (event) => {
@@ -76,7 +73,9 @@ const handleItemDelete = () => {
             </Button> */}
           {/* </Typography> 
       </Popover> */}
-      <IconButton edge="end" aria-label="delete item"  id={id}  onClick={handleItemDelete}>
+      <IconButton edge="end" aria-label="delete item"  id={id} 
+      //  onClick={handleItemDelete}
+       >
               <DeleteIcon/>  
           </IconButton>
   </>
@@ -84,5 +83,3 @@ const handleItemDelete = () => {
 }
 
 export default DeleteItem;
-
-// http://localhost:8000/630d463c81cab02c45de6864/631111e4882d288113642cc3

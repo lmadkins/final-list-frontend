@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // import ListsList from './ListsList'
 // import CreateListForm from './CreateListForm'
@@ -9,7 +9,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-
 import Button from '@mui/material/Button';
 
 const DeleteList = ({id, name,  reloadLists, setReloadLists}) => {
@@ -18,40 +17,36 @@ const DeleteList = ({id, name,  reloadLists, setReloadLists}) => {
 
 // const navigate = useNavigate()
   const handleListDelete = () => {
-    axios.delete(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`)
+    axios.delete(`https://localhost:8000/lists/${id}`)
+    // axios.delete(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`)
         .then(res => {
           // navigate('/lists')
           // setReloadLists(true)
           setActiveList(false)
           // setDeleted(true)
-          axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/`)
+          axios.get(`https://localhost:8000/lists/`)
+          // axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/`)
         })	
 };
 
 
-// Delete popover
-const [anchorEl, setAnchorEl] = useState(null);
-const handleDeleteClick = (event) => {
-  setAnchorEl(event.currentTarget);
-  // setActiveList(event.target.id)
-  // console.log(activeList)
-};
-const handleDeleteClose = () => {
-  setAnchorEl(null);
-};
-const open = Boolean(anchorEl);
-const popoverId = open ? 'simple-popover' : undefined;
-// const [lists, setLists] = useState([])
-// useEffect(() => {
-//   axios.get(`http://localhost:8000/lists/`)
-//   .then(res => setLists(res.data))
-//   navigate('/lists')
-// },[activeList])
- 
+  // Delete popover
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleDeleteClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    // setActiveList(event.target.id)
+    // console.log(activeList)
+  };
+  const handleDeleteClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
+  const popoverId = open ? 'simple-popover' : undefined;
+
   return (
   <>  
    {/* // put some message here to display that it's been deleted */}
-   <Popover
+  <Popover
         id={popoverId}
         open={open}
         anchorEl={anchorEl}

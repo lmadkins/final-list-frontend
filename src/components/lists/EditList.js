@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react'
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // import ListsList from './ListsList'
 // import CreateListForm from './CreateListForm'
@@ -9,9 +9,9 @@ import { UserContext } from '../../contexts/UserContext';
 // import IconButton from '@mui/material/IconButton';
 
 const EditList = ({id, name,  reloadLists, setReloadLists}) => {
-  // const [reload, setReload] = useState(false)
+
   const { activeList, setActiveList } = useContext(ActiveListContext)
-  // const navigate = useNavigate()
+
   const [listChanges, setListChanges] = useState({
     name: '',
     details: ''
@@ -24,7 +24,8 @@ const EditList = ({id, name,  reloadLists, setReloadLists}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, listChanges)
+     axios.patch(`https://localhost:8000/lists/${id}`, listChanges)
+      // axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, listChanges)
       .then(() => {
         setReloadLists(true)
       })

@@ -10,13 +10,13 @@ import { Chip } from '@mui/material';
 // import { MdSettings } from 'react-icons/md'
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
+// import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
-import Stack from '@mui/material/Stack';
+// import Stack from '@mui/material/Stack';
 // Editable from Chakra:
 // import { EditablePreview, Box, useColorModeValue, Input, useDisclosure, useEditableControls, ButtonGroup, SlideFade, Editable, Tooltip, EditableInput } from "@chakra-ui/react";
 // import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
@@ -63,7 +63,8 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
 
   useEffect(() => {
     activeList !== 'undefined' && 
-    axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
+    // axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
+    axios.get(`https://localhost:8000/${activeList}`)
     .then(res => setItems(res.data))
     // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
     // setReloadItems(true)

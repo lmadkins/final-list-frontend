@@ -50,11 +50,10 @@ const Login = () => {
     function handleSubmit (event) {
         event.preventDefault()
         if (formState.email !== '' && formState.password !== ''){
-            axios.post('https://radiant-sierra-50882.herokuapp.com/users/signin', formState)
+            axios.post('https://localhost:8000/users/signin', formState)
+            // axios.post('https://radiant-sierra-50882.herokuapp.com/users/signin', formState)
             .then(res => {
-                // console.log(res.data.token)
                 // console.log(res.data.email)
-                // console.log(formState.password)
             
                 window.localStorage.setItem('token', res.data.token)
                 window.localStorage.setItem("Email", formState.email)
@@ -69,7 +68,6 @@ const Login = () => {
             })
         } 
     }
- 
     // useEffect(() => {
     //     setCurrentUser({ key: 'email', value: formState.email})
     //     formState.token && navigate('/lists')
