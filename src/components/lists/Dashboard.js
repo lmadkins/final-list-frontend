@@ -25,18 +25,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-// import ListItemButton from '@mui/material/ListItemButton';
-// import ListItemAvatar from '@mui/material/ListItemAvatar';
-// import ListItemText from '@mui/material/ListItemText';
-// import EditIcon from '@mui/icons-material/Edit';
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import GradingIcon from '@mui/icons-material/Grading';
-// import IconButton from '@mui/material/IconButton';
-// import Divider from '@mui/material/Divider';
-// import Avatar from '@mui/material/Avatar';
 
-// import ItemsList from '../items/FocusList';
- 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -48,7 +37,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Dashboard = () => {
   // Setting state for ActiveList context
   const [activeList, setActiveList] = useState(false)
-const [listSelected, setListSelected] = useState(false)
+  const [listSelected, setListSelected] = useState(false)
   const navigate = useNavigate()
 
 // Reload for actions to do a new get request to refresh lists after a change. Imported into ListsListing, EditList, DeleteList, CreateList
@@ -78,7 +67,7 @@ const [listSelected, setListSelected] = useState(false)
   const handleClick = (event) => {
     listSelected(true)
     setActiveList(event.target.id)
-    console.log(`Handleclick in Dashboard: New active list is: ${activeList}`)
+    // console.log(`Handleclick in Dashboard: New active list is: ${activeList}`)
   }
 
 
@@ -94,9 +83,6 @@ const [listSelected, setListSelected] = useState(false)
   const handleClickOpen = () => { setOpen(true); };
   const handleClose = () => { setOpen(false); };
 
-
-
-
   return (
     <>
     <ActiveListContext.Provider 
@@ -104,10 +90,8 @@ const [listSelected, setListSelected] = useState(false)
     <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={3}>
         <Grid item xs={6}>
-        {/* LISTS LIST (all the user's lists) */}
-        <h2>Your Lists</h2>
           <Item>
-          
+          <h2>Your Lists</h2>
             <List
                 sx={{
                   width: '100%',

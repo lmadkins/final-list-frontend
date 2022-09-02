@@ -25,7 +25,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 const ListItems = () => {
   // {activeList, activeListContext}
   const { activeList, setActiveList, listSelected, setListSelected } = useContext(ActiveListContext)
-  // const [items, setItems] = useState()
+
   const [selectedItem, setSelectedItem] = useState()
 // State for the items in a given list:
   const [items, setItems] = useState(false)
@@ -39,20 +39,12 @@ const ListItems = () => {
   useEffect(() => {
       axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
       .then(res => setItems(res.data))
-      console.log(items)
+      // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
+       // setReloadItems(true)
   }, [activeList])
-  // [activeList, selectedItem, listSelectedreloadItems]
 
   // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
   const [reloadItems, setReloadItems] = useState(false)
-
-
-  // useEffect(() => {
-  //   axios.get(`http://localhost:8000/lists/items/${activeList}`)
-  //   .then(res => setItems(res.data))
-  //   console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
-  //   // setReloadItems(true)
-  // }, [activeList])
 
 
     const handleItemClick = (event) => {
@@ -66,33 +58,25 @@ const ListItems = () => {
   const handleClose = () => { setOpen(false); };
   
    // FOR ITEM CREATE FORM
-   const initialCreateState = { name: '',  details: '', priority: '', }
-   const [createItem, setCreateItem] = useState(initialCreateState);
+  const initialCreateState = { name: '',  details: '', priority: '', }
+  const [createItem, setCreateItem] = useState(initialCreateState);
 
-   const handleCreateChange = (event) => {
-     setCreateItem({...createItem, [event.target.id]: event.target.value})
-   }
-      // setItems({...Items, [event.target.id]: event.target.value})
+  const handleCreateChange = (event) => {
+    setCreateItem({...createItem, [event.target.id]: event.target.value})
+  }
 
- // console.log(activeList)
- function handleCreateSubmit (event) {
-   event.preventDefault()
+  function handleCreateSubmit (event) {
+    event.preventDefault()
     // if (createItem.name !== '' && createItem.details !== '')
-       axios.post(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`, createItem)
-       .then(res => {
-         console.log('created')
-         setReloadItems(true)
-       })
- }  
- useEffect(() => {
-  axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
-  .then(res => setItems(res.data))
-  // console.log(items)
-}, [reloadItems])
+        axios.post(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`, createItem)
+        .then(res => {
+          // console.log('created')
+          setReloadItems(true)
+        })
+  }  
 
   return (
   <>
-
     { items ? (
       <>
       <h2>{items.name}</h2>
@@ -116,33 +100,23 @@ const ListItems = () => {
         >Add an item
     </Button>
     <Dialog 
-        onClose={handleClose}
-        open={open}
-        component="form"
-        noValidate
-        autoComplete="off" 
-        onSubmit={handleCreateSubmit}
-        // sx={{
-        //   height: 500,
-        //   flexGrow: 1,
-        //   minWidth: 500,}}
-        >
-        <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute', right: 8, top: 8,
-            color: (theme) => theme.palette.grey[500],}}>
-          <CloseIcon />
-        </IconButton>
-        <DialogTitle>Create List</DialogTitle>
-        <DialogContent onChange={handleCreateChange}>
-          <DialogContentText>
-            {/* To subscribe to this website, please enter your email address here. We
-            will send updates occasionally. */}
-          </DialogContentText>
-          <br></br>
-          {/* <Stack spacing={2}> */}
+      onClose={handleClose}
+      open={open}
+      component="form"
+      noValidate
+      autoComplete="off" 
+      onSubmit={handleCreateSubmit}
+      >
+      <IconButton
+        aria-label="close"
+        onClick={handleClose}
+        sx={{
+          position: 'absolute', right: 8, top: 8,
+          color: (theme) => theme.palette.grey[500],}}>
+        <CloseIcon />
+      </IconButton>
+      <DialogTitle>Create List</DialogTitle>
+      <DialogContent onChange={handleCreateChange}>
       <TextField 
         id="name" 
         label="Item Name" 
@@ -177,11 +151,6 @@ const ListItems = () => {
         onChange={handleCreateChange}
         value={createItem.priority}
         />
-          
-        {/* <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item> */}
-      {/* </Stack> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
@@ -190,12 +159,6 @@ const ListItems = () => {
         >Create Item</Button>
         </DialogActions>
       </Dialog>
-
-    {/* <CreateItem 
-        activeList={activeList}
-        reloadItems={reloadItems} 
-        setReloadItems={setReloadItems}
-    />   */}
   </> 
     ):(
       <h3> No List Selected</h3>

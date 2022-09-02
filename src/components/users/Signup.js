@@ -12,29 +12,25 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-// handle change
-// handle submit
 import { UserContext } from '../../contexts/UserContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 // import { UserContext } from '../Home'
 import axios from 'axios';
-// import SignupForm from './SignupForm';
+
 
 const Signup = () => {
-
     const navigate = useNavigate()
-    // const [error, setError] = useState(null)
     const initialState = {
         displayname: '',
         email: '',
         password: '',
         confirmPassword: '',
     }
-    // const { currentUser, setCurrentUser } = useContext(UserContext)
-
-    // const [newUser, setNewUser] = useState(initialState)
     const [formState, setFormState] = useState(initialState);
+      // const [error, setError] = useState(null)
+    // const { currentUser, setCurrentUser } = useContext(UserContext)
+    // const [newUser, setNewUser] = useState(initialState)
 
     // const [loginInfo, setLoginInfo] = useState({ email: '',  password: '' })
     // const [signup]
@@ -83,16 +79,14 @@ const Signup = () => {
 
     return (
     <>
-        <Container component="main" maxWidth="xs">
-
+    <Container component="main" maxWidth="xs">
         <Box
         sx={{
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-        }}
-        >
+        }}>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <FactCheckIcon />
         </Avatar>
@@ -101,8 +95,7 @@ const Signup = () => {
         </Typography>
 
                 {/* add  onSubmit={handleSubmit} to Box */}
-        <Box component="form" noValidate  sx={{ mt: 3 }}
-        >
+        <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
             <Grid item xs={12}>
                 <TextField
@@ -147,7 +140,7 @@ const Signup = () => {
                 required
                 fullWidth
                 name="confirmPassword"
-                label="ConfirmPassword"
+                label="Confirm Password"
                 type="password"
                 id="confirm Password"
                 autoComplete="new-password"

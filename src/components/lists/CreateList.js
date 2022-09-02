@@ -6,9 +6,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-
-// create a new list
-
 // ADD error handling
 // https://mui.com/material-ui/react-text-field/
 
@@ -16,17 +13,13 @@ import Button from '@mui/material/Button';
 const CreateListForm = ({ reloadLists, setReloadLists}) => {
 
      // FOR LIST CREATE FORM
-     
-     // console.log(lists)
        // const [formState, setFormState] = useState(initialState);
       const initialCreateState = { name: '',  details: '' }
       const [createList, setCreateList] = useState(initialCreateState);
-   
+
       const handleCreateChange = (event) => {
         setCreateList({...createList, [event.target.id]: event.target.value})
       }
-         // setLists({...lists, [event.target.id]: event.target.value})
-     
     function handleCreateSubmit (event) {
       event.preventDefault()
        // if (createList.name !== '' && createList.details !== '')
@@ -35,47 +28,10 @@ const CreateListForm = ({ reloadLists, setReloadLists}) => {
 
           })
     }  
-  //   const initialState = { name: '',  description: '' }
-// // console.log(lists)
-//   const [formState, setFormState] = useState(initialState);
-
-    // const [createList, setCreateList] = useState(initialState);
-  // const [newList, setNewList] = useState();
-
-//   const handleChange = (event) => {
-//     setCreateList({...createList, [event.target.id]: event.target.value})
-//     // setLists({...lists, [event.target.id]: event.target.value})
-// }
-
-// function handleSubmit (event) {
-//   event.preventDefault()
-//   // if (createList.name !== '' && createList.details !== '')
-//       axios.post('http://localhost:8000/lists/new', createList)
-//       .then(res => {
-
-//           // console.log(formState)
-//           // console.log(newList)
-//           // console.log(res.data.email)
-//           // console.log(formState.password)
-    
-//       })
-//     } 
-      // .then(() => {
-      //     // setNewList(initialState)
-      //     // console.log(currentUser)
-      // })
-      // .catch(err => {
-      //     // setError("Provided email or password is incorrect.")
-      //     console.log(err)
-      // })
-
-  // const { newList, setNewList } = useContext(UserContext)
-
   // ADD error handling
 // https://mui.com/material-ui/react-text-field/
 
     return (
- 
     <Box
       component="form"
       sx={{
@@ -110,13 +66,9 @@ const CreateListForm = ({ reloadLists, setReloadLists}) => {
           />
           <Button variant="contained"
           onClick={handleCreateSubmit}
-      >Create List</Button>
-        {/* <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item> */}
+          >Create List</Button>
       </Stack>
       </Box>
-
     )
 }
 
