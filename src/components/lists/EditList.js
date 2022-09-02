@@ -4,7 +4,7 @@ import axios from 'axios'
 // import ListsList from './ListsList'
 // import CreateListForm from './CreateListForm'
 import { ActiveListContext } from '../../contexts/ActiveListContext';
-import { UserContext } from './contexts/UserContext';
+import { UserContext } from '../../contexts/UserContext';
 // import EditIcon from '@mui/icons-material/Edit';
 // import IconButton from '@mui/material/IconButton';
 
