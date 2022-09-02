@@ -6,10 +6,18 @@ import axios from 'axios'
 import { ActiveListContext } from '../../contexts/ActiveListContext';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-
-
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 // Create a new Item
 // Routes: POST to /lists/items/:listId
 
@@ -20,7 +28,6 @@ import Button from '@mui/material/Button';
 const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
 
      // FOR ITEM CREATE FORM
-
       const initialCreateState = { name: '',  details: '', priority: '', }
       const [createItem, setCreateItem] = useState(initialCreateState);
    
@@ -48,12 +55,13 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
  
     <Box
       component="form"
+      onSubmit={handleCreateSubmit}
       sx={{
         '& .MuiTextField-root': { s:1, width: '30ch' },
       }}
       noValidate
       autoComplete="off" 
-      onSubmit={handleCreateSubmit}
+     
       // onChange={handleChange}
       >
     <Stack spacing={2}>
@@ -67,7 +75,7 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
         />
         <TextField
           id="details"
-          label="Item Description"
+          label="Description the item"
           placeholder="Description"
           multiline
           // required='true'
@@ -76,15 +84,19 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
           />
           <TextField 
         id="priority" 
-        label="Item Priority" 
+        label="Low, Medium, or High Priority" 
         variant="outlined" 
         // required='true'
+        // placeholder=
+        // multiline
+        required='true'
         onChange={handleCreateChange}
         value={createItem.priority}
         />
           <Button variant="contained"
           onClick={handleCreateSubmit}
-      >Create Item</Button>
+        
+        >Create Item</Button>
         {/* <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item> */}

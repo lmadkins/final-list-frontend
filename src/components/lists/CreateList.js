@@ -94,6 +94,8 @@ const CreateListForm = ({ reloadLists, setReloadLists}) => {
         id="name" 
         label="List Name" 
         variant="outlined" 
+        margin="dense"
+        fullWidth
         // required='true'
         onChange={handleCreateChange}
         value={createList.name}
@@ -103,6 +105,8 @@ const CreateListForm = ({ reloadLists, setReloadLists}) => {
           label="List Description"
           placeholder="Description"
           multiline
+          margin="dense"
+          fullWidth
           // required='true'
           value={createList.details}
           onChange={handleCreateChange}

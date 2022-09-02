@@ -42,7 +42,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import Stack from '@mui/material/Stack';
 // export const ActiveListContext = createContext()
 
 // component for each individual list in the Lists List
@@ -175,6 +175,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
             // label="Outlined" 
             variant="outlined"
             label= "List Name"
+            margin="dense"
             // type="text"
             fullWidth
             value={initialFormState.name}
@@ -186,11 +187,13 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
             
             id="outlined-basic"
             label="Description"
+            margin="dense"
+            fullWidth
             // multiline
             // rows={2}
             // type="text"
             variant="outlined"
-            fullWidth
+            // fullWidth
             // defaultValue="New List Description"
             value={initialFormState.details}
             // onChange={handleListChange}

@@ -17,8 +17,6 @@ import ListsListing from './ListsListing'
 import ListItems from '../items/ListItems';
 import List from '@mui/material/List';
 import CloseIcon from '@mui/icons-material/Close';
-// import DoneIcon from '@mui/icons-material/Done';
-// import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -107,9 +105,9 @@ const [listSelected, setListSelected] = useState(false)
     <Grid container spacing={3}>
         <Grid item xs={6}>
         {/* LISTS LIST (all the user's lists) */}
-        <h2>Welcome to Final List, here are your lists:</h2>
+        <h2>Your Lists</h2>
           <Item>
-           
+          
             <List
                 sx={{
                   width: '100%',
@@ -135,20 +133,20 @@ const [listSelected, setListSelected] = useState(false)
                   />))}
               
               </List>
-              <Button variant="outlined" 
+              <Button variant="contained" 
               onClick={handleClickOpen}
               startIcon={<PlaylistAddIcon/>}
 >
               Create New List 
             </Button>
-        <Dialog 
-          onClose={handleClose}
-          open={open}
-          component="form"
-          noValidate
-          autoComplete="off" 
-          onSubmit={handleCreateSubmit}
-          >
+      <Dialog 
+        onClose={handleClose}
+        open={open}
+        component="form"
+        noValidate
+        autoComplete="off" 
+        onSubmit={handleCreateSubmit}
+        >
         <IconButton
           aria-label="close"
           onClick={handleClose}
