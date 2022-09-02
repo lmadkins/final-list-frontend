@@ -8,7 +8,7 @@ import axios from 'axios'
 
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2';
 import Paper from '@mui/material/Paper';
@@ -16,6 +16,17 @@ import Paper from '@mui/material/Paper';
 import ListsListing from './ListsListing'
 import ListItems from '../items/ListItems';
 import List from '@mui/material/List';
+import CloseIcon from '@mui/icons-material/Close';
+// import DoneIcon from '@mui/icons-material/Done';
+// import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 // import ListItemButton from '@mui/material/ListItemButton';
 // import ListItemAvatar from '@mui/material/ListItemAvatar';
 // import ListItemText from '@mui/material/ListItemText';
@@ -38,8 +49,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Dashboard = () => {
   // Setting state for ActiveList context
-  const [activeList, setActiveList] = useState()
-
+  const [activeList, setActiveList] = useState(false)
+const [listSelected, setListSelected] = useState(false)
   const navigate = useNavigate()
 
 // Reload for actions to do a new get request to refresh lists after a change. Imported into ListsListing, EditList, DeleteList, CreateList
@@ -47,7 +58,7 @@ const Dashboard = () => {
 
 
   // CREATE LIST FORM 
-  const initialCreateState = { name: '',  description: '' }
+  const initialCreateState = { name: '',  details: '' }
   const [createList, setCreateList] = useState(initialCreateState);
 
   const handleCreateChange = (event) => {
@@ -67,6 +78,7 @@ const Dashboard = () => {
     // FOR RENDERING LISTS LIST
   const [lists, setLists] = useState([])
   const handleClick = (event) => {
+    listSelected(true)
     setActiveList(event.target.id)
     console.log(`Handleclick in Dashboard: New active list is: ${activeList}`)
   }
@@ -79,6 +91,10 @@ const Dashboard = () => {
     // console.log(createList)
   },[reloadLists, createList])
 
+  // Edit modal controls    
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => { setOpen(true); };
+  const handleClose = () => { setOpen(false); };
 
 
 
@@ -86,7 +102,7 @@ const Dashboard = () => {
   return (
     <>
     <ActiveListContext.Provider 
-          value={{ activeList, setActiveList }}> 
+          value={{ activeList, setActiveList, listSelected, setListSelected }}> 
     <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={3}>
         <Grid item xs={6}>
@@ -119,7 +135,57 @@ const Dashboard = () => {
                   />))}
               
               </List>
-           
+              <Button variant="outlined" 
+              onClick={handleClickOpen}
+              startIcon={<PlaylistAddIcon/>}
+>
+              Create New List 
+            </Button>
+        <Dialog 
+          onClose={handleClose}
+          open={open}
+          component="form"
+          noValidate
+          autoComplete="off" 
+          onSubmit={handleCreateSubmit}
+          >
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute', right: 8, top: 8,
+            color: (theme) => theme.palette.grey[500],}}>
+          <CloseIcon />
+        </IconButton>
+        <DialogTitle>Create List</DialogTitle>
+        <DialogContent onChange={handleCreateChange}>
+          <DialogContentText>
+            {/* To subscribe to this website, please enter your email address here. We
+            will send updates occasionally. */}
+          </DialogContentText>
+          <br></br>
+          <TextField 
+            id="name" 
+            label="List Name" 
+            variant="outlined" 
+            required='true'
+            onChange={handleCreateChange}
+            value={createList.name}/>
+          <TextField
+            id="details"
+            label="List Description"
+            placeholder="Description"
+            multiline
+            required='true'
+            onChange={handleCreateChange}
+            value={createList.details}/>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button variant="contained" onClick={handleCreateSubmit}>
+            Create List</Button>
+        </DialogActions>
+      </Dialog>
           </Item>
         </Grid>
 
@@ -136,49 +202,19 @@ const Dashboard = () => {
           // setActiveList = {setActiveList}
 
         />
-       
+  
         </Item>
       </Grid>
 
-    <Grid item xs={3}>
-    {/* <ActiveListContext.Provider value={{ activeList, setActiveList }}>   */}
-    {/* CREATE A NEW LIST */}
+     
+
+    {/* <Grid item xs={3}>
+
       <Item>   
-        <Box
-          component="form"
-          sx={{
-            '& .MuiTextField-root': { s:1, width: '30ch' },}}
-          noValidate
-          autoComplete="off" 
-          onSubmit={handleCreateSubmit}
-          // o
-          >
-        <Stack spacing={2}>
-        <TextField 
-        id="name" 
-        label="List Name" 
-        variant="outlined" 
-        // required='true'
-        onChange={handleCreateChange}
-        value={createList.name}
-        />
-        <TextField
-          id="description"
-          label="List Description"
-          placeholder="Description"
-          multiline
-          // required='true'
-          value={createList.description}
-          onChange={handleCreateChange}
-          />
-          <Button variant="contained"
-          onClick={handleCreateSubmit}
-        >Create List</Button>
-        </Stack>
-        </Box>
+  
       </Item>
-      {/* </ActiveListContext.Provider> */}
-    </Grid>
+    
+    </Grid> */}
 
     </Grid>
   </Box>

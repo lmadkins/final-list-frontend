@@ -9,11 +9,11 @@ import CreateItem from './CreateItem';
 
 const ListItems = () => {
   // {activeList, activeListContext}
-  const { activeList, setActiveList } = useContext(ActiveListContext)
+  const { activeList, setActiveList, listSelected, setListSelected } = useContext(ActiveListContext)
   // const [items, setItems] = useState()
   const [selectedItem, setSelectedItem] = useState()
 // State for the items in a given list:
-  const [items, setItems] = useState()
+  const [items, setItems] = useState(false)
   // console.log(items.items)
   // Reload items list
   // if (activeList !== 'undefined') {
@@ -26,7 +26,7 @@ const ListItems = () => {
       .then(res => setItems(res.data))
       console.log(items)
   }, [activeList])
-  // [activeList, reloadItems]
+  // [activeList, selectedItem, listSelectedreloadItems]
 
   // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
   const [reloadItems, setReloadItems] = useState(false)
@@ -47,42 +47,42 @@ const ListItems = () => {
 
   // console.log(items.items)
 
-  function listSelected() {
-    if (activeList == !undefined)
-    return (
-    <>
-      <h2>{items.name}</h2>
-      <h3>{items.details}</h3>
+  // function listSelected() {
+  //   if (activeList == !undefined)
+  //   return (
+  //   <>
+  //     <h2>{items.name}</h2>
+  //     <h3>{items.details}</h3>
 
-    <Item 
-      activeList={activeList}
-      itemsArr={items.items}
-      reloadItems={reloadItems} 
-      setReloadItems={setReloadItems}
-      handleItemClick={handleItemClick}
-    // selectedItem={selectedItem}
-    // setSelectedItem(setSelectedItem)
-    />
-    <h2>Add an item: </h2>
-    <CreateItem 
-      activeList={activeList}
-      reloadItems={reloadItems} 
-      setReloadItems={setReloadItems}
-      />
-      </>
-    )
-  }
+  //   <Item 
+  //     activeList={activeList}
+  //     itemsArr={items.items}
+  //     reloadItems={reloadItems} 
+  //     setReloadItems={setReloadItems}
+  //     handleItemClick={handleItemClick}
+  //   // selectedItem={selectedItem}
+  //   // setSelectedItem(setSelectedItem)
+  //   />
+  //   <h2>Add an item: </h2>
+  //   <CreateItem 
+  //     activeList={activeList}
+  //     reloadItems={reloadItems} 
+  //     setReloadItems={setReloadItems}
+  //     />
+  //     </>
+  //   )
+  // }
   
 
   return (
-  // <>
-  // {listSelected()}
-  //   {items !== 'undefined' &&
+  <>
+
+    { items ? (
       <>
       <h2>{items.name}</h2>
       <h3>{items.details}</h3>
       {/* </> */}
-    // }
+
     <Item 
       activeList={activeList}
       itemsArr={items.items}
@@ -98,7 +98,11 @@ const ListItems = () => {
       reloadItems={reloadItems} 
       setReloadItems={setReloadItems}
   />  
-
+  </> 
+    ):(
+      <h3> No List Selected</h3>
+    )
+  }
   </>
   )
 }

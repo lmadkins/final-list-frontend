@@ -32,11 +32,11 @@ const EditList = ({id, name,  reloadLists, setReloadLists}) => {
   return (
   <>  
    {/* // put some message here to display that it's been deleted */}
-          <IconButton edge="end" aria-label="editlist"  id={id}  
+          {/* <IconButton edge="end" aria-label="editlist"  id={id}  
           // onClick={handleListEdit}
           >
               <EditIcon/>  
-          </IconButton>
+          </IconButton> */}
 
   </>
   )

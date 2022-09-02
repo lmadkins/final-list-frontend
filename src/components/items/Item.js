@@ -9,7 +9,7 @@ import { Chip } from '@mui/material';
 // import { MdSettings } from 'react-icons/md'
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-// Editable from CHakra:
+// Editable from Chakra:
 // import { EditablePreview, Box, useColorModeValue, Input, useDisclosure, useEditableControls, ButtonGroup, SlideFade, Editable, Tooltip, EditableInput } from "@chakra-ui/react";
 // import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 // import { Icon } from '@chakra-ui/react'
@@ -22,6 +22,7 @@ import IconButton from '@mui/material/IconButton';
 // returning one specific item from the ItemsList
 const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItems, setReloadItems, handleItemClick, selectedItem, setSelectedItem}) => {
 
+  const checkboxLabel = { inputProps: { 'aria-label': 'Item checkbox' } };
   // function EditableControls() {
   //   const {
   //     isEditing,
@@ -58,7 +59,7 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
     .then(res => setItems(res.data))
     // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
     // setReloadItems(true)
-  },  [reloadItems])
+  },  [selectedItem, reloadItems])
 
 
   return (
@@ -75,6 +76,7 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
 
     {itemsArr.map((item, i) => (
       <p key={i}>
+        <Checkbox {...checkboxLabel} defaultChecked color="secondary" />
         {item.name}
           <br></br>
         {item.details}
