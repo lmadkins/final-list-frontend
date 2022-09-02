@@ -2,13 +2,56 @@ import react, { useEffect } from 'react'
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import axios from "axios";
-import IconButton from '@mui/material/IconButton';
+// import IconButton from '@mui/material/IconButton';
 import ListItemButton from '@mui/material/ListItemButton';
+import Checkbox from '@mui/material/Checkbox';
 import { Chip } from '@mui/material';
+// import { MdSettings } from 'react-icons/md'
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
+// Editable 
+import { EditablePreview, Box, useColorModeValue, Input, useDisclosure, useEditableControls, ButtonGroup, SlideFade, Editable, Tooltip, EditableInput } from "@chakra-ui/react";
+// import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+import { Icon } from '@chakra-ui/react'
+import { Flex, Spacer } from '@chakra-ui/react'
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CloseIcon from '@mui/icons-material/Close';
+import DoneIcon from '@mui/icons-material/Done';
 // returning one specific item from the ItemsList
 const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItems, setReloadItems, handleItemClick, selectedItem, setSelectedItem}) => {
 
+  // function EditableControls() {
+  //   const {
+  //     isEditing,
+  //     getSubmitButtonProps,
+  //     getCancelButtonProps,
+  //     getEditButtonProps,
+  //   } = useEditableControls()
+
+  //   return isEditing ? (
+  //     <ButtonGroup justifyContent='center' size='sm'>
+  //       <IconButton edge="end" aria-label="Done Editing">
+  //         <DoneIcon {...getSubmitButtonProps()} />
+  //       </IconButton>
+  //       <IconButton edge="end" aria-label="Done Editing">
+  //         <CloseIcon  {...getCancelButtonProps()} />
+  //       </IconButton>
+  //     </ButtonGroup>
+  //   ) : (
+  //     <Flex justifyContent='center'>
+  //       {/* <IconButton size='sm' icon={<Icon as={EditIcon} />} {...getEditButtonProps()} /> */}
+  //       <IconButton edge="end" aria-label="Edit Item"  
+  //         // onClick={handleListEdit}
+  //         >
+            
+  //             <EditIcon {...getEditButtonProps()} />  
+  //         </IconButton>
+  //     </Flex>
+  //   )
+  // }
+
   useEffect(() => {
+    activeList !== 'undefined' && 
     axios.get(`http://localhost:8000/lists/items/${activeList}`)
     .then(res => setItems(res.data))
     // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
@@ -19,7 +62,15 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
   // console.log(itemsArr)
   return (
     <div>
-    {itemsArr.map((item, i) => (
+      {/* <Editable
+        // defaultValue={item.name}
+        isPreviewFocusable={true}
+        selectAllOnFocus={false}
+      >
+        <Input py={2} px={4} as={EditableInput} />
+        <EditableControls />
+      </Editable> */}
+    {/* {itemsArr.map((item, i) => (
   
       <p key={i}>
       {item.name}
@@ -27,7 +78,7 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
       {item.details}
         <br></br>
       Priority: 
- {item.priority === 'high' && 
+  {item.priority === 'high' && 
       <Chip color="error" label='High' />}
       {item.priority === 'medium' && 
       <Chip color="warning" label='Medium' />}
@@ -55,7 +106,7 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
         </p>
     
       
-      ))}
+      ))} */}
   </div>
   )
 }

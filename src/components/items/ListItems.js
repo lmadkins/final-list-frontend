@@ -17,9 +17,10 @@ const ListItems = ({activeList, activeListContext}) => {
   // Reload items list
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/lists/items/${activeList}`)
-    .then(res => setItems(res.data))
-    console.log(items)
+    activeList !== 'undefined' && 
+      axios.get(`http://localhost:8000/lists/items/${activeList}`)
+      .then(res => setItems(res.data))
+      console.log(items)
   }, [activeList])
   // [activeList, reloadItems]
 
@@ -44,24 +45,27 @@ const ListItems = ({activeList, activeListContext}) => {
 
   return (
   <>
-  <h2>Add an item: </h2>
-    <CreateItem 
-      activeList={activeList}
-      reloadItems={reloadItems} 
-      setReloadItems={setReloadItems}
-  />
-  <h2>{items.name}</h2>
-  <h3>{items.details}</h3>
+  {/* {items !== 'undefined' &&
+    <h2>{items.name}</h2>
+    <h3>{items.details}</h3>
+  } */}
+
+
     <Item 
       activeList={activeList}
-      itemsArr={items.items}
+      // itemsArr={items.items}
       reloadItems={reloadItems} 
       setReloadItems={setReloadItems}
       handleItemClick={handleItemClick}
     // selectedItem={selectedItem}
     // setSelectedItem(setSelectedItem)
     />
-
+    <h2>Add an item: </h2>
+    <CreateItem 
+      activeList={activeList}
+      reloadItems={reloadItems} 
+      setReloadItems={setReloadItems}
+  />  
    
 
   </>

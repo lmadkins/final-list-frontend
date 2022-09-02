@@ -139,7 +139,7 @@ const Dashboard = () => {
       </Grid>
 
     <Grid item xs={3}>
-    <ActiveListContext.Provider value={{ activeList, setActiveList }}>  
+    {/* <ActiveListContext.Provider value={{ activeList, setActiveList }}>   */}
     {/* CREATE A NEW LIST */}
       <Item>   
         <Box
@@ -175,7 +175,7 @@ const Dashboard = () => {
         </Stack>
         </Box>
       </Item>
-      </ActiveListContext.Provider>
+      {/* </ActiveListContext.Provider> */}
     </Grid>
 
     </Grid>
