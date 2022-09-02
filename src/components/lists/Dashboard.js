@@ -16,16 +16,15 @@ import Paper from '@mui/material/Paper';
 import ListsListing from './ListsListing'
 import ListItems from '../items/ListItems';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import GradingIcon from '@mui/icons-material/Grading';
-import IconButton from '@mui/material/IconButton';
-import Divider from '@mui/material/Divider';
-import Avatar from '@mui/material/Avatar';
+// import ListItemButton from '@mui/material/ListItemButton';
+// import ListItemAvatar from '@mui/material/ListItemAvatar';
+// import ListItemText from '@mui/material/ListItemText';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import GradingIcon from '@mui/icons-material/Grading';
+// import IconButton from '@mui/material/IconButton';
+// import Divider from '@mui/material/Divider';
+// import Avatar from '@mui/material/Avatar';
 
 // import ItemsList from '../items/FocusList';
  
@@ -86,14 +85,15 @@ const Dashboard = () => {
 
   return (
     <>
+    <ActiveListContext.Provider 
+          value={{ activeList, setActiveList }}> 
     <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={3}>
         <Grid item xs={6}>
         {/* LISTS LIST (all the user's lists) */}
         <h2>Welcome to Final List, here are your lists:</h2>
           <Item>
-          <ActiveListContext.Provider 
-          value={{ activeList, setActiveList }}>  
+           
             <List
                 sx={{
                   width: '100%',
@@ -112,29 +112,31 @@ const Dashboard = () => {
                     details={list.details}
                     lists={lists}
                     // onClick={handleClick}
-                    activeList = {activeList}
-                    setActiveList = {setActiveList}
+                    // activeList = {activeList}
+                    // setActiveList = {setActiveList}
                     reloadLists={reloadLists}
                     setReloadLists={setReloadLists}
                   />))}
               
               </List>
-            </ActiveListContext.Provider>
+           
           </Item>
         </Grid>
 
 
       <Grid item xs={6}>
         <Item>
+       
         {/* Each item in the selected list, plus links to edit and delete */}
           <ListItems 
           // items={items}
           // itemsArr={items.items}
           // setItems={setItems}
-          activeList = {activeList}
-          setActiveList = {setActiveList}
+          // activeList = {activeList}
+          // setActiveList = {setActiveList}
 
         />
+       
         </Item>
       </Grid>
 
@@ -180,45 +182,9 @@ const Dashboard = () => {
 
     </Grid>
   </Box>
+  </ActiveListContext.Provider>
   </>
   )
 };
 
 export default Dashboard;
-
-// const [ currentUser, setCurrentUser ] = useContext(UserContext)
-// const  {activeList, setActiveList} = useContext(ActiveListContext)
-// const listContext = useContext(ActiveListContext);
-// const listContext = useContext(ActiveListContext);
-// const [activeList, setActiveList] = useState()
-      {/* // id={items.id} 
-        // name={items.name} 
-        // details={items.details} */}
- {/* {items.map((items) => (
-        <ListItems  key={items._id} 
-        items={items}/>
-     ))} */}
-
-
-               {/* {items.name}
-          {items.details} */}
- {/* {itemsArr.map((item, i) => (
-    
-      <p key={i}>
-      {item.name}
-        <br></br>
-      {item.details}
-        <br></br>
-      Priority: 
-      {item.priority}
-      </p>
-
-      ))} */}
-
-
-  // useEffect(() => {
-  //   // setItemsArr(activeList.items)
-  //   // console.log(items.items[0])
-  // }, [])
-  // console.log(activeList)
-  // setCreateList({...createList, [event.target.id]: event.target.value})

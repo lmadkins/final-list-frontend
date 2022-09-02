@@ -1,4 +1,4 @@
-import react, { useEffect } from 'react'
+import { useEffect } from 'react'
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import axios from "axios";
@@ -9,14 +9,16 @@ import { Chip } from '@mui/material';
 // import { MdSettings } from 'react-icons/md'
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-// Editable 
-import { EditablePreview, Box, useColorModeValue, Input, useDisclosure, useEditableControls, ButtonGroup, SlideFade, Editable, Tooltip, EditableInput } from "@chakra-ui/react";
+// Editable from CHakra:
+// import { EditablePreview, Box, useColorModeValue, Input, useDisclosure, useEditableControls, ButtonGroup, SlideFade, Editable, Tooltip, EditableInput } from "@chakra-ui/react";
 // import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-import { Icon } from '@chakra-ui/react'
-import { Flex, Spacer } from '@chakra-ui/react'
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CloseIcon from '@mui/icons-material/Close';
-import DoneIcon from '@mui/icons-material/Done';
+// import { Icon } from '@chakra-ui/react'
+// import { Flex, Spacer } from '@chakra-ui/react'
+// import CheckBoxIcon from '@mui/icons-material/CheckBox';
+// import CloseIcon from '@mui/icons-material/Close';
+// import DoneIcon from '@mui/icons-material/Done';
+
+
 // returning one specific item from the ItemsList
 const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItems, setReloadItems, handleItemClick, selectedItem, setSelectedItem}) => {
 
@@ -58,60 +60,62 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
     // setReloadItems(true)
   },  [reloadItems])
 
-  // const { activeList, setActiveList } = useContext(ActiveListContext)
-  // console.log(itemsArr)
+
   return (
-    <div>
-      {/* <Editable
-        // defaultValue={item.name}
-        isPreviewFocusable={true}
-        selectAllOnFocus={false}
-      >
-        <Input py={2} px={4} as={EditableInput} />
-        <EditableControls />
-      </Editable> */}
-    {/* {itemsArr.map((item, i) => (
-  
+    <>
+    {/* <Editable
+    //  // defaultValue={item.name}
+    //     isPreviewFocusable={true}
+    //     selectAllOnFocus={false}
+    //   >
+    //     <Input py={2} px={4} as={EditableInput} />
+    //     <EditableControls />
+    //   </Editable> */}
+
+
+    {itemsArr.map((item, i) => (
       <p key={i}>
-      {item.name}
-        <br></br>
-      {item.details}
-        <br></br>
-      Priority: 
-  {item.priority === 'high' && 
-      <Chip color="error" label='High' />}
+        {item.name}
+          <br></br>
+        {item.details}
+          <br></br>
+      Priority:  
+      {item.priority === 'high' && 
+        <Chip color="error" label='High' />}
       {item.priority === 'medium' && 
-      <Chip color="warning" label='Medium' />}
-     {item.priority === 'low' && 
-      <Chip color="info" label='Low' />}
+        <Chip color="warning" label='Medium' />}
+      {item.priority === 'low' && 
+        <Chip color="info" label='Low' />}
 
       <EditItem 
-      id={item._id}
-      listId={activeList}
-      reloadItems={reloadItems} 
-      setReloadItems={setReloadItems}
-      handleItemClick={handleItemClick}
-      selectedItem={selectedItem}
-      setSelectedItem={setSelectedItem}
-        />
-      <DeleteItem 
-      id={item._id}
-      listId={activeList}
+        id={item._id}
+        listId={activeList}
         reloadItems={reloadItems} 
         setReloadItems={setReloadItems}
         handleItemClick={handleItemClick}
-      selectedItem={selectedItem}
-      setSelectedItem={setSelectedItem}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        />
+      <DeleteItem 
+        id={item._id}
+        listId={activeList}
+        reloadItems={reloadItems} 
+        setReloadItems={setReloadItems}
+        handleItemClick={handleItemClick}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
         />
         </p>
     
       
-      ))} */}
-  </div>
+      )) }
+      
+      </>
   )
 }
 
 export default Item;
+// 
   // { item.where ? (<p>>Get it at: {item.where}):null }
 
 //   const event = new Date(item.createdAt)
