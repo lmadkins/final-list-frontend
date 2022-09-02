@@ -1,116 +1,85 @@
-import { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+// // import Link from '@mui/material/Link';
+// import { useContext, useState } from 'react'
+// import { Link, useNavigate } from 'react-router-dom'
 
-// import Signup from './users/Signup';
-// import Login from './users/Login';
+// // import Signup from './users/Signup';
+// // import Login from './users/Login';
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-// import Switch from '@mui/material/Switch';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+// import AppBar from '@mui/material/AppBar';
+// import Box from '@mui/material/Box';
+// import Toolbar from '@mui/material/Toolbar';
+// import Typography from '@mui/material/Typography';
+// import IconButton from '@mui/material/IconButton';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import AccountCircle from '@mui/icons-material/AccountCircle';
+// // import Switch from '@mui/material/Switch';
+// // import FormControlLabel from '@mui/material/FormControlLabel';
+// // import FormGroup from '@mui/material/FormGroup';
 
-// import Settings from '@mui/icons-material/Settings';
-// import Logout from '@mui/icons-material/Logout';
+// // import Settings from '@mui/icons-material/Settings';
+// // import Logout from '@mui/icons-material/Logout';
 
-import { UserContext } from './Home'
+// import MenuItem from '@mui/material/MenuItem';
+// import Menu from '@mui/material/Menu';
 
-const Navbar = () => {
+// import { UserContext } from './Dashboard2'
 
-    const navigate = useNavigate()
-    const { currentUser, setCurrentUser } = useContext(UserContext)
+// const Navbar = () => {
 
-    const [auth, setAuth] = useState(true);
-    const [anchorEl, setAnchorEl] = useState(null);
+//     const navigate = useNavigate()
+//     const { currentUser, setCurrentUser } = useContext(UserContext)
 
-    const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-    };
+//     const [auth, setAuth] = useState(true);
+//     const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleClose = () => {
-    setAnchorEl(null);
-    };
+//     const handleMenu = (event) => {
+//     setAnchorEl(event.currentTarget);
+//     };
 
-    const handleLogout = () => {
-    window.localStorage.removeItem("Token");
-    window.localStorage.removeItem("Email");
-    navigate('/')
-}
-// console.log(currentUser)
-    return (
-    <>
-    <Box sx={{ flexGrow: 1 }}>
+//     const handleClose = () => {
+//     setAnchorEl(null);
+//     };
 
-    <AppBar position="static">
-        <Toolbar>
-        <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-        >
-            <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Final List
-        </Typography>
-        <Typography sx={{ minWidth: 100 }}><Link to= '/lists'> My Lists</Link></Typography>
+//     const handleLogout = () => {
+//     window.localStorage.removeItem("Token");
+//     window.localStorage.removeItem("Email");
+//     navigate('/')
+// }
+// // console.log(currentUser)
+//     return (
+//     <>
+//     <Box sx={{ flexGrow: 1 }}>
 
-        {currentUser === '' &&
-        <>
-        <Typography sx={{ minWidth: 100 }}><Link to='/users/signup'>Get Started</Link></Typography>
-        <Typography sx={{ minWidth: 100 }}><Link to='/users/login'>Login</Link></Typography>
+//         <Toolbar>
+//         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+//             Final List
+//         </Typography>
+//         {/* <Link href="/home" underline="hover">
+//         My Lists
+//         </Link> */}
+       
 
-        </>
-    }
-        {auth && (
-            <div>
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-            >
-                <AccountCircle />
-            </IconButton>
-            <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}>
-                    <MenuItem onClick={handleClose}>
-                        <Link to= '/users/:id'> Settings</Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose} >
-                        <Link to= '/' onClick={handleLogout}> Logout</Link>
-                    </MenuItem>
-            </Menu>
-            </div>
-        )}
-        </Toolbar>
-        </AppBar>
-    </Box>
-    </>
-    )
-}
+//         {currentUser === '' &&
+//         <>
+//         {/* <Link href="/home" underline="hover">
+//         My Lists<Link to='/users/signup'>Get Started</Link>
+//         <Link to='/users/login'>Login</Link>
+//         </Link> */}
+        
+//         </>
+//     }
+//         {auth && (
+//             <div>
+//             {/* <Link to= '/users/:id'> Settings</Link>
+//             <Link to= '/' onClick={handleLogout}> Logout</Link> */}
+            
+//             </div>
+//         )}
+//         </Toolbar>
 
-export default Navbar;
+//     </Box>
+//     </>
+//     )
+// }
+
+// export default Navbar;
