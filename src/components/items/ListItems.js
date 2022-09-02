@@ -98,6 +98,8 @@ const ListItems = () => {
       {/* </> */}
 
     <Item 
+      items={items}
+      setItems={setItems}
       activeList={activeList}
       itemsArr={items.items}
       reloadItems={reloadItems} 

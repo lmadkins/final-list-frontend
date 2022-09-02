@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 
 // DELETE (destroy)
 //  /lists/items/:listId/:id
-const DeleteItem = ({listId, setActiveList, id,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem }) => {
+const DeleteItem = (props, {listId, setActiveList, id,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem }) => {
   // console.log(id)
   // const { activeList, setActiveList } = useContext(ActiveListContext)
 // const [deleted, setDeleted] = useState(false)
@@ -22,17 +22,18 @@ const DeleteItem = ({listId, setActiveList, id,  reloadItems, setReloadItems,  h
 
 const navigate = useNavigate()
 
-  const handleItemDelete = () => {
-    axios.delete(`http://localhost:8000/${listId}/${id}`)
-        .then(res => {
-          // navigate('/lists')
-           // setSelectedItem(null)
-          setReloadItems(true)
 
-        })	
+const handleItemDelete = () => {
+  axios.delete(`http://localhost:8000/list/items/${listId}/${props.id}`)
+      .then(res => {
+        // navigate('/lists')
+         // setSelectedItem(null)
+        setReloadItems(true)
+
+      })	
 };
-
-
+// http://localhost:8000/list/items/63113dd0882d2881136436da
+// http://localhost:8000/list/items/6311116c882d288113642ca0
 // Delete popover
 // const [anchorEl, setAnchorEl] = useState(null);
 // const handleDeleteClick = (event) => {

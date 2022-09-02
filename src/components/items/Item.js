@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import axios from "axios";
@@ -62,6 +62,13 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
   },  [selectedItem, reloadItems])
 
 
+  // Edit modal controls    
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => { setOpen(true); };
+  const handleClose = () => { setOpen(false); };
+  
+
+ 
   return (
     <>
     {/* <Editable
@@ -89,15 +96,22 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
       {item.priority === 'low' && 
         <Chip color="info" label='Low' />}
 
-      <EditItem 
-        id={item._id}
-        listId={activeList}
-        reloadItems={reloadItems} 
-        setReloadItems={setReloadItems}
-        handleItemClick={handleItemClick}
-        selectedItem={selectedItem}
-        setSelectedItem={setSelectedItem}
-        />
+      <IconButton edge="end" aria-label="Edit Item" onClick={handleClickOpen}   >
+              <EditIcon/> 
+              <EditItem 
+              id={item._id}
+              listId={activeList}
+              reloadItems={reloadItems} 
+              setReloadItems={setReloadItems}
+              handleItemClick={handleItemClick}
+              selectedItem={selectedItem}
+              setSelectedItem={setSelectedItem}
+              open={open}
+              handleClickOpen={handleClickOpen}
+              handleClose={handleClose}
+              /> 
+          </IconButton>
+      
       <DeleteItem 
         id={item._id}
         listId={activeList}

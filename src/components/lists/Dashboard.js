@@ -135,8 +135,7 @@ const [listSelected, setListSelected] = useState(false)
               </List>
               <Button variant="contained" 
               onClick={handleClickOpen}
-              startIcon={<PlaylistAddIcon/>}
->
+              startIcon={<PlaylistAddIcon/>}>
               Create New List 
             </Button>
       <Dialog 

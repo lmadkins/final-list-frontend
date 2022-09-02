@@ -122,7 +122,6 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
         {/* Edit and Delete list controls */}
           </span>     
         
-       
   
           <IconButton edge="end" aria-label="edit"  id={id} 
           // onClick={handleListClick}

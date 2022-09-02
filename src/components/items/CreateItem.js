@@ -64,7 +64,7 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
      
       // onChange={handleChange}
       >
-    <Stack spacing={2}>
+    {/* <Stack spacing={2}> */}
       <TextField 
         id="name" 
         label="Item Name" 
@@ -100,7 +100,7 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
         {/* <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item> */}
-      </Stack>
+      {/* </Stack> */}
       </Box>
 
     )
