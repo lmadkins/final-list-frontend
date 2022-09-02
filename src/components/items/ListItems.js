@@ -115,7 +115,7 @@ const ListItems = () => {
           color: (theme) => theme.palette.grey[500],}}>
         <CloseIcon />
       </IconButton>
-      <DialogTitle>Create List</DialogTitle>
+      <DialogTitle>Create Item</DialogTitle>
       <DialogContent onChange={handleCreateChange}>
       <TextField 
         id="name" 
@@ -129,7 +129,7 @@ const ListItems = () => {
         />
         <TextField
           id="details"
-          label="Description the item"
+          label="Describe the item"
           placeholder="Description"
           margin="dense"
           multiline
@@ -153,9 +153,9 @@ const ListItems = () => {
         />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button >Cancel</Button>
             <Button variant="contained"
-          onClick={handleCreateSubmit}
+          onClick={handleClose}
         >Create Item</Button>
         </DialogActions>
       </Dialog>
