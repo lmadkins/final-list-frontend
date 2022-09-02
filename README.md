@@ -2,6 +2,7 @@
 A clean and simple to-do list/task application, harnessing proven anti-procrastination strategies to help you accomplish what you need to do- figure out what’s most important, to make sure those get done first, and add time estimates, so you can estimate whether you have enough time to do something. 
 
  [Deployed on Netlify](https://final-list.netlify.app/)
+ 
  [Back end deployed on Heroku](https://final-list.herokuapp.com/)
 
  Made with MongoDB, Express, React, Node.js (MERN), with Material UI Framework 
@@ -17,6 +18,7 @@ A clean and simple to-do list/task application, harnessing proven anti-procrasti
 - 'Task' list/item types, which includes badges to display time estimates for tags
 - Filter and sort items in lists
 - "In progress" list
+- Items and lists editable in-form
 
 ## Built With
 - Front End: React, Material UI, Axios
