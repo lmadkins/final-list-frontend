@@ -52,7 +52,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
   const handleListClick = (event) => {
     setListSelected(true)
     setActiveList(event.target.id)
-    console.log(`Handleclick in ListsListing: New active list is: ${activeList}`)
+    // console.log(`Handleclick in ListsListing: New active list is: ${activeList}`)
   }
 
   // Edit state and edit modal
