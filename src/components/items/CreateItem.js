@@ -6,20 +6,11 @@ import axios from 'axios'
 
 import { ActiveListContext } from '../../contexts/ActiveListContext';
 import { UserContext } from './contexts/UserContext';
-import Stack from '@mui/material/Stack';
+
 import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-// import Dialog from '@mui/material/Dialog';
-// import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
-// import CloseIcon from '@mui/icons-material/Close';
-// import IconButton from '@mui/material/IconButton';
-// import DialogActions from '@mui/material/DialogActions';
-// import DialogContent from '@mui/material/DialogContent';
-// import DialogContentText from '@mui/material/DialogContentText';
-// import DialogTitle from '@mui/material/DialogTitle';
-// import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+
 // Create a new Item
 // Routes: POST to /lists/items/:listId
 
@@ -39,7 +30,7 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
     function handleCreateSubmit (event) {
       event.preventDefault()
        // if (createItem.name !== '' && createItem.details !== '')
-          axios.post(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`, createItem)
+          axios.post(`https://final-list.herokuapp.com/lists/items/${activeList}`, createItem)
           .then(res => {
             setCreateItem(initialCreateState)
             // console.log('created')

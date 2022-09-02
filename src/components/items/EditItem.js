@@ -33,7 +33,7 @@ const EditItem = ({id, name,  reloadItems, setReloadItems,  handleItemClick, sel
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, itemChanges)
+      axios.patch(`https://final-list.herokuapp.com/lists/${id}`, itemChanges)
       .then(() => {
         setReloadItems(true)
       })

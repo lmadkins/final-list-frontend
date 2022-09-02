@@ -50,7 +50,7 @@ const Login = () => {
     function handleSubmit (event) {
         event.preventDefault()
         if (formState.email !== '' && formState.password !== ''){
-            axios.post('https://radiant-sierra-50882.herokuapp.com/users/signin', formState)
+            axios.post('https://final-list.herokuapp.com/users/signin', formState)
             .then(res => {
                 // console.log(res.data.token)
                 // console.log(res.data.email)

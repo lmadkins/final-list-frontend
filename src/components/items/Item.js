@@ -25,7 +25,7 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
   
   useEffect(() => {
     activeList !== 'undefined' && 
-    axios.get(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`)
+    axios.get(`https://final-list.herokuapp.com/lists/items/${activeList}`)
     .then(res => setItems(res.data))
     // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
     // setReloadItems(true)

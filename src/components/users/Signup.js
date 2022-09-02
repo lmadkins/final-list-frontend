@@ -52,7 +52,7 @@ const Signup = () => {
         event.preventDefault()
         // if (newUser.email !== '' && newUser.password !== ''){
             formState.password === formState.confirmPassword &&
-            axios.post('https://radiant-sierra-50882.herokuapp.com/users/signup', formState)
+            axios.post('https://final-list.herokuapp.com/users/signup', formState)
             .then(res => {
                     // save token to local storage
                     // window.localStorage.setItem("Token", res.data.token)

@@ -18,7 +18,6 @@ import Dashboard from './components/lists/Dashboard';
 import { UserContext } from './contexts/UserContext';
 
 
-
 function App() {
 
     // SET STATE FOR USER CONTEXT

@@ -68,7 +68,7 @@ const ListItems = () => {
   function handleCreateSubmit (event) {
     event.preventDefault()
     // if (createItem.name !== '' && createItem.details !== '')
-        axios.post(`https://radiant-sierra-50882.herokuapp.com/lists/items/${activeList}`, createItem)
+        axios.post(`https://final-list.herokuapp.com/lists/items/${activeList}`, createItem)
         .then(res => {
           // console.log('created')
           setReloadItems(true)

@@ -69,7 +69,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, relo
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`https://radiant-sierra-50882.herokuapp.com/lists/${id}`, listChanges)
+      axios.patch(`https://final-list.herokuapp.com/lists/${id}`, listChanges)
       .then(() => {
         setReloadLists(true)
         handleClose()
