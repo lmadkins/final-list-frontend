@@ -2,7 +2,7 @@
 // import { Routes, Route } from 'react-router-dom'
 // import Home from './components/Home';
 import { Routes, Route, Link} from 'react-router-dom'
-import {  useState } from 'react';
+import { useContext, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
@@ -17,10 +17,10 @@ import UserSettings from './components/users/UserSettings'
 import ListItems from './components/items/ListItems';
 import Dashboard from './components/lists/Dashboard';
 
-
+import { UserContext } from './contexts/UserContext';
 // import Navbar from './components/Navbar'
-// import Signup from './components/users/Signup';
-// import Login from './components/users/Login';
+import Signup from './components/users/Signup';
+import Login from './components/users/Login';
 // import UserSettings from './components/users/UserSettings'
 // import { createContext, useState } from 'react';
 
@@ -41,15 +41,16 @@ function App() {
       password: ''
   })
   // const [user, setUser] = useState(false)
-  // const [isUserLoggedIn, setUserProfile] = useState(false)
+  const [isUserLoggedIn, setUserProfile] = useState(false)
 
   return (
     <>
-    {/* <UserContext.Provider value={{'currentUser': currentUser, 'setCurrentUser': setCurrentUser}}> */}
+    <UserContext.Provider value={{'currentUser': currentUser, 'setCurrentUser': setCurrentUser}}>
     
     <nav>
-      {/* set this up later to conditionaly render based on current user logged in or not */}
-       {/* {isUserLoggedIn ? <Dashboard /> : <Login />} */}
+      
+      {isUserLoggedIn ? <Dashboard /> : <Login />}
+
       <Stack
       direction={{ xs: 'column', sm: 'row' }}
       spacing={{ xs: 1, sm: 2, md: 4 }}>
@@ -59,19 +60,21 @@ function App() {
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
           <Link to= '/'> Final List </Link>   
       </Typography>
-     
-        <Link to='/lists'>Dash</Link>
-        <Link to='/dash2'>Dash2</Link>
-        <Link to='/users/settings'>User Settings</Link>
-        <Link to='/'>Logout</Link>
-        <Link to='/users/signup'>Get Started</Link>
-        <Link to='/users/signin'>Login</Link>
 
+      { isUserLoggedIn ? ( <>
+          <Link to='/lists'>Dash</Link>
+          {/* <Link to='/users/settings'>User Settings</Link> */}
+          <Link to='/'>Logout</Link>
+        </> ) : (
+          <>
+          <Link to='/users/signup'>Get Started</Link>
+          <Link to='/users/signin'>Login</Link>
+          </>
+        )}
       </Stack>
     </nav>
 
-          {/* if signed in, show <ListsHome /> */}
-    {/* <Navbar /> */}
+
     <Routes>
     {/* <Route path = '/dash2' element={<Dashboard2 />} /> */}
         <Route path = '/lists' element={<Dashboard />} />
@@ -80,7 +83,7 @@ function App() {
         <Route path='/users/settings' element= {<UserSettings />} />
         <Route path = '/lists/items/:id' element={<ListItems />} />
     </Routes>
-    {/* </UserContext.Provider> */}
+    </UserContext.Provider>
     </> 
   );
 }

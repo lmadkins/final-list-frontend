@@ -1,9 +1,6 @@
-import {  useState } from 'react'
+import {  useContext, useState } from 'react'
 import axios from 'axios'
-// import ListsList from './ListsList'
-// import CreateListForm from '../trash/CreateListForm'
-// import * as React from 'react';
-
+import { UserContext } from './contexts/UserContext';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';

@@ -1,7 +1,7 @@
 // // import Link from '@mui/material/Link';
 // import { useContext, useState } from 'react'
 // import { Link, useNavigate } from 'react-router-dom'
-
+// import { UserContext } from './contexts/UserContext';
 // // import Signup from './users/Signup';
 // // import Login from './users/Login';
 
@@ -59,7 +59,7 @@
 //         </Link> */}
        
 
-//         {currentUser === '' &&
+//         {currentUser.email === '' &&
 //         <>
 //         {/* <Link href="/home" underline="hover">
 //         My Lists<Link to='/users/signup'>Get Started</Link>

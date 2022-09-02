@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 
 // handle change
 // handle submit
+import { UserContext } from './contexts/UserContext';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 // import { UserContext } from '../Home'
@@ -148,7 +149,7 @@ const Signup = () => {
                 name="confirmPassword"
                 label="ConfirmPassword"
                 type="password"
-                id="confirmPassword"
+                id="confirm Password"
                 autoComplete="new-password"
                 value={formState.confirmPassword}
                 onChange={handleChange}

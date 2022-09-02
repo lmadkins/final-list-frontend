@@ -11,10 +11,10 @@ import Box from '@mui/material/Box';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 // import { useContext} from 'react';
 import { useNavigate } from 'react-router-dom'
-// import { UserContext } from '../Home'
+import { UserContext } from '../../contexts/UserContext';
 import axios from 'axios';
 
 // import LoginForm from "./LoginForm";
@@ -24,7 +24,7 @@ const Login = () => {
 
     const navigate = useNavigate()
     const [error, setError] = useState(null)
-    // const { currentUser, setCurrentUser } = useContext(UserContext)
+    const { currentUser, setCurrentUser } = useContext(UserContext)
 
     const initialState = { email: '',  password: '' }
 
