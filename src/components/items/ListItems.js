@@ -97,7 +97,7 @@ const ListItems = () => {
     <Button variant="contained"
           startIcon={<LibraryAddIcon/>}
         onClick={handleClickOpen}
-        >Add an item
+        >Add an Item
     </Button>
     <Dialog 
       onClose={handleClose}
@@ -117,6 +117,8 @@ const ListItems = () => {
       </IconButton>
       <DialogTitle>Create Item</DialogTitle>
       <DialogContent onChange={handleCreateChange}>
+        <form
+          onSubmit={handleCreateSubmit}>
       <TextField 
         id="name" 
         label="Item Name" 
@@ -139,18 +141,19 @@ const ListItems = () => {
           onChange={handleCreateChange}
           />
           <TextField 
-        id="priority" 
-        label="Low, Medium, or High Priority" 
-        variant="outlined" 
-        margin="dense"
-        fullWidth
-        // required='true'
-        // placeholder=
-        // multiline
-        required='true'
-        onChange={handleCreateChange}
-        value={createItem.priority}
-        />
+          id="priority" 
+          label="Low, Medium, or High Priority" 
+          variant="outlined" 
+          margin="dense"
+          fullWidth
+          // required='true'
+          // placeholder=
+          // multiline
+          required='true'
+          onChange={handleCreateChange}
+          value={createItem.priority}
+          />
+          </form>
         </DialogContent>
         <DialogActions>
           <Button >Cancel</Button>
