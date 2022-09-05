@@ -10,7 +10,7 @@ import { Chip } from '@mui/material';
 
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
+// import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -22,9 +22,10 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+import Tooltip from '@mui/material/Tooltip';
+// import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Stack from '@mui/material/Stack';
+// import Stack from '@mui/material/Stack';
 
 // returning one specific item from the ItemsList
 const Item = ({items, setItems, itemsArr, activeList, setActiveList, reloadItems, setReloadItems, selectedItem, setSelectedItem, handleItemClick }) => {
@@ -115,23 +116,25 @@ const handleToggle = (value) => () => {
           <Chip color="info" label='Low' />
         }
 <>
-  <IconButton edge="end" aria-label="Edit Item" onClick={handleOpenEdit}>
-        <EditIcon
-        onClick= {handleOpenEdit}/> 
-        {/* <EditItem 
-          setOpenEdit={setOpen}
-          id={item._id}
-          listid={activeList}
-          // reloadItems={reloadItems} 
-          // setReloadItems={setReloadItems}
-          // handleItemClick={handleItemClick}
-          // selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
-          openEdit={open}
-          handleOpenEdit={handleOpenEdit}
-          handleClose={handleCloseEdit}
-          />  */}
-      </IconButton>
+  <Tooltip title="Edit Item" arrow>
+    <IconButton edge="end" aria-label="Edit Item" onClick={handleOpenEdit}>
+          <EditIcon
+          onClick= {handleOpenEdit}/> 
+          {/* <EditItem 
+            setOpenEdit={setOpen}
+            id={item._id}
+            listid={activeList}
+            // reloadItems={reloadItems} 
+            // setReloadItems={setReloadItems}
+            // handleItemClick={handleItemClick}
+            // selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+            openEdit={open}
+            handleOpenEdit={handleOpenEdit}
+            handleClose={handleCloseEdit}
+            />  */}
+        </IconButton>
+      </Tooltip>
 
 
       <Dialog 
@@ -140,6 +143,7 @@ const handleToggle = (value) => () => {
         noValidate
         autoComplete="off" 
       >
+        
       <IconButton
         aria-label="close"
         onClick={handleCloseEdit}

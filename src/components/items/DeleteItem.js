@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-
+import Tooltip from '@mui/material/Tooltip';
 
 // DELETE (destroy)
 //  /lists/items/:listId/:id
@@ -24,11 +24,13 @@ const DeleteItem = (props, {listid, activeList, setActiveList, itemID,  reloadIt
 
     
   return (
-  <>  
+  <>
+    <Tooltip title="Delete Item" arrow>
     <IconButton edge="end" aria-label="delete item"  
     itemID={itemID} listid={listid} onClick={handleItemDelete}>
       <DeleteIcon/>  
     </IconButton>
+    </Tooltip>
   </>
   )
 }
