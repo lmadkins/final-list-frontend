@@ -1,46 +1,73 @@
-import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
-// import ListsList from './ListsList'
-// import CreateListForm from './CreateListForm'
-import { ActiveListContext } from '../../contexts/ActiveListContext';
-import { UserContext } from '../../contexts/UserContext';
-// import EditIcon from '@mui/icons-material/Edit';
-// import IconButton from '@mui/material/IconButton';
+import { useState } from 'react'
+// import { ActiveListContext } from '../../contexts/ActiveListContext';
+// import { UserContext } from '../../contexts/UserContext';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
 
-const EditList = ({id, name,  reloadLists, setReloadLists}) => {
-  // const [reload, setReload] = useState(false)
-  const { activeList, setActiveList } = useContext(ActiveListContext)
-  // const navigate = useNavigate()
-  const [listChanges, setListChanges] = useState({
-    name: '',
-    details: ''
-  });
+const EditList = ({id, name, details, handleChange, handleSubmit, listChanges, setListChanges}) => {
+  // Patch req, state, and methods are in ListItems parent component
 
-  const handleChange = (event) => {
-    setListChanges({ ...listChanges, [event.target.id]: event.target.value });
-    // console.log(event.target.value)
-  }
+  // Modal controls 
+  const [open, setOpen] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-      axios.patch(`https://final-list.herokuapp.com/lists/${id}`, listChanges)
-      .then(() => {
-        setReloadLists(true)
-      })
-    }
- 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
   <>  
-   {/* // put some message here to display that it's been deleted */}
-          {/* <IconButton edge="end" aria-label="editlist"  id={id}  
-          // onClick={handleListEdit}
-          >
-              <EditIcon/>  
-          </IconButton> */}
+    <IconButton edge="end" aria-label="edit"  id={id}  onClick={handleClickOpen}>
+      <EditIcon/>
+    </IconButton>
+    <Dialog 
+      open={open} 
+      onClose={handleClose}
+      onSubmit={handleSubmit}
+    >
+        <DialogTitle>Edit List</DialogTitle>
+        <DialogContent>
 
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Name"
+            onChange={handleChange}
+            fullWidth
+            variant="standard"
+            value={listChanges.name}
+            placeholder={name}
+          />
+          <TextField
+            // autoFocus
+            margin="dense"
+            id="details"
+            label="Details"
+            onChange={handleChange}
+            // type="email"
+            fullWidth
+            variant="standard"
+            value={listChanges.details}
+            placeholder={details}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type='submit' onClick={handleSubmit} >Save Changes</Button>
+        </DialogActions>
+      </Dialog>
   </>
   )
-}
+};
 
 export default EditList;

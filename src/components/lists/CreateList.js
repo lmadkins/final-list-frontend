@@ -23,7 +23,7 @@ const CreateListForm = ({ reloadLists, setReloadLists}) => {
     function handleCreateSubmit (event) {
       event.preventDefault()
        // if (createList.name !== '' && createList.details !== '')
-          axios.post('https://final-list.herokuapp.com/lists', createList)
+          axios.post('http://localhost:8000/lists', createList)
           .then(res => {
 
           })

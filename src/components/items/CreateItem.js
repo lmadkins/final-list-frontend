@@ -4,8 +4,8 @@ import axios from 'axios'
 // import CreateListForm from '../trash/CreateListForm'
 // import * as React from 'react';
 
-import { ActiveListContext } from '../../contexts/ActiveListContext';
-import { UserContext } from './contexts/UserContext';
+// import { ActiveListContext } from '../../contexts/ActiveListContext';
+// import { UserContext } from './contexts/UserContext';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -30,11 +30,11 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
     function handleCreateSubmit (event) {
       event.preventDefault()
        // if (createItem.name !== '' && createItem.details !== '')
-          axios.post(`https://final-list.herokuapp.com/lists/items/${activeList}`, createItem)
+          axios.post(`http://localhost:8000/lists/items/${activeList}`, createItem)
           .then(res => {
             setCreateItem(initialCreateState)
-            // console.log('created')
-            setReloadItems(true)
+            console.log('created')
+            // setReloadItems(true)
           })
     }  
 
@@ -74,7 +74,6 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
           id="priority" 
           label="Low, Medium, or High Priority" 
           variant="outlined" 
-                  required='true'
           onChange={handleCreateChange}
           value={createItem.priority}
           // required='true'
