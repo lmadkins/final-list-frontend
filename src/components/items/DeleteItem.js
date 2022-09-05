@@ -7,14 +7,14 @@ import IconButton from '@mui/material/IconButton';
 
 // DELETE (destroy)
 //  /lists/items/:listId/:id
-const DeleteItem = (props, {listid, activeList, setActiveList, itemId,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, deleted, setDeleted }) => {
+const DeleteItem = (props, {listid, activeList, setActiveList, itemID,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, deleted, setDeleted }) => {
 
 // console.log(listId)
 // console.log(id)
 // console.log(props.listId)
 // console.log(props.id)
   const handleItemDelete = () => {
-    axios.delete(`http://localhost:8000/list/items/${props.listid}/${props.itemId}`)
+    axios.delete(`http://localhost:8000/list/items/${props.listid}/${props.itemID}`)
         .then(res => {
           // navigate('/lists')
           // setSelectedItem(null)
@@ -26,7 +26,7 @@ const DeleteItem = (props, {listid, activeList, setActiveList, itemId,  reloadIt
   return (
   <>  
     <IconButton edge="end" aria-label="delete item"  
-    itemId={itemId} listid={listid} onClick={handleItemDelete}>
+    itemID={itemID} listid={listid} onClick={handleItemDelete}>
       <DeleteIcon/>  
     </IconButton>
   </>

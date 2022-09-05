@@ -74,7 +74,6 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
           id="priority" 
           label="Low, Medium, or High Priority" 
           variant="outlined" 
-          required='true'
           onChange={handleCreateChange}
           value={createItem.priority}
           // required='true'

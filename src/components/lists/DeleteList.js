@@ -26,7 +26,7 @@ const DeleteList = ({id, name, setDeleted}) => {
           // setReloadLists(true)
           setActiveList(false)
           setDeleted(true)
-          axios.get(`http://localhost:8000/lists`)
+          // axios.get(`http://localhost:8000/lists`)
         })	
 };
 

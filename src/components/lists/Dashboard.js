@@ -39,11 +39,11 @@ const Dashboard = () => {
   const [activeList, setActiveList] = useState('')
   const [listSelected, setListSelected] = useState(false)
   // const navigate = useNavigate()
-  const [deleted, setDeleted ] = useState(false)
+  // const [deleted, setDeleted ] = useState(false)
 // Reload for actions to do a new get request to refresh lists after a change. Imported into ListsListing, EditList, DeleteList, CreateList
   const [reloadLists, setReloadLists] = useState(false)
 
-  // Edit modal controls    
+  // Create modal controls    
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => { setOpen(true); };
   const handleClose = () => { setOpen(false); };
@@ -81,7 +81,7 @@ const Dashboard = () => {
     axios.get(`http://localhost:8000/lists`)
     .then(res => setLists(res.data))
     // console.log(createList)
-  },[reloadLists, createList, deleted])
+  },[reloadLists, createList])
 
 
   return (
@@ -110,8 +110,8 @@ const Dashboard = () => {
                     name={list.name} 
                     details={list.details}
                     lists={lists}
-                    deleted={deleted}
-                    setDeleted={setDeleted}
+                    // deleted={deleted}
+                    // setDeleted={setDeleted}
                     // onClick={handleClick}
                     // activeList = {activeList}
                     // setActiveList = {setActiveList}
