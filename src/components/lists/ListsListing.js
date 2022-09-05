@@ -44,13 +44,6 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, dele
                 onClick={handleListClick}
                 secondaryAction={
                   <>
-                    <IconButton edge="end" aria-label="delete" id={id}>
-                      <DeleteList  
-                        id={id} name={name}
-                        deleted={deleted}
-                        setDeleted={setDeleted}
-                      />  
-                    </IconButton> 
                   </>
                 }>
                 <ListItemButton  id={id}

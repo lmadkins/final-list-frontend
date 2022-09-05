@@ -81,7 +81,7 @@ const Dashboard = () => {
     axios.get(`http://localhost:8000/lists`)
     .then(res => setLists(res.data))
     // console.log(createList)
-  },[reloadLists, createList])
+  },[reloadLists, createList, activeList])
 
 
   return (

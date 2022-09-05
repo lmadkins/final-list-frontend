@@ -4,6 +4,7 @@ import { ActiveListContext } from '../../contexts/ActiveListContext';
 // import { UserContext } from '../../contexts/UserContext';
 import Item from './Item';
 import EditList from '../lists/EditList';
+import DeleteList from '../lists/DeleteList';
 import Button from '@mui/material/Button';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import CloseIcon from '@mui/icons-material/Close';
@@ -19,7 +20,6 @@ const ListItems = () => {
   const { activeList, setActiveList} = useContext(ActiveListContext)
   // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
   const [reloadItems, setReloadItems] = useState(false)
-
 
 
 // State for the items in a given list:
@@ -98,6 +98,14 @@ const handleItemClick = (event) => {
         listChanges={listChanges}
         setListChanges={setListChanges}
         />  
+      
+      <DeleteList 
+      id={items._id}
+      name={items.name}
+      details={items.details}
+      items={items}
+      setItems={setItems}
+      /> 
 
     <Item 
       onClick={handleItemClick} 
