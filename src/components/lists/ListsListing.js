@@ -55,12 +55,12 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, dele
     // console.log(`Handleclick in ListsListing: New active list is: ${activeList}`)
   }
 
+  const [dense, setDense] = React.useState(false);
+  const [secondary, setSecondary] = React.useState(false);
+
   // Edit state and edit modal
   const initialFormState = { name: '',  details: '' }
   const [listChanges, setListChanges] = useState(initialFormState);
-
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
 
   const handleListChange = (event) => {
     setListChanges({ ...listChanges, [event.target.id]: event.target.value });
@@ -69,7 +69,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, dele
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`https://final-list.herokuapp.com/lists/${id}`, listChanges)
+      axios.patch(`http://localhost:8000/lists/${id}`, listChanges)
       .then(() => {
         setReloadLists(true)
         handleClose()
@@ -99,7 +99,7 @@ const ListsListing = ({ props, name, id, details, handleClick, lists, list, dele
                       open={open} onClose={handleClose}
                       >
                       <EditIcon/>  
-                      <EditList id={id} name={name}/>
+                      <EditList id={id} name={name} handleClose={handleClose}/>
                     </IconButton>
                     <IconButton edge="end" aria-label="delete" id={id}>
                       <DeleteList  

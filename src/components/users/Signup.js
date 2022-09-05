@@ -25,7 +25,7 @@ const Signup = () => {
         displayname: '',
         email: '',
         password: '',
-        confirmPassword: '',
+        // confirmPassword: '',
     }
     const [formState, setFormState] = useState(initialState);
       // const [error, setError] = useState(null)
@@ -51,20 +51,24 @@ const Signup = () => {
     function handleSubmit (event) {
         event.preventDefault()
         // if (newUser.email !== '' && newUser.password !== ''){
-            formState.password === formState.confirmPassword &&
-            axios.post('https://final-list.herokuapp.com/users/signup', formState)
+            // formState.password === formState.confirmPassword &&
+            // axios.post('https://final-list.herokuapp.com/users/signup', formState)
+            axios.post('http://localhost:8000/users/signup', formState)
             .then(res => {
                     // save token to local storage
-                    // window.localStorage.setItem("Token", res.data.token)
+                    window.localStorage.setItem("Token", res.data.token)
                     // save email to local storage
+                    
                     window.localStorage.setItem("Email", formState.email)
                     setFormState(initialState)
-                localStorage.setItem('token', res.data.token)
+                    localStorage.setItem('token', res.data.token)
                     localStorage.setItem('id', res.data.id)
+                    console.log(formState)
                     // window.localstorage?
             })
             .then(() => {
                 navigate('/lists')
+                console.log('Success')
             })
             .catch(err => {
                 // if (err.response.data.includes("User validation failed: email: Invalid email")) {
@@ -161,7 +165,7 @@ const Signup = () => {
             </Button>
             <Grid container justifyContent="flex-end">
             <Grid item>
-                <Link href="/users/login" variant="body2">
+                <Link href="/users/signin" variant="body2">
                 Already have an account? Sign in
                 </Link>
             </Grid>

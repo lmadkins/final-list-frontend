@@ -26,7 +26,7 @@ const Item = ({items, setItems, itemsArr,  activeList, setActiveList, reloadItem
   
   useEffect(() => {
     activeList !== 'undefined' && 
-    axios.get(`https://final-list.herokuapp.com/lists/items/${activeList}`)
+    axios.get(`http://localhost:8000/lists/items/${activeList}`)
     .then(res => setItems(res.data))
     // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
     // setReloadItems(true)
@@ -85,7 +85,7 @@ const handleClose = () => { setOpen(false); };
         <EditItem 
           setOpenEdit={setOpenEdit}
           id={item._id}
-          listId={activeList}
+          listid={activeList}
           reloadItems={reloadItems} 
           setReloadItems={setReloadItems}
           handleItemClick={handleItemClick}
@@ -101,7 +101,7 @@ const handleClose = () => { setOpen(false); };
         >
         <DeleteItem 
         itemId={item._id}
-        listId={activeList}
+        listid={activeList}
         reloadItems={reloadItems} 
         setReloadItems={setReloadItems}
         handleItemClick={handleItemClick}

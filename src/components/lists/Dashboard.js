@@ -36,13 +36,17 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Dashboard = () => {
   // Setting state for ActiveList context
-  const [activeList, setActiveList] = useState(false)
+  const [activeList, setActiveList] = useState('')
   const [listSelected, setListSelected] = useState(false)
   // const navigate = useNavigate()
   const [deleted, setDeleted ] = useState(false)
 // Reload for actions to do a new get request to refresh lists after a change. Imported into ListsListing, EditList, DeleteList, CreateList
   const [reloadLists, setReloadLists] = useState(false)
 
+  // Edit modal controls    
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => { setOpen(true); };
+  const handleClose = () => { setOpen(false); };
 
   // CREATE LIST FORM 
   const initialCreateState = { name: '',  details: '' }
@@ -54,10 +58,11 @@ const Dashboard = () => {
   const handleCreateSubmit = (event) => {
       event.preventDefault()
       // if (createList.name !== '' && createList.details !== '')
-          axios.post('https://final-list.herokuapp.com/lists/new', createList)
+          axios.post('http://localhost:8000/lists/new', createList)
           .then(res => {
             setCreateList(initialCreateState)
             // navigate('/lists')
+            handleClose()
             setReloadLists(true)
           })
     }  
@@ -73,15 +78,11 @@ const Dashboard = () => {
 
 // Reload lists list
   useEffect(() => {
-    axios.get(`https://final-list.herokuapp.com/lists`)
+    axios.get(`http://localhost:8000/lists`)
     .then(res => setLists(res.data))
     // console.log(createList)
   },[reloadLists, createList, deleted])
 
-  // Edit modal controls    
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => { setOpen(true); };
-  const handleClose = () => { setOpen(false); };
 
   return (
     <>

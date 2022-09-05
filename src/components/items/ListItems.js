@@ -22,6 +22,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 // import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+
 const ListItems = () => {
   // {activeList, activeListContext}
   const { activeList, setActiveList, listSelected, setListSelected } = useContext(ActiveListContext)
@@ -30,6 +31,7 @@ const ListItems = () => {
 // State for the items in a given list:
   const [items, setItems] = useState(false)
   // console.log(items.items)
+  // console.log(activeList)
   // Reload items list
   // if (activeList !== 'undefined') {
   //     axios.get(`http://localhost:8000/lists/items/${activeList}`)
@@ -37,7 +39,7 @@ const ListItems = () => {
   //     console.log(items)
   // }
   useEffect(() => {
-      axios.get(`https://final-list.herokuapp.com/lists/items/${activeList}`)
+      axios.get(`http://localhost:8000/lists/items/${activeList}`)
       .then(res => setItems(res.data))
       // console.log(`UseEffect in ListItems says the items of the active list are: ${items}`)
        // setReloadItems(true)
@@ -62,16 +64,21 @@ const ListItems = () => {
   const [createItem, setCreateItem] = useState(initialCreateState);
 
   const handleCreateChange = (event) => {
-    setCreateItem({...createItem, [event.target.id]: event.target.value})
+  // //  console.log(event)f
+  // console.log(createItem)
+  // console.log(event.target.value)
+   setCreateItem({...createItem, [event.target.id]: event.target.value})
   }
 
   function handleCreateSubmit (event) {
     event.preventDefault()
+    console.log(createItem)
     // if (createItem.name !== '' && createItem.details !== '')
-        axios.post(`https://final-list.herokuapp.com/lists/items/${activeList}`, createItem)
+        axios.post(`http://localhost:8000/lists/items/${activeList}`, createItem)
         .then(res => {
-          // console.log('created')
-          setReloadItems(true)
+          console.log('created')
+          handleClose()
+          // setReloadItems(true)
         })
   }  
 
@@ -95,18 +102,21 @@ const ListItems = () => {
     // selectedItem={selectedItem}
     // setSelectedItem(setSelectedItem)
     />
+
+
     <Button variant="contained"
           startIcon={<LibraryAddIcon/>}
         onClick={handleClickOpen}
         >Add an Item
+    
     </Button>
     <Dialog 
       onClose={handleClose}
       open={open}
-      component="form"
+      // component="form"
       noValidate
       autoComplete="off" 
-      onSubmit={handleCreateSubmit}
+      // onSubmit={handleCreateSubmit}
       >
       <IconButton
         aria-label="close"
@@ -117,9 +127,10 @@ const ListItems = () => {
         <CloseIcon />
       </IconButton>
       <DialogTitle>Create Item</DialogTitle>
-      <DialogContent onChange={handleCreateChange}>
-        <form
-          onSubmit={handleCreateSubmit}>
+      <DialogContent >
+        {/* <form
+          onSubmit={handleCreateSubmit}
+          > */}
       <TextField 
         id="name" 
         label="Item Name" 
@@ -154,12 +165,13 @@ const ListItems = () => {
           onChange={handleCreateChange}
           value={createItem.priority}
           />
-          </form>
+          {/* </form> */}
         </DialogContent>
         <DialogActions>
           <Button >Cancel</Button>
             <Button variant="contained"
-          onClick={handleClose}
+          onClick={handleCreateSubmit
+          }
         >Create Item</Button>
         </DialogActions>
       </Dialog>

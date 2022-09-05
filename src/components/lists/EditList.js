@@ -8,7 +8,7 @@ import { UserContext } from '../../contexts/UserContext';
 // import EditIcon from '@mui/icons-material/Edit';
 // import IconButton from '@mui/material/IconButton';
 
-const EditList = ({id, name,  reloadLists, setReloadLists}) => {
+const EditList = ({id, name,  reloadLists, setReloadLists,}) => {
   // const [reload, setReload] = useState(false)
   const { activeList, setActiveList } = useContext(ActiveListContext)
   // const navigate = useNavigate()
@@ -24,7 +24,7 @@ const EditList = ({id, name,  reloadLists, setReloadLists}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`https://final-list.herokuapp.com/lists/${id}`, listChanges)
+      axios.patch(`http://localhost:8000/lists/${id}`, listChanges)
       .then(() => {
         setReloadLists(true)
       })
