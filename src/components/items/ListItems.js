@@ -16,7 +16,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const ListItems = () => {
-  // {activeList, activeListContext}
   const { activeList, setActiveList} = useContext(ActiveListContext)
   // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
   const [reloadItems, setReloadItems] = useState(false)
@@ -76,10 +75,10 @@ const ListItems = () => {
 
 const [selectedItem, setSelectedItem] = useState()
 
-const handleItemClick = (event) => {
-  event.preventDefault()
-  setSelectedItem(event.target.id)
-}
+// const handleItemClick = (event) => {
+//   event.preventDefault()
+//   setSelectedItem(event.target.id)
+// }
 
   return (
   <>
@@ -101,6 +100,7 @@ const handleItemClick = (event) => {
       
       <DeleteList 
       id={items._id}
+      list={activeList._id}
       name={items.name}
       details={items.details}
       items={items}
@@ -108,7 +108,7 @@ const handleItemClick = (event) => {
       /> 
 
     <Item 
-      onClick={handleItemClick} 
+      // onClick={handleItemClick} 
       items={items}
       setItems={setItems}
       activeList={activeList}

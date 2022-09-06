@@ -110,11 +110,6 @@ const Dashboard = () => {
                     name={list.name} 
                     details={list.details}
                     lists={lists}
-                    // deleted={deleted}
-                    // setDeleted={setDeleted}
-                    // onClick={handleClick}
-                    // activeList = {activeList}
-                    // setActiveList = {setActiveList}
                     reloadLists={reloadLists}
                     setReloadLists={setReloadLists}
                   />))}
@@ -176,30 +171,12 @@ const Dashboard = () => {
 
       <Grid item xs={6}>
         <Item>
-       
         {/* Each item in the selected list, plus links to edit and delete */}
           <ListItems 
-          // items={items}
-          // itemsArr={items.items}
-          // setItems={setItems}
-          // activeList = {activeList}
-          // setActiveList = {setActiveList}
-
         />
   
         </Item>
       </Grid>
-
-     
-
-    {/* <Grid item xs={3}>
-
-      <Item>   
-  
-      </Item>
-    
-    </Grid> */}
-
     </Grid>
   </Box>
   </ActiveListContext.Provider>

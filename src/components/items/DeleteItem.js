@@ -1,5 +1,6 @@
-// import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react'
+import { ActiveListContext } from '../../contexts/ActiveListContext';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
@@ -7,18 +8,18 @@ import Tooltip from '@mui/material/Tooltip';
 
 // DELETE (destroy)
 //  /lists/items/:listId/:id
-const DeleteItem = (props, {listid, activeList, setActiveList, itemID,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, deleted, setDeleted }) => {
+const DeleteItem = (props, {id, listid, itemID,  reloadItems, setReloadItems,  handleItemClick, selectedItem, setSelectedItem, deleted, setDeleted }) => {
 
-// console.log(listId)
-// console.log(id)
-// console.log(props.listId)
 // console.log(props.id)
+    const { activeList, setActiveList} = useContext(ActiveListContext)
+
   const handleItemDelete = () => {
-    axios.delete(`http://localhost:8000/list/items/${props.listid}/${props.itemID}`)
+    axios.delete(`http://localhost:8000/list/items/${props.listid}/${props.id}`)
         .then(res => {
           // navigate('/lists')
           // setSelectedItem(null)
-          setDeleted(true)
+          setReloadItems(true)
+          // setDeleted(true)
         })	
     };
 
@@ -36,5 +37,3 @@ const DeleteItem = (props, {listid, activeList, setActiveList, itemID,  reloadIt
 }
 
 export default DeleteItem;
-
-// http://localhost:8000/630d463c81cab02c45de6864/631111e4882d288113642cc3
