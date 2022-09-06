@@ -14,7 +14,7 @@ const DeleteItem = (props, {id, listid, itemID,  reloadItems, setReloadItems,  h
     const { activeList, setActiveList} = useContext(ActiveListContext)
 
   const handleItemDelete = () => {
-    axios.delete(`http://localhost:8000/list/items/${props.listid}/${props.id}`)
+    axios.delete(`https://final-list.herokuapp.com/list/items/${props.listid}/${props.id}`)
         .then(res => {
           // navigate('/lists')
           // setSelectedItem(null)

@@ -51,7 +51,7 @@ const Login = () => {
         event.preventDefault()
         if (formState.email !== '' && formState.password !== ''){
             // axios.post('https://final-list.herokuapp.com/users/signin', formState)
-            axios.post('http://localhost:8000/users/signin', user)
+            axios.post('https://final-list.herokuapp.com/users/signin', user)
             .then(res => {
                 console.log(res.data.token)
                 // console.log(res.data.email)

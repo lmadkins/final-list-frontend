@@ -58,7 +58,7 @@ const Dashboard = () => {
   const handleCreateSubmit = (event) => {
       event.preventDefault()
       // if (createList.name !== '' && createList.details !== '')
-          axios.post('http://localhost:8000/lists/new', createList)
+          axios.post('https://final-list.herokuapp.com/lists/new', createList)
           .then(res => {
             setCreateList(initialCreateState)
             // navigate('/lists')
@@ -78,7 +78,7 @@ const Dashboard = () => {
 
 // Reload lists list
   useEffect(() => {
-    axios.get(`http://localhost:8000/lists`)
+    axios.get(`https://final-list.herokuapp.com/lists`)
     .then(res => setLists(res.data))
     // console.log(createList)
   },[reloadLists, createList, activeList])

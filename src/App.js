@@ -26,8 +26,7 @@ function App() {
       email: '',
       password: ''
   })
-  // const [user, setUser] = useState(false)
-  // const [isUserLoggedIn, setUserProfile] = useState(false)
+
 
   return (
     <>
@@ -57,16 +56,12 @@ function App() {
         <Link to='/signin'><LogoutIcon  fontSize="small" />Logout</Link>
         </IconButton>
         </Typography>
-        {/* <Link to='/users/settings'>User Settings</Link> */}
-        {/* <Typography color="text.primary">Breadcrumbs</Typography> */}
-
         </Breadcrumbs> </>
         {/* ) : ( */}
           <>
           <Breadcrumbs aria-label="breadcrumb">
             <Link to='/users/signup'>Get Started</Link>
             <Link to='/users/signin'>Login</Link>
-        {/* <Typography color="text.primary">Breadcrumbs</Typography> */}
           </Breadcrumbs>
           </>
         {/* )} */}

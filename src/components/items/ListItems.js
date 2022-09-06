@@ -25,7 +25,7 @@ const ListItems = () => {
   const [items, setItems] = useState(false)
 
   useEffect(() => {
-      axios.get(`http://localhost:8000/lists/items/${activeList}`)
+      axios.get(`https://final-list.herokuapp.com/lists/items/${activeList}`)
       .then(res => setItems(res.data))
   }, [activeList, reloadItems])
 
@@ -45,7 +45,7 @@ const ListItems = () => {
 
   function handleCreateSubmit (event) {
     event.preventDefault()
-        axios.post(`http://localhost:8000/lists/items/${activeList}`, createItem)
+        axios.post(`https://final-list.herokuapp.com/lists/items/${activeList}`, createItem)
         .then(res => {
           handleClose()
           setReloadItems(true)
@@ -65,7 +65,7 @@ const ListItems = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(listChanges)
-      axios.patch(`http://localhost:8000/lists/${activeList}`, listChanges)
+      axios.patch(`https://final-list.herokuapp.com/lists/${activeList}`, listChanges)
       .then(() => {
         setListChanges(initialFormState)
         handleClose()

@@ -26,7 +26,7 @@ const Item = ({items, setItems, itemsArr,  reloadItems, setReloadItems, selected
   
   useEffect(() => {
     activeList !== 'undefined' && 
-    axios.get(`http://localhost:8000/lists/items/${activeList}`)
+    axios.get(`https://final-list.herokuapp.com/lists/items/${activeList}`)
     .then(res => setItems(res.data))
   },  [reloadItems])
 

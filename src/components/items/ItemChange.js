@@ -34,7 +34,7 @@ const ChangeItem = ({id}) => {
   console.log(id.name)
   const handleEditSubmit = (event) => {
     event.preventDefault();
-      axios.patch(`http://localhost:8000/lists/${id}`, itemChanges)
+      axios.patch(`https://final-list.herokuapp.com/lists/${id}`, itemChanges)
       .then(() => {
         // setReloadItems(true)
         handleCloseEdit()

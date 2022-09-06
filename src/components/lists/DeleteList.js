@@ -23,7 +23,7 @@ const DeleteList = ({id, name, setReloadItems, items, setItems}) => {
 // console.log(id)
 const navigate = useNavigate()
   const handleListDelete = () => {
-    axios.delete(`http://localhost:8000/lists/${id}`)
+    axios.delete(`https://final-list.herokuapp.com/lists/${id}`)
         .then(res => {
           setItems(null)
           setActiveList('')
