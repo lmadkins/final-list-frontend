@@ -1,8 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
-// import ListsList from './ListsList'
-// import CreateListForm from '../trash/CreateListForm'
-// import * as React from 'react';
 
 // import { ActiveListContext } from '../../contexts/ActiveListContext';
 // import { UserContext } from './contexts/UserContext';
@@ -30,7 +27,7 @@ const CreateItem = ({ activeList,  reloadItems, setReloadItems}) => {
     function handleCreateSubmit (event) {
       event.preventDefault()
        // if (createItem.name !== '' && createItem.details !== '')
-          axios.post(`http://localhost:8000/lists/items/${activeList}`, createItem)
+          axios.post(`https://final-list.herokuapp.com/lists/items/${activeList}`, createItem)
           .then(res => {
             setCreateItem(initialCreateState)
             console.log('created')

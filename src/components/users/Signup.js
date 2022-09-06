@@ -28,7 +28,7 @@ const Signup = () => {
         // confirmPassword: '',
     }
     const [formState, setFormState] = useState(initialState);
-      // const [error, setError] = useState(null)
+    //   const [error, setError] = useState(null)
     // const { currentUser, setCurrentUser } = useContext(UserContext)
     // const [newUser, setNewUser] = useState(initialState)
 
@@ -50,10 +50,8 @@ const Signup = () => {
 
     function handleSubmit (event) {
         event.preventDefault()
-        // if (newUser.email !== '' && newUser.password !== ''){
-            // formState.password === formState.confirmPassword &&
-            // axios.post('https://final-list.herokuapp.com/users/signup', formState)
-            axios.post('http://localhost:8000/users/signup', formState)
+            formState.password === formState.confirmPassword &&
+            axios.post('https://final-list.herokuapp.com/users/signup', formState)
             .then(res => {
                     // save token to local storage
                     window.localStorage.setItem("Token", res.data.token)

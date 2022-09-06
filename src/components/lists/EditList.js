@@ -9,6 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 const EditList = ({id, name, details, handleChange, handleSubmit, listChanges, setListChanges}) => {
   // Patch req, state, and methods are in ListItems parent component
@@ -26,9 +27,11 @@ const EditList = ({id, name, details, handleChange, handleSubmit, listChanges, s
 
   return (
   <>  
-    <IconButton edge="end" aria-label="edit"  id={id}  onClick={handleClickOpen}>
-      <EditIcon/>
-    </IconButton>
+    <Tooltip title="Edit List" arrow>
+      <IconButton edge="end" aria-label="edit"  id={id}  onClick={handleClickOpen}>
+        <EditIcon/>
+      </IconButton>
+    </Tooltip>
     <Dialog 
       open={open} 
       onClose={handleClose}

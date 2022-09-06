@@ -58,7 +58,7 @@ const Dashboard = () => {
   const handleCreateSubmit = (event) => {
       event.preventDefault()
       // if (createList.name !== '' && createList.details !== '')
-          axios.post('http://localhost:8000/lists/new', createList)
+          axios.post('https://final-list.herokuapp.com/lists/new', createList)
           .then(res => {
             setCreateList(initialCreateState)
             // navigate('/lists')
@@ -78,10 +78,10 @@ const Dashboard = () => {
 
 // Reload lists list
   useEffect(() => {
-    axios.get(`http://localhost:8000/lists`)
+    axios.get(`https://final-list.herokuapp.com/lists`)
     .then(res => setLists(res.data))
     // console.log(createList)
-  },[reloadLists, createList])
+  },[reloadLists, createList, activeList])
 
 
   return (
@@ -110,11 +110,6 @@ const Dashboard = () => {
                     name={list.name} 
                     details={list.details}
                     lists={lists}
-                    // deleted={deleted}
-                    // setDeleted={setDeleted}
-                    // onClick={handleClick}
-                    // activeList = {activeList}
-                    // setActiveList = {setActiveList}
                     reloadLists={reloadLists}
                     setReloadLists={setReloadLists}
                   />))}
@@ -176,30 +171,12 @@ const Dashboard = () => {
 
       <Grid item xs={6}>
         <Item>
-       
         {/* Each item in the selected list, plus links to edit and delete */}
           <ListItems 
-          // items={items}
-          // itemsArr={items.items}
-          // setItems={setItems}
-          // activeList = {activeList}
-          // setActiveList = {setActiveList}
-
         />
   
         </Item>
       </Grid>
-
-     
-
-    {/* <Grid item xs={3}>
-
-      <Item>   
-  
-      </Item>
-    
-    </Grid> */}
-
     </Grid>
   </Box>
   </ActiveListContext.Provider>

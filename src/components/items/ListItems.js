@@ -4,6 +4,7 @@ import { ActiveListContext } from '../../contexts/ActiveListContext';
 // import { UserContext } from '../../contexts/UserContext';
 import Item from './Item';
 import EditList from '../lists/EditList';
+import DeleteList from '../lists/DeleteList';
 import Button from '@mui/material/Button';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import CloseIcon from '@mui/icons-material/Close';
@@ -15,18 +16,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const ListItems = () => {
-  // {activeList, activeListContext}
   const { activeList, setActiveList} = useContext(ActiveListContext)
   // Reload to use for actions that will need get request to refresh items after a change. Imported into ListItems, EditItem, DeleteItem, CreateItem,
   const [reloadItems, setReloadItems] = useState(false)
-
 
 
 // State for the items in a given list:
   const [items, setItems] = useState(false)
 
   useEffect(() => {
-      axios.get(`http://localhost:8000/lists/items/${activeList}`)
+      axios.get(`https://final-list.herokuapp.com/lists/items/${activeList}`)
       .then(res => setItems(res.data))
   }, [activeList, reloadItems])
 
@@ -46,7 +45,7 @@ const ListItems = () => {
 
   function handleCreateSubmit (event) {
     event.preventDefault()
-        axios.post(`http://localhost:8000/lists/items/${activeList}`, createItem)
+        axios.post(`https://final-list.herokuapp.com/lists/items/${activeList}`, createItem)
         .then(res => {
           handleClose()
           setReloadItems(true)
@@ -66,7 +65,7 @@ const ListItems = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(listChanges)
-      axios.patch(`http://localhost:8000/lists/${activeList}`, listChanges)
+      axios.patch(`https://final-list.herokuapp.com/lists/${activeList}`, listChanges)
       .then(() => {
         setListChanges(initialFormState)
         handleClose()
@@ -76,10 +75,10 @@ const ListItems = () => {
 
 const [selectedItem, setSelectedItem] = useState()
 
-const handleItemClick = (event) => {
-  event.preventDefault()
-  setSelectedItem(event.target.id)
-}
+// const handleItemClick = (event) => {
+//   event.preventDefault()
+//   setSelectedItem(event.target.id)
+// }
 
   return (
   <>
@@ -98,9 +97,18 @@ const handleItemClick = (event) => {
         listChanges={listChanges}
         setListChanges={setListChanges}
         />  
+      
+      <DeleteList 
+      id={items._id}
+      list={activeList._id}
+      name={items.name}
+      details={items.details}
+      items={items}
+      setItems={setItems}
+      /> 
 
     <Item 
-      onClick={handleItemClick} 
+      // onClick={handleItemClick} 
       items={items}
       setItems={setItems}
       activeList={activeList}
